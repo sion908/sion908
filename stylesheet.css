@@ -26,7 +26,7 @@
   
   .top-wrapper {
     padding: 180px 0 100px 0;
-    background-image: url(sadf.jpg);
+    background-image: url(img/EveningView.jpg);
     background-position: center;
     background-size: cover;
     /* color: white; */
@@ -167,7 +167,7 @@
   
   .ue4 {
     float: left;
-    width: 25%;
+    width: 33%;
   }
   
   .lesson-icon {
