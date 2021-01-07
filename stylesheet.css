@@ -149,11 +149,13 @@
     display:none;  
   }
   .detail-wrapper{
-    padding-bottom: 100px;
+    padding-bottom: 2erm;
   }
   .detail-wrapper a{
     text-decoration: underline;
-    text-align: right
+    padding-right: 1rem;
+    /* text-align: right */
+    float: right;
   }
 
   .lesson-wrapper {
