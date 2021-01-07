@@ -55,6 +55,10 @@
     background-image: linear-gradient(to right, #72A893 0%, #A8A26A 100%);
   }
   
+  h3 {
+    padding: 1rem 2rem;
+    border-left: 6px double #000;
+  }
   
   .btn-wrapper {
     text-align: center;
@@ -190,6 +194,7 @@
   }
   
   .heading h3 {
+
     font-weight: normal;
   }
   
