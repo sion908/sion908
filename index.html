@@ -7,6 +7,21 @@
   <title>portfolio</title>
   <link rel="stylesheet" href="stylesheet.css">
   <link rel="stylesheet" href="responsive.css">
+  <!-- ＃リンクのスムーズスクロール -->
+  <script>
+    $(function(){
+      // #で始まるリンクをクリックしたら実行されます
+      $('a[href^="#"]').click(function() {
+        // スクロールの速度
+        var speed = 400; // ミリ秒で記述
+        var href= $(this).attr("href");
+        var target = $(href == "#" || href == "" ? 'html' : href);
+        var position = target.offset().top;
+        $('body,html').animate({scrollTop:position}, speed, 'swing');
+        return false;
+      });
+    });
+  </script>
 </head>
 
 <body>
@@ -20,11 +35,11 @@
         <span class="fa fa-bars menu-icon"></span>
       </div>
 
-      <!-- <div class="header-right">
-          <a href="#">レッスン</a>
-          <a href="#">新規登録</a>
-          <a href="#" class="login">ログイン</a>
-        </div> -->
+      <div class="header-right">
+          <a href="#about">レッスン</a>
+          <a href="#myskill">新規登録</a>
+          <a href="#works" class="login">ログイン</a>
+        </div>
     </div>
   </header>
 
@@ -38,7 +53,7 @@
 
   <div class="detail-wrapper">
     <div class="container">
-      <h2 id="detail">detail</h2>
+      <h2 id="about">About</h2>
       <ul>
         <li>群馬県立高崎高等学校卒業</li>
         <li>長崎大学工学部電気電子工学コース4年</li>
@@ -49,9 +64,35 @@
     </div>
   </div>
 
+  <div class="myskill">
+    <div class="container">
+      <h2 id="myskill">my Skills</h2>
+      <ul>
+        <li>
+          <h4>tool</h4>
+          <ul>
+            <li>UE4</li>
+            <li>blender</li>
+            <li>Aviutl</li>
+            <li>git</li>
+          </ul>
+        </li>
+        <li>
+          <h4>language</h4>
+          <p>基本的に独学，学習中のものを含めて掲載しています。</p>
+          <ul>
+            <li>python　 特に画像認識の分野</li>
+            <li>HTML,CSS</li>
+            <li>GAS</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <div class="works-wrapper">
     <div class="container">
-      <h2 id="works">works</h2>
+      <h2 id="works">Works</h2>
       <ul>
         <div class="ue4-list">
           <h3>UE4</h3>
