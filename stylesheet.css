@@ -135,6 +135,12 @@
     float: left;
     transition: all 0.5s;
   }
+  .header-left p {
+    line-height: 65px;
+    padding: 0 25px;
+    display: block;
+    float: left;
+  }
   
   .header-right a:hover {
     background-color: rgba(255, 255, 255, 0.3);
@@ -172,7 +178,7 @@
     width : 640px;
     height: auto;
   }
-  
+
   .lesson-wrapper {
     padding-bottom: 80px;
     padding-left: 5%;
