@@ -158,7 +158,7 @@
     float: right;
   }
 
-  .sketchfab-embed-wrapper iframe{
+  .blender-if-wrapper iframe{
     width : 640px;
     height: 480px;
   }
