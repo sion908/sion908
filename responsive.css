@@ -4,7 +4,9 @@
       width: 100%;
       margin-bottom: 50px;
     }
-
+    img{
+      width: 100%;
+    }
     .sketchfab-embed-wrapper iframe{
       width: 80%;
       height: auto;
