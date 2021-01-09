@@ -5,8 +5,9 @@
       margin-bottom: 50px;
     }
 
-    .sketchfab-embed-wrapper{
-      width:80%;
+    .sketchfab-embed-wrapper iframe{
+      width: 80%;
+      height: auto;
     }
   
     footer {

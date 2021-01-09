@@ -158,6 +158,10 @@
     float: right;
   }
 
+  .sketchfab-embed-wrapper iframe{
+    width : 640;
+    height: 480;
+  }
   .lesson-wrapper {
     padding-bottom: 80px;
     padding-left: 5%;
