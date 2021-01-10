@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-    font-style: ;
   }
   
   body {
@@ -11,6 +10,10 @@
   
   a {
     text-decoration: none;
+  }
+
+  p,li,h4,h3 {
+    color: #1E1C26;
   }
   
   .clear {
@@ -218,7 +221,7 @@
     display: inline-block;
     margin-top: 15px;
     font-size: 13px;
-    color: #b3aeb5;
+    color: #1E1C26;
   }
   
   .heading h3 {
