@@ -88,6 +88,7 @@
   
   .btn {
     padding: 8px 24px;
+    margin: 10px;
     color: white;
     display: inline-block;
     opacity: 0.8;
@@ -258,7 +259,7 @@
   }
   
   footer {
-    padding-top: 30px;
-    padding-bottom: 20px;
-    background-color: #000;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #5B5473;
   }
