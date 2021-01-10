@@ -102,14 +102,20 @@
     text-align: center;
   }
 
-  a.btn-flat {
-    font-size: 1rem;
+  .btnce {
     margin: 0.7rem auto;
+    display:inline-block;
+    text-align:center;
+    width:100%;
+  }
+
+  a.btnn {
+    font-size: 1rem;
     font-weight: 700;
-    padding: 1rem 2rem;
-    line-height: 1.5;
+    line-height: 1;
     position: relative;
     display: inline-block;
+    padding: 0.6rem 1rem;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -121,17 +127,33 @@
     vertical-align: middle;
     text-decoration: none;
     letter-spacing: 0.1em;
+    color: #212529;
     border-radius: 0.5rem;
-    overflow: hidden;
-  
-    color: #fff;
-    background: #000;
   }
+
+  a.btn-flat {
+  overflow: hidden;
+
+  padding: 1rem 3rem;
+
+  color: #fff;
+  border-radius: 0;
+  background: #000;
+  }
+  /* .btngit:before {
+    background: #4183c4;
+  }
+  .btntwi:before {
+    background: #1DA1F2;
+  }
+  .btnfac:before {
+    background: #1877f2;
+  } */
   
   a.btn-flat span {
     position: relative;
   }
-
+  
   a.btn-flat:before {
     position: absolute;
     top: 0;
@@ -145,22 +167,10 @@
     transition: all .5s ease-in-out;
     -webkit-transform: translateX(-80%) translateY(-25px);
     transform: translateX(-80%) translateY(-25px);
-    
   
     border-radius: 50%;
-    /* background: #4183c4; */
+    background: #eb6100;
   }
-
-  .btngit:before {
-    background: #4183c4;
-  }
-  .btntwi:before {
-    background: #1DA1F2;
-  }
-  .btnfac:before {
-    background: #1877f2;
-  }
-  
   
   a.btn-flat:hover:before {
     width: 400px;
@@ -171,6 +181,8 @@
     transform: translateX(-1%) translateY(-175px);
   }
   
+
+
   .btn:hover {
     opacity: 1;
   }
@@ -326,16 +338,18 @@
     box-shadow: none;
   }
   
-  footer img {
-    width: 125px;
-  }
   
   footer p {
     color: #b3aeb5;
     font-size: 12px;
   }
   
+  footer a {
+    color: #b3aeb5;
+  }
+  
   footer {
+    text-align: center;
     padding-top: 5px;
     padding-bottom: 10px;
     background-color: #5B5473;

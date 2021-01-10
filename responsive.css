@@ -4,6 +4,11 @@
       width: 100%;
       margin-bottom: 50px;
     }
+
+    ul {
+      padding: 1em;
+    }
+
     img{
       width: 100%;
     }
