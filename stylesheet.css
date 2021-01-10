@@ -101,8 +101,10 @@
     border-radius: 4px;
     text-align: center;
   }
+
   a.btn-flat {
     font-size: 1rem;
+    margin: 0.7rem auto;
     font-weight: 700;
     padding: 1rem 2rem;
     line-height: 1.5;
@@ -124,22 +126,12 @@
   
     color: #fff;
     background: #000;
-    margin: 0.7rem auto;
   }
   
   a.btn-flat span {
     position: relative;
   }
-  .btngit:before {
-    background: #4183c4;
-  }
-  .btntwi:before {
-    background: #1DA1F2;
-  }
-  .btnfac:before {
-    background: #1877f2;
-  }
-  
+
   a.btn-flat:before {
     position: absolute;
     top: 0;
@@ -153,9 +145,22 @@
     transition: all .5s ease-in-out;
     -webkit-transform: translateX(-80%) translateY(-25px);
     transform: translateX(-80%) translateY(-25px);
+    
   
     border-radius: 50%;
+    /* background: #4183c4; */
   }
+
+  .btngit:before {
+    background: #4183c4;
+  }
+  .btntwi:before {
+    background: #1DA1F2;
+  }
+  .btnfac:before {
+    background: #1877f2;
+  }
+  
   
   a.btn-flat:hover:before {
     width: 400px;
