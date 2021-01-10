@@ -1,5 +1,11 @@
-* {
-    box-sizing: border-box;
+  * {
+      box-sizing: border-box;
+    }
+  
+  *:before,
+  *:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
   }
   
   body {
@@ -95,10 +101,76 @@
     border-radius: 4px;
     text-align: center;
   }
+  a.btn-flat {
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  
+    color: #fff;
+    background: #000;
+    margin: 0.7rem auto;
+  }
+  
+  a.btn-flat span {
+    position: relative;
+  }
+  .btngit:before {
+    background: #4183c4;
+  }
+  .btntwi:before {
+    background: #1DA1F2;
+  }
+  .btnfac:before {
+    background: #1877f2;
+  }
+  
+  a.btn-flat:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+  
+    width: 100px;
+    height: 100px;
+  
+    content: '';
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    -webkit-transform: translateX(-80%) translateY(-25px);
+    transform: translateX(-80%) translateY(-25px);
+  
+    border-radius: 50%;
+  }
+  
+  a.btn-flat:hover:before {
+    width: 400px;
+    height: 400px;
+  
+    -webkit-transform: translateX(-1%) translateY(-175px);
+  
+    transform: translateX(-1%) translateY(-175px);
+  }
   
   .btn:hover {
     opacity: 1;
   }
+
+
   
   .fa {
     margin-right: 5px;
