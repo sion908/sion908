@@ -140,15 +140,6 @@
   border-radius: 0;
   background: #000;
   }
-  /* .btngit:before {
-    background: #4183c4;
-  }
-  .btntwi:before {
-    background: #1DA1F2;
-  }
-  .btnfac:before {
-    background: #1877f2;
-  } */
   
   a.btn-flat span {
     position: relative;
@@ -169,7 +160,18 @@
     transform: translateX(-80%) translateY(-25px);
   
     border-radius: 50%;
-    background: #eb6100;
+    /* background: #eb6100; */
+    mix-blend-mode:lighten;
+  }
+  
+  .btngit:before {
+    background: #4183c4;
+  }
+  .btntwi:before {
+    background: #1DA1F2;
+  }
+  .btnfac:before {
+    background: #1877f2;
   }
   
   a.btn-flat:hover:before {
