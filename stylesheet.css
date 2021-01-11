@@ -263,12 +263,12 @@
   }
 
    .cluster-list img{
-    width : 640px;
+    max-width : 640px;
     height: auto;
   }
 
   .linebot-list img{
-    width : 640px;
+    max-width : 640px;
     height: auto;
   } 
 
