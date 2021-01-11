@@ -262,7 +262,7 @@
     height: 480px;
   }
 
-  .cluster-list img{
+  /* .cluster-list img{
     width : 640px;
     height: auto;
   }
@@ -270,7 +270,7 @@
   .linebot-list img{
     width : 640px;
     height: auto;
-  }
+  } */
 
   .lesson-wrapper {
     padding-bottom: 80px;
