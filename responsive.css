@@ -12,27 +12,6 @@
     img{
       width: 100%;
     }
-    .sketchfab-embed-wrapper iframe{
-      width: 80%;
-      height: auto;
-    }
-
-    .blender-if-wrapper {
-      position: relative;
-      width: 80%;
-    }
-    .blender-if-wrapper:before {
-      content:"";
-      display: block;
-      padding-top: 45%; /* 高さと幅の比を16:9に固定。9/16*100=56.25 */
-    }
-   .blender-if {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
   
     footer {
       text-align: center;
@@ -80,4 +59,21 @@
     .top-wrapper p {
       font-size: 14px;
     }
+
+    .blender-if-wrapper {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-top: 75%;
+    }
+
+    .blender-if-wrapper iframe{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    
   }
