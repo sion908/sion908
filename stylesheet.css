@@ -171,6 +171,10 @@
   .btnfac:before {
     background: #1877f2;
   }
+  .btnqii:before {
+    background: #55C500;
+  }
+
   
   a.btn-flat:hover:before {
     width: 400px;
@@ -343,6 +347,9 @@
     color: #b3aeb5;
     font-size: 12px;
   }
+  footer img {
+    color: #b3aeb5;
+  }
   
   footer a {
     color: #b3aeb5;
@@ -360,4 +367,39 @@
     width: 100%;
     padding: 0 15px;
     margin: 0 auto;
+  }
+
+  .qiiicon{
+    
+    height: 1rem;
+    width: auto;
+    filter: invert(100%);
+  }
+
+  .fooico{
+    height: 17.5px;
+    display: inline-block;
+    vertical-align: middle;
+    position:relative;
+    top:-50%;
+    filter: invert(50%) sepia(0%) saturate(11%) hue-rotate(143deg) brightness(101%) contrast(93%);
+    /* #b3aeb5 */
+  }
+  .fooico::after{
+    content: '';
+
+    position: absolute;
+
+    top: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    left: 0;
+
+    background-color: blue;
+    /* #b3aeb5 */
+    opacity: 0.5;
+
   }
