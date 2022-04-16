@@ -1,6 +1,9 @@
   * {
       box-sizing: border-box;
     }
+  html {
+    scroll-padding-top: 70px; /* 固定ヘッダの高さ分 */
+  }
   
   *:before,
   *:after {
@@ -46,6 +49,11 @@
     opacity: 1;
     font-size: 45px;
     letter-spacing: 5px;
+  }
+
+  .top-wrapper img {
+    height: 90px;
+    width:auto;
   }
   
   .top-wrapper p {
@@ -184,19 +192,15 @@
   
     transform: translateX(-1%) translateY(-175px);
   }
-  
-
 
   .btn:hover {
     opacity: 1;
   }
 
-
-  
   .fa {
     margin-right: 5px;
   }
-  
+
   header {
     height: 65px;
     width: 100%;
@@ -221,7 +225,6 @@
   
   .header-right {
     float: right;
-    margin-right: -25px;
   }
   
   .header-right a {

@@ -28,20 +28,6 @@
   
   /* スマホ向けレイアウト */
   @media all and (max-width: 670px) {
-    .ue4 {
-      width: 100%;
-    }
-  
-    
-  
-    .facebook {
-      margin-bottom: 10px;
-    }
-    
-    .top-wrapper {
-      text-align: left;
-    }
-  
     /* header-rightクラスのdisplayをnoneに指定してください */
     .header-right{
       display:none;
@@ -51,9 +37,23 @@
     .menu-icon{
       display:block;
     }
+
+    .ue4 {
+      width: 100%;
+    }
+
+    .facebook {
+      margin-bottom: 10px;
+    }
+    
+    .top-wrapper {
+      text-align: left;
+    }
+  
     
     .top-wrapper h1 {
       font-size: 24px;
+      margin-left: 5%;
     }
   
     .top-wrapper p {
