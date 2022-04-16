@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>portfolio</title>
+  <link rel="stylesheet" href="stylesheet.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="icon" href="img/marure.ico">
+  <!-- ＃リンクのスムーズスクロール -->
+  <script>
+    $(function(){
+      // #で始まるリンクをクリックしたら実行されます
+      $('a[href^="#"]').click(function() {
+        // スクロールの速度
+        var speed = 400; // ミリ秒で記述
+        var href= $(this).attr("href");
+        var target = $(href == "#" || href == "" ? 'html' : href);
+        var position = target.offset().top;
+        $('body,html').animate({scrollTop:position}, speed, 'swing');
+        return false;
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="header-left">
+      <!-- <p>Sion's portfolio</p> -->
+    </div>
+
+    <!-- <div>
+      <span class="fa fa-bars menu-icon"></span>
+    </div> -->
+
+    <div class="header-right">
+      <a href="#about">About</a>
+      <a href="#myskill">My Skill</a>
+      <a href="#works">Works</a>
+      <a href="#contact">Contact</a>
+    </div>
+    
+  </header>
+
+  <div class="top-wrapper">
+      <h1>Sion's portfolio</h1>
+  </div>
+
+  <div class="contents">
+  <div class="detail-wrapper">
+    <h2 id="about">About</h2>
+    <div class="container">
+      <ul>
+        <li>群馬県立高崎高等学校卒業</li>
+        <li>長崎大学大学院工学研究科電気電子工学コース1年</li>
+        <li>FUKUOKA NIWAKA　所属</li>
+      </ul>
+      <!-- <a>more</a> -->
+      <div class="forClear"></div>
+    </div>
+  </div>
+
+  <div class="myskill">
+    <h2 id="myskill">my Skills</h2>
+    <div class="container">
+      <ul>
+        <p>基本的に独学，学習中のものを含めて掲載しています。</p>
+        <li>
+          <h4>tool</h4>
+          <ul>
+            <li>UE4</li>
+            <li>blender</li>
+            <li>unity</li>
+            <li>Aviutl</li>
+            <li>git</li>
+          </ul>
+        </li>
+        <li>
+          <h4>language</h4>
+          <ul>
+            <li>python　 特に画像認識の分野</li>
+            <li>HTML,CSS</li>
+            <li>GAS</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="works-wrapper">
+    <h2 id="works">Works</h2>
+    <div class="container">
+      <ul>
+        <div class="ue4-list">
+          <h3>UE4</h3>
+          <p>現状，C++の記入まではできていないが，ヒストリアのプチコンに応募したもの</p>
+          <p>他に，学祭で描いた絵をスクリーンに写した海を泳ぐようなものも作った</p>
+          <div class="ue4s">
+            <div class="ue4">
+              <iframe src="https://www.youtube.com/embed/wG7zYERNXaw" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <p class="text-contents">初めて投稿したもの，一か月頑張ってじゃんけんのようなシューティングゲームを作成した</p>
+            </div>
+            <div class="ue4">
+              <iframe src="https://www.youtube.com/embed/pG18Tzq2mck" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <p class="text-contents">動画へんとのことで最後の映像をとにかく作りたかった．階段を上る感じや歩く感じがダメダメだった．</p>
+            </div>
+            <div class="ue4">
+              <iframe src="https://www.youtube.com/embed/eaq9tp_zPCQ" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <p class="text-contents">本人に直接攻撃力がないようにしたら，柵の召喚によって攻撃を与えることになった．魔法陣の作成ができて感動した覚えがある．</p>
+            </div>
+          </div>
+          <div class="forClear"></div>
+        </div>
+        <div class="blender-list">
+          <h3>blender</h3>
+          <div class="blender-wrapper">
+            <div class="blender-if-wrapper">
+              <iframe class="blender-if" title="A 3D model" src="https://sketchfab.com/models/2458cf8240124b799725bd80ca3a657d/embed?autostart=0&amp;ui_controls=1&amp;ui_infos=1&amp;ui_inspector=1&amp;ui_stop=1&amp;ui_theme=dark&amp;ui_watermark=1&amp;ui_watermark_link=1" frameborder="0" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+            </div>
+            <div class="blender-if-wrapper">
+              <iframe src="https://onedrive.live.com/embed?cid=5610E61ACE9813C5&resid=5610E61ACE9813C5%2134861&authkey=AE8gOwHsAGEzXyU" width="98" height="120" frameborder="0" scrolling="no"></iframe>
+            </div>
+            <div class="forClear"></div>
+            <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
+                <a href="https://sketchfab.com/3d-models/engineering-fes-emb-2458cf8240124b799725bd80ca3a657d?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Engineering Fes Emb</a>
+                by <a href="https://sketchfab.com/sion908?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">sion908</a>
+                on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campaign=share-popup" target="_blank" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
+            </p>
+          </div>
+          <div class="forClear"></div>
+        </div>
+        <div class="cluster-list">
+          <h3>cluster</h3>
+          <p>一度参加したハッカソンでの発表形式がclusterであったことを期に所属団体でのLT会でclusterを利用したときに作ったマップ．how to も含めて環境要因で雪を降らせることやものの射出，スタッフと参加者によっては入れる場所と入れない場所を作り，コンソールを接地したりした．</p>
+          <img src="img/clusterImg.png" alt="">
+        </div>
+        <div class="linebot-list">
+          <h3>linebot</h3>
+          <p>所属団体でお客さん相手に撮った写真を共有する方法として，iPhoneではAirDropがあるのに対して，androidに対して共有する方法が見つからなかった．</p>
+          <p>その解決策として，GoogleAppScriptを利用し，送信した画像を共有するためのQRコードのURLを送り返すというchatbotを作成した</p>
+          <img src="img/libotscreenshot.png" alt="">
+        </div>
+        <div class="twitterbot">
+          <h3>Twitterbot</h3>
+          <p>大学の健康管理システムを4日に一回入力する必要があるため，余裕をもって3日に一回アクセス用のURLをつぶやくbotを作成した．同じ内容のツイートが10回くらい空けないといけないということだったので，名言を10種用意しておき，ついでにツイートするようにした．</p>
+          <a href="https://twitter.com/AmabieNbot" class="btn twitter"><span class="fa fa-twitter"></span>AmabienBot</a>
+          <a class="twitter-timeline" href="https://twitter.com/AmabienBot?ref_src=twsrc%5Etfw">Tweets by AmabienBot</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><img src="img/tweetimg.png" alt="">
+        </div>
+      </ul>
+    </div>
+  </div>
+
+  <div class="contact-wrapper">
+    <h2 id="contact">Contact</div>
+    <div class="container">
+        <div class="btnce"><a href="https://twitter.com/Taiga_Fuyumi" class='btnn btntwi btn-flat'><i class="fa fa-twitter"></i> twitter</a></div>
+        <div class="forClear"></div>
+        <div class="btnce"><a href="https://www.facebook.com/tokuhisa.taiga" class='btnn btnfac btn-flat'><i class="fa fa-facebook"></i> facebook</a></div>
+        <div class="forClear"></div>
+        <div class="btnce"><a href="https://github.com/sion908" class='btnn btngit btn-flat'><i class="fa fa-github"></i> GitHub</a></div>
+        <div class="forClear"></div>
+        <div class="btnce"><a href="https://qiita.com/sion908" class='btnn btnqii btn-flat'><img class="qiiicon" src="img/qiita-icon.png"/> Qiita</a></div>
+        <div class="forClear"></div>
+    </div>
+  </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <!-- <img src="https://prog-8.com/images/html/advanced/footer_logo.png"> -->
+      
+      <!-- <a href="https://twitter.com/Taiga_Fuyumi"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.facebook.com/tokuhisa.taiga"><i class="fa fa-facebook"></i></a>
+      <a href="https://github.com/sion908"><i class="fa fa-github"></i></a>
+      <a href="https://qiita.com/sion908"><img class="qiiicon fooico" src="img/qiita-icon.png"/></a> -->
+    
+      <p>Copyright © Sion All Rights Reserved.</p>
+    </div>
+  </footer>
+  <style>
+    
+  </style>
+</body>
+
+</html>
