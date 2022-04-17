@@ -307,9 +307,11 @@
   }
   
   .ue4-fireworks iframe{
+    min-width: 300px;
     width: 80%;
     max-width: 600px;
-    aspect-ratio: 5 / 3;
+    aspect-ratio: 16 / 9;
+    height: auto;
   }
   
   .lesson-icon {
