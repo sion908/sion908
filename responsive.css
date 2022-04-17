@@ -1,5 +1,5 @@
 /* タブレット向けレイアウト */
-@media all and (max-width: 1000px) {
+@media all and (max-width: 1100px) {
     .ue4 {
       width: 100%;
       margin-bottom: 50px;
@@ -24,6 +24,20 @@
     .heading h2 {
       font-size: 20px;
     }
+    .houdouroom p{
+      width:80%;
+      text-align: center;
+      margin: 2em 10%;
+    }
+    .tweet-houdou {
+      float:none;
+      text-align: center;
+    }
+    .tweet-houdou>div {
+      margin: auto;
+    }
+
+    
   }
   
   /* スマホ向けレイアウト */
@@ -75,5 +89,12 @@
       height: 100%;
     }
 
-    
+    .li-left,.li-right {
+      float: none;
+      width: auto;
+    }
+
+    .skill-list li{
+      column-count: 2;
+    }
   }

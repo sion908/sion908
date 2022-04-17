@@ -56,9 +56,22 @@
     <div class="container">
       <ul>
         <li>群馬県立高崎高等学校卒業</li>
-        <li>長崎大学大学院工学研究科電気電子工学コース1年</li>
+        <li onclick="obj=document.getElementById('open-school').style; obj.display=(obj.display=='none')?'block':'none';">長崎大学大学院工学研究科電気電子工学コース2年 <a style="cursor:pointer;float:none;">▼</a>
+          <div class="detail-school" id="open-school" style="display:none; clear:both;">
+          <p>研究内容：農地におけるセンシングとBIツールを用いた可視化</p>
+          <p>ESP32によるセンシングから，mqttでのデータ収集，サーバーの構築と保存，BIツールとの連携を行っている</p>
+          </div>
+        </li>
         <li>FUKUOKA NIWAKA 所属</li>
-        <li>長崎東山手洋館活用プロジェクト 所属</li>
+        <li onclick="obj=document.getElementById('open-yamate').style; obj.display=(obj.display=='none')?'block':'none';">長崎東山手洋館活用プロジェクト 代表 <a style="cursor:pointer;float:none;">▼</a>
+          <div class="detail-yamate" id="open-yamate" style="display:none; clear:both;">
+          <img src="img\山手icon.png" alt="東山手icon">
+          <p>長崎の山手地区において，洋風住宅周知のために，居留地まつりや洋館ハロウィン洋風住宅を使ったイベントなどを行い，地域の魅力発信をおこなっている地域団体．</p>
+          <p>通称 "Pavé" オランダ坂をはじめとした石畳の残る街において，人々の生活の基盤である石畳のようになりたい．</p>
+          <p>詳しい活動内容は下記SNSよりご覧ください</p>
+          <div class="btnce"><a href="https://twitter.com/higashiyamate" class='btnn btntwi btn-flat'><i class="fa fa-twitter"></i> twitter</a></div>
+          </div>
+        </li>
       </ul>
       <!-- <a>more</a> -->
       <div class="forClear"></div>
@@ -68,27 +81,33 @@
   <div class="myskill">
     <h2 id="myskill">my Skills</h2>
     <div class="container">
-      <ul>
-        <p>基本的に独学，学習中のものを含めて掲載しています。</p>
-        <li>
-          <h4>tool</h4>
-          <ul>
-            <li>UE4</li>
-            <li>blender</li>
-            <li>unity</li>
-            <li>Aviutl</li>
-            <li>git</li>
-          </ul>
-        </li>
-        <li>
-          <h4>language</h4>
-          <ul>
-            <li>python　 特に画像認識の分野</li>
-            <li>HTML,CSS</li>
-            <li>GAS</li>
-          </ul>
-        </li>
-      </ul>
+      <div class="skill-container">
+        <ul>
+          <p>基本的に独学，学習中のものを含めて掲載しています。</p>
+          <li class="skill-list li-left">
+            <h4>tool</h4>
+            <ul>
+              <li class="left">UE4</li>
+              <li class="left">blender</li>
+              <li class="left">unity</li>
+              <li class="right">Aviutl</li>
+              <li class="right">git</li>
+              <li class="right">arduino</li>
+              <div class="forClear"></div>
+            </ul>
+          </li>
+          <li class="skill-list li-right">
+            <h4>language</h4>
+            <ul>
+              <li class="left">python (画像認識,Django)</li>
+              <li class="left">HTML,CSS</li>
+              <li class="right">GAS</li>
+              <div class="forClear"></div>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="forClear"></div>
     </div>
   </div>
 
@@ -115,6 +134,11 @@
             </div>
           </div>
           <div class="forClear"></div>
+          <div class="ue4-fireworks">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/JRoT8WcR-_o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p class="text-contents">地域団体であるPavéの活動の一環として地域の人からイラストを集め，それをもとにした花火を山手地区にある出雲近隣公園，グラバー園ドックハウス，グラバー邸からの視点を再現し，動画として放送した．仲間を見つけることができなかったため，自分ともう一人，建築分野の人と協力して作成した．</p>
+            
+          </div>
         </div>
         <div class="blender-list">
           <h3>blender</h3>
@@ -136,6 +160,15 @@
           <h3>cluster</h3>
           <p>一度参加したハッカソンでの発表形式がclusterであったことを期に所属団体でのLT会でclusterを利用したときに作ったマップ．how to も含めて環境要因で雪を降らせることやものの射出，スタッフと参加者によっては入れる場所と入れない場所を作り，コンソールを設置したりした．</p>
           <img src="img/clusterImg.png" alt="">
+          <div class="houdouroom">
+          <h4>ほうどうルーム</h4>
+          <div class="tweet-houdou">
+          <blockquote class="twitter-tweet" data-width="300" data-theme="dark"><p lang="ja" dir="ltr">🌸 御礼 🌸<br>メタバース <a href="https://twitter.com/hashtag/%E3%81%BB%E3%81%86%E3%81%A9%E3%81%86%E3%83%AB%E3%83%BC%E3%83%A0?src=hash&amp;ref_src=twsrc%5Etfw">#ほうどうルーム</a> <br>をお楽しみいただいている皆様へ😌<a href="https://twitter.com/hashtag/%E3%83%A1%E3%82%BF%E3%83%90%E3%83%BC%E3%82%B9?src=hash&amp;ref_src=twsrc%5Etfw">#メタバース</a> <a href="https://twitter.com/hashtag/cluster?src=hash&amp;ref_src=twsrc%5Etfw">#cluster</a> <a href="https://twitter.com/hashtag/DX?src=hash&amp;ref_src=twsrc%5Etfw">#DX</a> <a href="https://t.co/JlRHJ9431N">pic.twitter.com/JlRHJ9431N</a></p>&mdash; 中村ほうどうチャンネル（中村法道・前長崎県知事） (@nakamura_hodo) <a href="https://twitter.com/nakamura_hodo/status/1494268850417766402?ref_src=twsrc%5Etfw">February 17, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+
+          <p>前述の東山手洋館活用プロジェクトとして，居留地まつりなどにかかわっていたときに，2022年がコロナ禍ということもあり，オンライン開催となった．この時に，ここでは省略するが，clusterのワールドを作成し，簡易的に活動内容をポスターセッションのようにいつでも見れるようにした．その時の縁などもあり，県知事選において，メタバースを体験するという目的のもとに，中村法道氏の政索などを体験できるようにclusterのプラットフォームを用いワールドを作成した．現在は非公開としているので，選挙中のTwitterを載せておく．</p>
+          </div>
+          <div class="forClear"></div>
         </div>
         <div class="linebot-list">
           <h3>linebot</h3>

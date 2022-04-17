@@ -52,8 +52,12 @@
   }
 
   .top-wrapper img {
-    height: 90px;
+    height: 80px;
+    padding: 5px;
     width:auto;
+    background-color: rgba(239, 231, 231, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
   }
   
   .top-wrapper p {
@@ -302,6 +306,12 @@
     width: 33%;
   }
   
+  .ue4-fireworks iframe{
+    width: 80%;
+    max-width: 600px;
+    aspect-ratio: 5 / 3;
+  }
+  
   .lesson-icon {
     position: relative;
   }
@@ -405,4 +415,94 @@
     /* #b3aeb5 */
     opacity: 0.5;
 
+  }
+  
+  .li-left {
+    float: left;
+  }
+  .li-right {
+    float: right;
+  }
+
+  .skill-container ul {
+    list-style: none;
+  }
+
+  .skill-list {
+    width: 40%;
+    margin: 5px 5% ;
+  }
+  .skill-list h4 {
+    display: inline-block;
+    padding: 5px 10px 1px 10px;
+    background: #130714;
+    color: rgb(236, 236, 236);
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    margin: 0;
+    font-size: 1.3em;
+  }
+  .li-left ul,.li-right ul {
+    margin: 0;
+    padding: 5px;
+    position: relative;
+    border: dashed 2px #130714;
+  }
+  .skill-list ol {
+    counter-reset: number;
+  }
+  .skill-list ul li,.skill-list ol li {
+    color: #130714;
+    line-height: 1.5;
+    padding: 0.5em 0.5em 0.5em 1.8em;
+    list-style-type: none;
+    font-weight: bold;
+  }
+  .skill-list ul li:before {
+    font-family: FontAwesome;
+    content: "\f14a";
+    position: absolute;
+    left : 0.5em;
+    color: #130714;
+  }
+  .skill-list ol li:before {
+    display: inline-block;
+    position: absolute;
+    left: 0.5em;
+    width: 22px;
+    height: 22px;
+    border-radius: 20%;
+    background: #130714;
+    color: white;
+    font-family: "Quicksand", sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 22px;
+    content: counter(number);
+    counter-increment: number;
+  }
+  .detail-yamate img{
+    border-radius: 1em;
+    width: 10em;
+    /* height: 100%; */
+    float:left;
+    margin: 0 3em 0 1em;
+  }
+
+  .detail-yamate a{
+    float: none;
+  }
+
+  .houdouroom p{
+    margin:10em 3em;
+    float:left;
+    width:50%;
+    border: solid #4A4A4A 3px;
+    padding: 1em;
+  }
+  
+  .tweet-houdou {
+    float:left;
   }
