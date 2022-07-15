@@ -97,4 +97,13 @@
     .skill-list li{
       column-count: 2;
     }
+
+    .flex {
+      display: block; /*横並び*/
+    }
+    .flex img {
+      width: 80%; /*画像サイズ指定*/
+      text-align: center;
+      margin: 0;
+    }
   }

@@ -36,7 +36,7 @@
   
   .top-wrapper {
     padding: 180px 0 100px 0;
-    background-image: url(img/EveningView.png);
+    background-image: url(../img/EveningView.jpg);
     background-position: center;
     background-size: cover;
     /* color: white; */
@@ -507,4 +507,31 @@
   
   .tweet-houdou {
     float:left;
+  }
+  .flex {
+    display: flex; /*横並び*/
+  }
+  .flex-rev {
+    flex-direction: row-reverse;
+  }
+  .flex img {
+    width: 40%; /*画像サイズ指定*/
+    margin: 10px 5%;
+    padding: 0;
+  }
+  .flex .text {
+    margin: 0 0 0 20px;
+    padding: 0;
+  }
+
+  .iframe-responsive2 {
+    position: relative;
+    width: 100%;
+  }
+  .iframe-responsive2 iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
