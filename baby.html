@@ -25,28 +25,25 @@
         <canvas id="canvas"></canvas>
         <script>
         var createScene = function (engine, canvas) {
-              var scene = new BABYLON.Scene(engine);
+    // Create a scene.
+    var scene = new BABYLON.Scene(engine);
 
-              //Adding a light
-              var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20, 20, 100), scene);
+    // Create a default skybox with an environment.
+    // var hdrTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("textures/environment.dds", scene);
+    // var currentSkybox = scene.createDefaultSkybox(hdrTexture, true);
 
-              //Adding an Arc Rotate Camera
-              var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
-              camera.attachControl(canvas, false);
+    // Append glTF model to scene.
+    BABYLON.SceneLoader.Append("https://sion908.github.io/sion908/model/", "bari_block.glb", scene, function (scene) {
+        // Create a default arc rotate camera and light.
+        scene.createDefaultCameraOrLight(true, true, true);
 
-              // The first parameter can be used to specify which mesh to import. Here we import all meshes
-              BABYLON.SceneLoader.ImportMesh("", "model/", "bari_block.glb", scene, function (newMeshes) {
-                  // Set the target of the camera to the first imported mesh
-                  camera.target = newMeshes[0];
-              });
+        // The default camera looks at the back of the asset.
+        // Rotate the camera by 180 degrees to the front of the asset.
+        scene.activeCamera.alpha += Math.PI;
+    });
 
-              // Move the light with the camera
-              scene.registerBeforeRender(function () {
-                  light.position = camera.position;
-              });
-
-              return scene;
-          }
+    return scene;
+};
         function main() {
             // canvasを取得する
             const canvas = document.getElementById('canvas');
