@@ -24,13 +24,15 @@
     <body>
         <canvas id="canvas"></canvas>
         <script>
-        var createScene = function (engine, canvas) {
+        var createScene = function (engine, canvas){
     // Create a scene.
     var scene = new BABYLON.Scene(engine);
 
     // Create a default skybox with an environment.
     // var hdrTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("textures/environment.dds", scene);
     // var currentSkybox = scene.createDefaultSkybox(hdrTexture, true);
+    var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0.8, 100, BABYLON.Vector3.Zero(), scene);
+    camera.attachControl(canvas, false);
 
     // Append glTF model to scene.
     BABYLON.SceneLoader.Append("https://sion908.github.io/sion908/model/", "bari_block.glb", scene, function (scene) {
@@ -40,6 +42,7 @@
         // The default camera looks at the back of the asset.
         // Rotate the camera by 180 degrees to the front of the asset.
         scene.activeCamera.alpha += Math.PI;
+        camera.target = newMeshes[0];
     });
 
     return scene;
