@@ -107,3 +107,24 @@
       margin: 0;
     }
   }
+
+@media screen and (orientation: landscape) {
+  /* 横向きの場合のスタイル */
+  .vket-frame {
+    width: 90vh;
+    height: 90vh;
+  }
+}
+@media screen and (orientation: portrait) {
+  /* 縦向きの場合のスタイル */
+  .vket-frame {
+    width: 90vw;
+    height: 90vw;
+  }
+}
+
+.vket-frame iframe {
+  width: 100%; /* iframeの幅を100%に設定 */
+  height: 100%; /* iframeの高さを100%に設定 */
+  border: none; /* 枠線を削除 */
+}
