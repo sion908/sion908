@@ -155,7 +155,7 @@ function init() {
   scene.add(marker1);
   const arMarkerControls = new THREEx.ArMarkerControls(arToolkitContext, marker1, {
     type: 'pattern',
-    patternUrl: '/marker/pattern-chart.patt',
+    patternUrl: 'marker/pattern-chart.patt',
     changeMatrixMode: 'cameraTransformMatrix'
   });
   arMarkerControls.addEventListener("markerFound", () => {
@@ -164,7 +164,7 @@ function init() {
   });
 
   const gltfloader = new THREE.GLTFLoader();
-  gltfloader.load('/model/mar.gltf',function(gltf){
+  gltfloader.load('model/mar.gltf',function(gltf){
       marker1.add(gltf.scene);
   });
   
