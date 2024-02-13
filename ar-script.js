@@ -54,12 +54,23 @@ const arMarkerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
   changeMatrixMode: 'cameraTransformMatrix'
 });
 
-const mesh = new THREE.Mesh(
-  new THREE.CubeGeometry(1, 1, 1),
-  new THREE.MeshNormalMaterial(),
-);
-mesh.position.y = 1.0;
-scene.add(mesh);
+// const mesh = new THREE.Mesh(
+//   new THREE.CubeGeometry(1, 1, 1),
+//   new THREE.MeshNormalMaterial(),
+// );
+// mesh.position.y = 1.0;
+// scene.add(mesh);
+const loader = new THREE.GLTFLoader();
+
+loader.load( 'model/mar.gltf', function ( gltf ) {
+
+	scene.add( gltf.scene );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
 
 const clock = new THREE.Clock();
 requestAnimationFrame(function animate(){
