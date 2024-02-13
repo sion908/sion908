@@ -1,106 +1,34 @@
-let w;
-let h;
-let canvas;
-let scene;
-let camera;
-let renderer;
-let object;
+const renderer = new THREE.WebGLRenderer({
+  antialias: true,
+  alpha: true
+});
+renderer.setClearColor(new THREE.Color(), 0);
+renderer.setSize(640, 480);
+renderer.domElement.style.position = 'absolute';
+renderer.domElement.style.top = '0px';
+renderer.domElement.style.left = '0px';
+document.body.appendChild(renderer.domElement);
 
-let arToolkitSource;
-let arToolkitContext;
+const scene = new THREE.Scene();
+scene.visible = false;
+const camera = new THREE.Camera();
+scene.add(camera);
 
-const init = () => {
-  w = window.innerWidth;
-  h = window.innerHeight;
-  canvas = document.getElementById("canvas");
-  setScene();
-  setCamera();
-  setObject();
-  setArToolkit();
-  setRenderer();
-};
+const arToolkitSource = new THREEx.ArToolkitSource({
+  sourceType: 'webcam'
+});
 
-const setScene = () => {
-  scene = new THREE.Scene();
-  scene.visible = false;
-};
+arToolkitSource.init(() => {
+  setTimeout(() => {
+    onResize();
+  }, 2000);
+});
 
-const setCamera = () => {
-  camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 30);
-  scene.add(camera);
-};
+addEventListener('resize', () => {
+  onResize();
+});
 
-const setArToolkit = () => {
-  arToolkitSource = new THREEx.ArToolkitSource({
-    sourceType: "webcam",
-  });
-
-  arToolkitSource.init(() => {
-    setTimeout(() => {
-      onResize();
-    }, 2000);
-  });
-
-  arToolkitContext = new THREEx.ArToolkitContext({
-    cameraParametersUrl:
-      THREEx.ArToolkitContext.baseURL + "../data/data/camera_para.dat",
-    detectionMode: "mono",
-    // ※1 作ったマーカーのPattern Ratioを入れる
-    patternRatio: 0.8,
-  });
-
-  arToolkitContext.init(
-    (onCompleted = () => {
-      camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
-    })
-  );
-
-  let onRenderFcts = [];
-  onRenderFcts.push(() => {
-    if (arToolkitSource.ready === false) return;
-    arToolkitContext.update(arToolkitSource.domElement);
-    scene.visible = camera.visible;
-  });
-
-  const markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
-    type: "pattern",
-    // ※2 マーカーのpattファイルのパスを入れる
-    patternUrl: "./marker/pattern-chart.patt",
-    changeMatrixMode: "cameraTransformMatrix",
-  });
-};
-
-const setObject = () => {
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
-  const material = new THREE.MeshNormalMaterial();
-  object = new THREE.Mesh(geometry, material);
-  object.position.set(0, 0, 0);
-  scene.add(object);
-};
-
-const setRenderer = () => {
-  renderer = new THREE.WebGLRenderer({
-    antialias: true,
-    alpha: true,
-    canvas: canvas,
-  });
-  renderer.setClearColor(0x000000, 0);
-  renderer.setSize(w, h);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setAnimationLoop(() => {
-    render();
-  });
-};
-
-const render = () => {
-  if (arToolkitSource.ready) {
-    arToolkitContext.update(arToolkitSource.domElement);
-    scene.visible = camera.visible;
-  }
-  renderer.render(scene, camera);
-};
-
-const onResize = () => {
+function onResize() {
   arToolkitSource.onResizeElement();
   arToolkitSource.copyElementSizeTo(renderer.domElement);
   if (arToolkitContext.arController !== null) {
@@ -108,10 +36,40 @@ const onResize = () => {
   }
 };
 
-window.addEventListener("resize", () => {
-  onResize();
+const arToolkitContext = new THREEx.ArToolkitContext({
+  cameraParametersUrl:
+    THREEx.ArToolkitContext.baseURL + "../data/data/camera_para.dat",
+  detectionMode: "mono",
+  // ※1 作ったマーカーのPattern Ratioを入れる
+  patternRatio: 0.5,
 });
 
-window.onload = () => {
-  init();
-};
+arToolkitContext.init(() => {
+  camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
+});
+
+const arMarkerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
+  type: 'pattern',
+  patternUrl: 'marker/pattern-chart.patt',
+  changeMatrixMode: 'cameraTransformMatrix'
+});
+
+const mesh = new THREE.Mesh(
+  new THREE.CubeGeometry(1, 1, 1),
+  new THREE.MeshNormalMaterial(),
+);
+mesh.position.y = 1.0;
+scene.add(mesh);
+
+const clock = new THREE.Clock();
+requestAnimationFrame(function animate(){
+  requestAnimationFrame(animate);
+  if (arToolkitSource.ready) {
+      arToolkitContext.update(arToolkitSource.domElement);
+      scene.visible = camera.visible;
+  }
+  const delta = clock.getDelta();
+  mesh.rotation.x += delta * 1.0;
+  mesh.rotation.y += delta * 1.5; 
+  renderer.render(scene, camera);
+});
