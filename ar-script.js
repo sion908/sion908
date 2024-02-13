@@ -162,9 +162,12 @@ function init() {
     // マーカーが見つかっている時は毎秒呼ばれる
     console.log("marker found");
   });
-
+  
   const gltfloader = new THREE.GLTFLoader();
   gltfloader.load('model/mar.gltf',function(gltf){
+      model = gltf.scene;
+      model.name = "model";
+      model.scale.set(0.5,0.5,0.5);
       marker1.add(gltf.scene);
   });
   
