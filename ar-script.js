@@ -64,7 +64,7 @@ arMarkerControls.addEventListener("markerFound", () => {
 // );
 // mesh.position.y = 1.0;
 // scene.add(mesh);
-const loader = new THREEx.GLTFLoader();
+const loader = new THREE.GLTFLoader();
 
 loader.load( 'model/mar.gltf', function ( gltf ) {
 
@@ -83,8 +83,8 @@ requestAnimationFrame(function animate(){
       arToolkitContext.update(arToolkitSource.domElement);
       scene.visible = camera.visible;
   }
-  const delta = clock.getDelta();
-  mesh.rotation.x += delta * 1.0;
-  mesh.rotation.y += delta * 1.5; 
+  // const delta = clock.getDelta();
+  // mesh.rotation.x += delta * 1.0;
+  // mesh.rotation.y += delta * 1.5; 
   renderer.render(scene, camera);
 });
