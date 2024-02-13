@@ -53,6 +53,10 @@ const arMarkerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
   patternUrl: 'marker/pattern-chart.patt',
   changeMatrixMode: 'cameraTransformMatrix'
 });
+arMarkerControls.addEventListener("markerFound", () => {
+  // マーカーが見つかっている時は毎秒呼ばれる
+  console.log("marker found");
+});
 
 // const mesh = new THREE.Mesh(
 //   new THREE.CubeGeometry(1, 1, 1),
@@ -60,7 +64,7 @@ const arMarkerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
 // );
 // mesh.position.y = 1.0;
 // scene.add(mesh);
-const loader = new THREE.GLTFLoader();
+const loader = new THREEx.GLTFLoader();
 
 loader.load( 'model/mar.gltf', function ( gltf ) {
 
