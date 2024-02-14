@@ -4,6 +4,7 @@
 <script src="js/aframe.min.js"></script>
 <script src="js/aframe-ar.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+<link rel="stylesheet" href="css/ar.css">
 <body style="margin: 0px; overflow: hidden;">
 
 <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
@@ -22,20 +23,7 @@
     </a-marker>
     
     <a-entity camera></a-entity>
-    <a-entity position="-1 0.5 -3">
-        <!-- ポートフォリオへのリンクの背景 -->
-        <a-plane position="1.5 -0.5 0" width="1" height="0.5" color="#AAA"></a-plane>
-        
-        <!-- ポートフォリオへのテキスト -->
-        <a-text value="ポートフォリオへ" align="center" width="4" position="1.5 -0.5 0.01" color="#000"></a-text>
-        
-        <!-- 左矢印 -->
-        <a-text value="<-" align="center" width="4" position="1 -0.5 0.02" color="#000"></a-text>
-        
-        <!-- リンク機能を持たせるための透明な平面 -->
-        <a-plane position="1.5 -0.5 0" width="1" height="0.5" color="#AAA" opacity="0" 
-                 link="href: index.html"></a-plane>
-    </a-entity>
 </a-scene>
+<button class="btn-transition" onclick="location.href='index.html'">ポートフォリオへ</button>
 </body>
 </html>

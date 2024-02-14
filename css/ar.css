@@ -1,0 +1,22 @@
+/* ボタンのスタイル設定 */
+.btn-transition {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999; /* a-sceneより上に表示 */
+  padding: 10px 20px;
+  background-color: #857BA8;
+  border-bottom: 5px solid #554e6d;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+
+}
+
+.btn-transition:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #857BA8;
+  border-bottom: 2px solid #ccc100;
+}
