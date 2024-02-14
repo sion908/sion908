@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+
 window.addEventListener("DOMContentLoaded", init);
 
 function init() {
