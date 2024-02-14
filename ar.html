@@ -14,7 +14,7 @@
     <a-marker type="pattern" url="marker/pattern-chart.patt">
         <a-entity   position="0 0 0" 
                     rotation="0 0 0"
-                    scale="0.10 0.10 0.10"
+                    scale="0.01 0.01 0.01"
                     gltf-model="#mar" >
         </a-entity>
     </a-marker>
@@ -24,3 +24,31 @@
 </a-scene>
 </body>
 </html>
+<!-- 
+<!doctype HTML>
+<html>
+<head>
+    <title>Marker Based AR with AR.js and Three.js</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    <script src="js/aframe-ar.js"></script>
+    <script src="js/aframe-ar.min.js"></script>
+</head>
+
+<body style="margin: 0px; overflow: hidden;">
+
+<a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
+    <a-assets>
+        <a-asset-item id="tree" src="model/mar.gltf"></a-asset-item>
+    </a-assets>
+    
+    <a-marker type="pattern" url="marker/pattern-chart.patt">
+        <a-entity   position="0 0 0" 
+                    rotation="0 0 0"
+                    scale="0.7 0.7 0.7"
+                    gltf-model="#tree" >
+        </a-entity>
+    </a-marker>
+    <a-entity camera></a-entity>
+</a-scene>
+</body>
+</html> -->
