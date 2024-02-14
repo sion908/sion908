@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { THREEx } from 'arjs';
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -72,7 +73,7 @@ function init() {
     console.log("marker found");
   });
   
-  const gltfloader = new THREE.GLTFLoader();
+  const gltfloader = new GLTFLoader();
   gltfloader.load('model/mar.gltf',function(gltf){
       model = gltf.scene;
       model.name = "model";
