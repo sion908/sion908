@@ -1,0 +1,65 @@
+#popup{
+    width:90%;
+    height:80%;
+    background:#EBECF1;
+    border: solid;
+    padding: 2%;
+    box-sizing:border-box;
+    /* display:none; */
+    position:fixed;
+    top:10%;
+    left:50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    text-align: center;
+}
+
+img{
+    width:100%;
+}
+label{
+    display:block;
+}
+label span{
+    display:block;
+    background-color:#01b6ed;
+    color:#fff;
+    width:200px;
+    line-height:40px;
+    border-radius:4px;
+    text-align:center;
+}
+label span:hover{
+    cursor:pointer;
+}
+input[type="checkbox"]{
+    display:none;
+}
+
+input[type="checkbox"]:checked + #popup{
+    display:block;
+    transition:.2s;
+}
+.batsu{
+    font-size: 30px;/*ボタンの大きさ*/
+    font-weight: bold;
+    border: 1px solid #333;
+    color: #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    width: 1.3em;
+    line-height: 1.3em;
+    cursor: pointer;
+    transition: .2s;
+    text-align: right;
+    margin-left: auto;
+}
+.batsu:hover{
+    background: #333;
+    border-color: #333;
+    color: #FFF;
+}
+/* 上 | 右 | 下 | 左 */
