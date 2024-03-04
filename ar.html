@@ -1,29 +1,32 @@
-<!doctype HTML>
-<html>
-<link rel="icon" href="img/marure.ico">
-<script src="js/aframe.min.js"></script>
-<script src="js/aframe-ar.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
-<link rel="stylesheet" href="css/ar.css">
-<body style="margin: 0px; overflow: hidden;">
-
-<a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
-
-    <a-assets>
-        <a-asset-item id="mar" src="model/mar.gltf"></a-asset-item>
-	</a-assets>
-    
-    <a-marker type="pattern" url="marker/pattern-chart.patt">
-        <a-entity   position="0 0 0" 
-                    rotation="0 0 0"
-                    scale="0.005 0.005 0.005"
-                    gltf-model="#mar"
-                    animation-mixer>
-        </a-entity>
-    </a-marker>
-    
-    <a-entity camera></a-entity>
-</a-scene>
-<button class="btn-transition" onclick="location.href='index.html'">ポートフォリオへ</button>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紫苑のポートフォリオ選択ページ</title>
+    <link rel="stylesheet" href="css/select.css">
+    <!-- <link rel="stylesheet" href="css/stylesheet.css"> -->
+</head>
+<body>
+    <header>
+        <h1>紫苑のポートフォリオ</h1>
+    </header>
+    <div class="contents">
+    <p style="font-size: 1.2em;">ポートフォリオを見るか、<br>ARを体験するか選んでください。</p>
+    <main>
+        <button id="experienceAR">ARを体験する</button>
+        <div class="description">
+            <p>名刺の裏のQRコードの上で作成したアバターが踊ります</p>
+        </div>
+        <button id="gotoPortfolio">ポートフォリオを見る</button>
+        <div class="description">
+            <p>制作したWEBアプリや3DCG関連をまとめています</p>
+        </div>
+    </main>
+    </div>
+    <footer>
+        <p>©2024 紫苑</p>
+    </footer>
+    <script src="js/select.js"></script>
 </body>
 </html>
