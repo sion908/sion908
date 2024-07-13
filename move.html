@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3Dモデルコントロール（デバイス傾き対応）</title>
+    <title>3Dモデルコントロール（ドラッグ回転対応）</title>
     <style>
         body { margin: 0; overflow: hidden; }
         canvas { display: block; }
@@ -24,20 +24,19 @@
 <body>
     <div id="controls">
         <button id="playPause">再生/停止</button>
-        <button id="rotateLeft">左回転</button>
-        <button id="rotateRight">右回転</button>
-        <button id="moveUp">上移動</button>
-        <button id="moveDown">下移動</button>
-        <button id="toggleOrientation">傾き制御 ON/OFF</button>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script>
-        let scene, camera, renderer, mixer, model;
+        let scene, camera, renderer, mixer, model, controls;
         let animationPaused = false;
-        let orientationControls = false;
-        let initialOrientation = { beta: 0, gamma: 0 };
+        let isDragging = false;
+        let previousMousePosition = {
+            x: 0,
+            y: 0
+        };
 
         function init() {
             scene = new THREE.Scene();
@@ -49,7 +48,16 @@
             const light = new THREE.AmbientLight(0xffffff, 1);
             scene.add(light);
 
-            camera.position.z = 5;
+            // カメラの初期位置を右上に設定
+            camera.position.set(5, 5, 5);
+            camera.lookAt(scene.position);
+
+            // OrbitControlsの追加
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.25;
+            controls.screenSpacePanning = false;
+            controls.maxPolarAngle = Math.PI / 2;
 
             const loader = new THREE.GLTFLoader();
             loader.load(
@@ -71,22 +79,19 @@
             );
 
             setupControls();
+            setupDragRotation();
             animate();
         }
 
         function animate() {
             requestAnimationFrame(animate);
             if (mixer && !animationPaused) mixer.update(0.016);
+            controls.update();
             renderer.render(scene, camera);
         }
 
         function setupControls() {
             document.getElementById('playPause').addEventListener('click', toggleAnimation);
-            document.getElementById('rotateLeft').addEventListener('click', () => rotateModel(-0.1));
-            document.getElementById('rotateRight').addEventListener('click', () => rotateModel(0.1));
-            document.getElementById('moveUp').addEventListener('click', () => moveModel(0, 0.1, 0));
-            document.getElementById('moveDown').addEventListener('click', () => moveModel(0, -0.1, 0));
-            document.getElementById('toggleOrientation').addEventListener('click', toggleOrientationControls);
         }
 
         function toggleAnimation() {
@@ -96,43 +101,37 @@
             }
         }
 
-        function rotateModel(angle) {
-            if (model) {
-                model.rotation.y += angle;
-            }
+        function setupDragRotation() {
+            renderer.domElement.addEventListener('mousedown', onMouseDown, false);
+            renderer.domElement.addEventListener('mousemove', onMouseMove, false);
+            renderer.domElement.addEventListener('mouseup', onMouseUp, false);
         }
 
-        function moveModel(x, y, z) {
-            if (model) {
-                model.position.x += x;
-                model.position.y += y;
-                model.position.z += z;
-            }
+        function onMouseDown(event) {
+            isDragging = true;
         }
 
-        function toggleOrientationControls() {
-            orientationControls = !orientationControls;
-            if (orientationControls) {
-                window.addEventListener('deviceorientation', handleOrientation);
-                alert('デバイスの傾きによる制御を開始します。');
-            } else {
-                window.removeEventListener('deviceorientation', handleOrientation);
-                alert('デバイスの傾きによる制御を停止します。');
+        function onMouseMove(event) {
+            if (isDragging) {
+                const deltaMove = {
+                    x: event.offsetX - previousMousePosition.x,
+                    y: event.offsetY - previousMousePosition.y
+                };
+
+                if (model) {
+                    model.rotation.y += deltaMove.x * 0.01;
+                    model.rotation.x += deltaMove.y * 0.01;
+                }
             }
+
+            previousMousePosition = {
+                x: event.offsetX,
+                y: event.offsetY
+            };
         }
 
-        function handleOrientation(event) {
-            if (!initialOrientation.beta) {
-                initialOrientation.beta = event.beta;
-                initialOrientation.gamma = event.gamma;
-            }
-
-            let deltaBeta = (event.beta - initialOrientation.beta) * 0.01;
-            let deltaGamma = (event.gamma - initialOrientation.gamma) * 0.01;
-
-            camera.position.y = 5 * Math.sin(deltaBeta);
-            camera.position.x = 5 * Math.sin(deltaGamma);
-            camera.lookAt(scene.position);
+        function onMouseUp(event) {
+            isDragging = false;
         }
 
         init();
