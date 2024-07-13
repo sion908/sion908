@@ -3,17 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3Dモデルアニメーション</title>
+    <title>3Dモデルコントロール</title>
     <style>
-        body { margin: 0; }
+        body { margin: 0; overflow: hidden; }
         canvas { display: block; }
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+        }
     </style>
 </head>
 <body>
+    <div id="controls">
+        <button id="playPause">再生/停止</button>
+        <button id="rotateLeft">左回転</button>
+        <button id="rotateRight">右回転</button>
+        <button id="moveUp">上移動</button>
+        <button id="moveDown">下移動</button>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script>
-        let scene, camera, renderer, mixer;
+        let scene, camera, renderer, mixer, model;
+        let animationPaused = false;
 
         function init() {
             scene = new THREE.Scene();
@@ -31,8 +52,9 @@
             loader.load(
                 './model/moyai.glb',
                 function (gltf) {
-                    scene.add(gltf.scene);
-                    mixer = new THREE.AnimationMixer(gltf.scene);
+                    model = gltf.scene;
+                    scene.add(model);
+                    mixer = new THREE.AnimationMixer(model);
                     gltf.animations.forEach((clip) => {
                         mixer.clipAction(clip).play();
                     });
@@ -45,16 +67,52 @@
                 }
             );
 
+            setupControls();
             animate();
         }
 
         function animate() {
             requestAnimationFrame(animate);
-            if (mixer) mixer.update(0.016);
+            if (mixer && !animationPaused) mixer.update(0.016);
             renderer.render(scene, camera);
         }
 
+        function setupControls() {
+            document.getElementById('playPause').addEventListener('click', toggleAnimation);
+            document.getElementById('rotateLeft').addEventListener('click', () => rotateModel(-0.1));
+            document.getElementById('rotateRight').addEventListener('click', () => rotateModel(0.1));
+            document.getElementById('moveUp').addEventListener('click', () => moveModel(0, 0.1, 0));
+            document.getElementById('moveDown').addEventListener('click', () => moveModel(0, -0.1, 0));
+        }
+
+        function toggleAnimation() {
+            animationPaused = !animationPaused;
+            if (mixer) {
+                mixer.timeScale = animationPaused ? 0 : 1;
+            }
+        }
+
+        function rotateModel(angle) {
+            if (model) {
+                model.rotation.y += angle;
+            }
+        }
+
+        function moveModel(x, y, z) {
+            if (model) {
+                model.position.x += x;
+                model.position.y += y;
+                model.position.z += z;
+            }
+        }
+
         init();
+
+        window.addEventListener('resize', function () {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }, false);
     </script>
 </body>
 </html>
