@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3Dモデルコントロール（ドラッグ回転対応）</title>
+    <title>3Dモデルコントロール（背景色選択可能）</title>
     <style>
         body { margin: 0; overflow: hidden; }
         canvas { display: block; }
@@ -14,8 +14,9 @@
             background: rgba(0,0,0,0.5);
             padding: 10px;
             border-radius: 5px;
+            color: white;
         }
-        button {
+        button, input {
             margin: 5px;
             padding: 5px 10px;
         }
@@ -24,6 +25,9 @@
 <body>
     <div id="controls">
         <button id="playPause">再生/停止</button>
+        <br>
+        <label for="bgColor">背景色: </label>
+        <input type="color" id="bgColor" value="#ffffff">
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -48,11 +52,9 @@
             const light = new THREE.AmbientLight(0xffffff, 1);
             scene.add(light);
 
-            // カメラの初期位置を右上に設定
             camera.position.set(5, 5, 5);
             camera.lookAt(scene.position);
 
-            // OrbitControlsの追加
             controls = new THREE.OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
             controls.dampingFactor = 0.25;
@@ -80,6 +82,7 @@
 
             setupControls();
             setupDragRotation();
+            setupBackgroundColorControl();
             animate();
         }
 
@@ -102,36 +105,64 @@
         }
 
         function setupDragRotation() {
-            renderer.domElement.addEventListener('mousedown', onMouseDown, false);
-            renderer.domElement.addEventListener('mousemove', onMouseMove, false);
-            renderer.domElement.addEventListener('mouseup', onMouseUp, false);
+            renderer.domElement.addEventListener('mousedown', onPointerDown, false);
+            renderer.domElement.addEventListener('mousemove', onPointerMove, false);
+            renderer.domElement.addEventListener('mouseup', onPointerUp, false);
+            renderer.domElement.addEventListener('touchstart', onPointerDown, false);
+            renderer.domElement.addEventListener('touchmove', onPointerMove, false);
+            renderer.domElement.addEventListener('touchend', onPointerUp, false);
         }
 
-        function onMouseDown(event) {
+        function onPointerDown(event) {
             isDragging = true;
+            if (event.type === "touchstart") {
+                previousMousePosition.x = event.touches[0].clientX;
+                previousMousePosition.y = event.touches[0].clientY;
+            } else {
+                previousMousePosition.x = event.clientX;
+                previousMousePosition.y = event.clientY;
+            }
         }
 
-        function onMouseMove(event) {
+        function onPointerMove(event) {
             if (isDragging) {
+                let clientX, clientY;
+                if (event.type === "touchmove") {
+                    clientX = event.touches[0].clientX;
+                    clientY = event.touches[0].clientY;
+                } else {
+                    clientX = event.clientX;
+                    clientY = event.clientY;
+                }
+
                 const deltaMove = {
-                    x: event.offsetX - previousMousePosition.x,
-                    y: event.offsetY - previousMousePosition.y
+                    x: clientX - previousMousePosition.x,
+                    y: clientY - previousMousePosition.y
                 };
 
                 if (model) {
                     model.rotation.y += deltaMove.x * 0.01;
                     model.rotation.x += deltaMove.y * 0.01;
                 }
-            }
 
-            previousMousePosition = {
-                x: event.offsetX,
-                y: event.offsetY
-            };
+                previousMousePosition = {
+                    x: clientX,
+                    y: clientY
+                };
+            }
         }
 
-        function onMouseUp(event) {
+        function onPointerUp(event) {
             isDragging = false;
+        }
+
+        function setupBackgroundColorControl() {
+            const colorPicker = document.getElementById('bgColor');
+            colorPicker.addEventListener('input', function() {
+                scene.background = new THREE.Color(this.value);
+            });
+            // 初期背景色を設定
+            scene.background = new THREE.Color(colorPicker.value);
         }
 
         init();
