@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3Dモデルコントロール</title>
+    <title>3Dモデルコントロール（デバイス傾き対応）</title>
     <style>
         body { margin: 0; overflow: hidden; }
         canvas { display: block; }
@@ -28,6 +28,7 @@
         <button id="rotateRight">右回転</button>
         <button id="moveUp">上移動</button>
         <button id="moveDown">下移動</button>
+        <button id="toggleOrientation">傾き制御 ON/OFF</button>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -35,6 +36,8 @@
     <script>
         let scene, camera, renderer, mixer, model;
         let animationPaused = false;
+        let orientationControls = false;
+        let initialOrientation = { beta: 0, gamma: 0 };
 
         function init() {
             scene = new THREE.Scene();
@@ -83,6 +86,7 @@
             document.getElementById('rotateRight').addEventListener('click', () => rotateModel(0.1));
             document.getElementById('moveUp').addEventListener('click', () => moveModel(0, 0.1, 0));
             document.getElementById('moveDown').addEventListener('click', () => moveModel(0, -0.1, 0));
+            document.getElementById('toggleOrientation').addEventListener('click', toggleOrientationControls);
         }
 
         function toggleAnimation() {
@@ -104,6 +108,31 @@
                 model.position.y += y;
                 model.position.z += z;
             }
+        }
+
+        function toggleOrientationControls() {
+            orientationControls = !orientationControls;
+            if (orientationControls) {
+                window.addEventListener('deviceorientation', handleOrientation);
+                alert('デバイスの傾きによる制御を開始します。');
+            } else {
+                window.removeEventListener('deviceorientation', handleOrientation);
+                alert('デバイスの傾きによる制御を停止します。');
+            }
+        }
+
+        function handleOrientation(event) {
+            if (!initialOrientation.beta) {
+                initialOrientation.beta = event.beta;
+                initialOrientation.gamma = event.gamma;
+            }
+
+            let deltaBeta = (event.beta - initialOrientation.beta) * 0.01;
+            let deltaGamma = (event.gamma - initialOrientation.gamma) * 0.01;
+
+            camera.position.y = 5 * Math.sin(deltaBeta);
+            camera.position.x = 5 * Math.sin(deltaGamma);
+            camera.lookAt(scene.position);
         }
 
         init();
