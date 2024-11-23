@@ -1,0 +1,61 @@
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5 {
+    text-transform: none;
+}
+
+h1 {
+    padding-bottom: 1em;
+}
+
+.field-list.simple dt {
+    size: 0.8em;
+}
+
+.field-list.simple dd {
+    size: 0.7em;
+}
+
+figure.align-right {
+    float: right;
+}
+
+figure.align-left {
+    float: left;
+}
+
+li {
+    display: flow-root;
+}
+
+.reveal dt {
+    margin-top: 1em;
+    font-size: 0.8em;
+}
+
+.reveal p {
+    font-size: 0.8em;
+}
+
+dd>ul {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+dd>ul>li {
+    margin-top: 10px;
+}
+
+.slide-background>div.slide-background-content{
+    background-size: 100% auto;
+}
+
+.fg2045 h3 {
+    color: #00000000;
+}
