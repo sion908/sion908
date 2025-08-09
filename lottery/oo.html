@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>細野地区 納涼祭 大抽選会</title>
+    <!-- Tailwind CSSを読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* カスタムスタイル */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slotPulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            /* 明るい背景色 */
+            position: relative;
+            /* サイドバーの絶対位置指定の基準 */
+        }
+
+        .lottery-number {
+            font-size: 15vw;
+            /* ビューポート幅に合わせてフォントサイズを調整 */
+            line-height: 1;
+            animation: fadeInScale 0.5s ease-out;
+        }
+
+        /* 抽選中のアニメーション */
+        .spinning-number {
+            font-size: 15vw;
+            /* スロットのフォントサイズを調整 */
+            line-height: 1;
+            animation: slotPulse 0.5s linear infinite;
+        }
+
+        /* プロジェクター表示用に中央に配置 */
+        .main-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 90%;
+        }
+
+        /* 抽選履歴のスタイル */
+        #historyPanel {
+            max-height: 100vh;
+            overflow-y: auto;
+            position: fixed;
+            /* 画面に固定 */
+            top: 0;
+            right: 0;
+            width: 25%;
+            /* サイドバーの幅 */
+            z-index: 50;
+            /* 他の要素より前面に表示 */
+        }
+
+        /* スクロールバーのスタイル */
+        #historyPanel::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #historyPanel::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+
+        #historyPanel::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 10px;
+        }
+
+        /* 紙吹雪のスタイル */
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            background: #f00;
+            animation: confetti-fall 5s ease-in-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* タブレット向けのスタイル (768px - 1180px) */
+        @media (max-width: 1400px) and (min-width: 769px) {
+            .main-content {
+                padding: 2rem;
+                max-width: 95%;
+            }
+
+            h1 {
+                font-size: 4.5rem !important;
+                margin-bottom: 1.5rem;
+            }
+
+            .lottery-number {
+                font-size: 12vw;
+            }
+
+            #maxNumber {
+                font-size: 2.5rem;
+                padding: 0.75rem;
+            }
+
+            #drawButton {
+                font-size: 2rem;
+                padding: 0.75rem 1.5rem;
+            }
+
+            #historyPanel {
+                width: 30%;
+            }
+        }
+
+        /* スマートフォン向けのスタイル (〜768px) */
+        @media (max-width: 768px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .main-content {
+                padding: 1rem !important;
+                max-width: 100% !important;
+                border-radius: 1rem !important;
+            }
+
+            h1 {
+                font-size: 2.5rem !important;
+                margin-bottom: 1rem !important;
+                line-height: 1.2;
+            }
+
+            .lottery-number {
+                font-size: 15vw !important;
+                line-height: 1.2;
+            }
+
+            #controlsContainer {
+                margin-top: 1rem;
+            }
+
+            #maxNumber {
+                font-size: 1.5rem !important;
+                padding: 0.5rem !important;
+                max-width: 90% !important;
+            }
+
+            #drawButton {
+                font-size: 1.5rem !important;
+                padding: 0.75rem !important;
+                max-width: 90% !important;
+                margin: 0.5rem auto !important;
+            }
+
+            #resultContainer {
+                padding: 1rem !important;
+                margin-top: 1rem !important;
+            }
+
+            #historyToggleButton,
+            #closeHistoryButton {
+                font-size: 1rem !important;
+                padding: 0.5rem 1rem !important;
+            }
+
+            #historyPanel {
+                width: 80% !important;
+                padding: 1rem !important;
+            }
+
+            .history-item {
+                font-size: 1.2rem !important;
+                padding: 0.5rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen p-4">
+    <!-- アプリのメインコンテナ -->
+    <div class="main-content bg-white p-12 rounded-3xl shadow-2xl text-center transition-all duration-500 ease-in-out">
+        <!-- アプリのタイトル -->
+        <h1 class="text-6xl md:text-8xl font-black text-gray-900 mb-8 tracking-wide">
+            <span class="text-indigo-600">細野地区</span> <span class="text-orange-500">納涼祭</span>
+            <br class="md:hidden">
+            大抽選会
+        </h1>
+
+        <!-- 抽選設定エリアとボタン -->
+        <div id="controlsContainer" class="transition-opacity duration-500 ease-in-out">
+            <label for="maxNumber" class="block text-3xl font-medium text-gray-700 mb-4">最大抽選番号を入力してください:</label>
+            <input type="number" id="maxNumber" placeholder="例: 100"
+                class="w-full max-w-sm mx-auto p-4 border-4 border-gray-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-500 text-center text-4xl mb-6 shadow-md">
+
+            <!-- 抽選開始ボタン -->
+            <button id="drawButton"
+                class="w-full max-w-sm mx-auto bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 text-white font-bold text-3xl py-4 px-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105">
+                抽選開始！
+            </button>
+        </div>
+
+        <!-- 抽選結果表示エリア -->
+        <div id="resultContainer"
+            class="mt-8 p-8 bg-gradient-to-br from-indigo-50 via-white to-indigo-100 rounded-3xl border-4 border-indigo-300 transition-opacity duration-500 opacity-0 pointer-events-none">
+            <p class="text-4xl font-semibold text-gray-600 mb-6">当選番号は...</p>
+            <div id="result" class="lottery-number font-extrabold text-indigo-800 transition-transform duration-500">
+                ---
+            </div>
+            <!-- 次の抽選へ進むボタン -->
+            <button id="nextDrawButton"
+                class="mt-12 bg-orange-500 hover:bg-orange-600 text-white font-bold text-2xl py-3 px-8 rounded-xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                次の抽選へ
+            </button>
+        </div>
+
+        <!-- 履歴パネルのトグルボタン -->
+        <button id="historyToggleButton"
+            class="fixed bottom-8 right-8 bg-gray-800 text-white font-bold py-4 px-6 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-110">
+            履歴を表示
+        </button>
+    </div>
+
+    <!-- 抽選履歴を表示するサイドバー -->
+    <div id="historyPanel"
+        class="bg-gray-100 p-8 rounded-l-3xl shadow-lg transition-transform duration-500 transform translate-x-full">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">抽選履歴</h2>
+        <div id="historyContainer" class="space-y-4">
+            <!-- 抽選履歴がここに追加されます -->
+        </div>
+    </div>
+
+    <script>
+        // DOM要素を取得
+        const controlsContainer = document.getElementById('controlsContainer');
+        const maxNumberInput = document.getElementById('maxNumber');
+        const drawButton = document.getElementById('drawButton');
+        const resultContainer = document.getElementById('resultContainer');
+        const resultDisplay = document.getElementById('result');
+        const nextDrawButton = document.getElementById('nextDrawButton');
+        const historyPanel = document.getElementById('historyPanel');
+        const historyToggleButton = document.getElementById('historyToggleButton');
+        const historyContainer = document.getElementById('historyContainer');
+        const body = document.body;
+
+        let maxNumber;
+        let spinningInterval;
+        let drawnNumbers = []; // 抽選済みの番号を格納する配列
+
+        // 抽選のロジックをまとめた関数
+        function performDraw() {
+            if (drawnNumbers.length >= maxNumber) {
+                alert('すべての番号が抽選されました！');
+                return;
+            }
+
+            // 結果表示エリアをリセット
+            resultDisplay.textContent = '';
+            resultDisplay.classList.add('spinning-number');
+            resultDisplay.classList.remove('lottery-number', 'scale-[1.5]');
+
+            // 抽選演出の開始
+            // 数字を高速で切り替えるアニメーションを開始
+            spinningInterval = setInterval(() => {
+                let tempNumber;
+                do {
+                    tempNumber = Math.floor(Math.random() * maxNumber) + 1;
+                } while (drawnNumbers.includes(tempNumber)); // 抽選済みの番号を避ける
+                resultDisplay.textContent = tempNumber;
+            }, 50); // 50msごとに数字を更新
+
+            setTimeout(() => {
+
+            }, 3000);
+        }
+
+        // 抽選の終わりを表す関数, 抽選結果を確定、表示、保存、紙吹雪の表示をする
+        function performDrawEnd() {
+            // アニメーションを停止
+            clearInterval(spinningInterval);
+
+            let winningNumber;
+            do {
+                winningNumber = Math.floor(Math.random() * maxNumber) + 1;
+            } while (drawnNumbers.includes(winningNumber)); // 抽選済みの番号を避ける
+
+            drawnNumbers.push(winningNumber); // 当選番号を記録
+
+            resultDisplay.classList.remove('spinning-number');
+            resultDisplay.classList.add('lottery-number', 'scale-[1.5]');
+            resultDisplay.textContent = winningNumber;
+
+            // 紙吹雪エフェクトを生成
+            createConfetti();
+
+            // 抽選履歴に追加
+            addToHistory(winningNumber);
+
+            // アニメーションを元に戻す
+            setTimeout(() => {
+                resultDisplay.classList.remove('scale-[1.5]');
+            }, 500);
+
+
+
+        }
+
+        // 紙吹雪を生成する関数
+        function createConfetti() {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.classList.add('confetti');
+            body.appendChild(confettiContainer);
+
+            const colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'];
+            for (let i = 0; i < 50; i++) {
+                const piece = document.createElement('div');
+                piece.classList.add('confetti-piece');
+                piece.style.left = `${Math.random() * 100}vw`;
+                piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.animationDelay = `${Math.random() * 2}s`;
+                piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confettiContainer.appendChild(piece);
+            }
+
+            // 紙吹雪のアニメーション終了後に要素を削除
+            setTimeout(() => {
+                confettiContainer.remove();
+            }, 5000);
+        }
+
+
+        // 抽選履歴を追加する関数
+        function addToHistory(number) {
+            const historyItem = document.createElement('div');
+            historyItem.classList.add('p-4', 'bg-white', 'rounded-2xl', 'shadow-md', 'flex', 'items-center', 'justify-between');
+
+            const numberDisplay = document.createElement('span');
+            numberDisplay.classList.add('text-3xl', 'font-extrabold', 'text-indigo-600');
+            numberDisplay.textContent = number;
+
+            const timeDisplay = document.createElement('span');
+            timeDisplay.classList.add('text-sm', 'text-gray-500');
+            const now = new Date();
+            timeDisplay.textContent = now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+
+            historyItem.appendChild(numberDisplay);
+            historyItem.appendChild(timeDisplay);
+
+            // 履歴リストの先頭に追加
+            historyContainer.prepend(historyItem);
+        }
+
+        // 抽選開始ボタンのクリックイベントリスナー (最初の抽選のみ)
+        drawButton.addEventListener('click', () => {
+            const inputVal = parseInt(maxNumberInput.value, 10);
+
+            if (isNaN(inputVal) || inputVal <= 0) {
+                alert('有効な最大抽選番号を入力してください。');
+                return;
+            }
+            if (inputVal > 1000) {
+                alert('パフォーマンスの問題を避けるため、最大抽選番号は1000以下にしてください。');
+                return;
+            }
+
+
+            maxNumber = inputVal;
+            drawnNumbers = []; // 新しい抽選のたびに履歴をリセット
+
+            // 抽選開始時に、入力欄とボタンをフェードアウト
+            controlsContainer.classList.add('opacity-0', 'pointer-events-none');
+            resultContainer.classList.remove('opacity-0', 'pointer-events-none');
+
+            performDraw();
+        });
+
+        // 次の抽選へボタンのクリックイベントリスナー
+        nextDrawButton.addEventListener('click', () => {
+            // 抽選前の表示にリセット
+            resultDisplay.textContent = '---';
+            resultDisplay.classList.remove('lottery-number');
+
+            // わずかな遅延の後、新しい抽選を開始
+            setTimeout(() => {
+                performDraw();
+            }, 500); // フェードアウトの時間に合わせた遅延
+        });
+
+        // 履歴トグルボタンのクリックイベントリスナー
+        historyToggleButton.addEventListener('click', () => {
+            const isHidden = historyPanel.classList.toggle('translate-x-full');
+            historyToggleButton.textContent = isHidden ? '履歴を表示' : '履歴を隠す';
+        });
+    </script>
+</body>
+
+</html>
