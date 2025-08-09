@@ -43,12 +43,10 @@
             animation: slotPulse 0.5s linear infinite;
         }
 
-        /* プロジェクター表示用に中央に配置 */
+        /* メインコンテンツのスタイル */
         .main-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: relative;
+            margin: 2rem auto;
             width: 100%;
             max-width: 90%;
         }
@@ -104,7 +102,7 @@
 </head>
 <body class="min-h-screen p-4">
     <!-- アプリのメインコンテナ -->
-    <div class="main-content bg-white p-12 rounded-3xl shadow-2xl text-center transition-all duration-500 ease-in-out">
+    <div class="main-content bg-white p-4 sm:p-8 md:p-12 rounded-3xl shadow-2xl text-center transition-all duration-500 ease-in-out w-full max-w-4xl mx-auto">
         <!-- アプリのタイトル -->
         <h1 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-gray-900 mb-8 tracking-wide">
             <span class="text-indigo-800">細野地区</span> <span class="text-blue-500">納涼祭</span>
@@ -114,35 +112,35 @@
 
         <!-- 抽選設定エリアとボタン -->
         <div id="controlsContainer" class="transition-opacity duration-500 ease-in-out">
-            <label for="maxNumber" class="block text-2xl md:text-3xl font-medium text-gray-700 mb-4">最大抽選番号を入力してください:</label>
-            <input type="number" id="maxNumber" placeholder="例: 100" class="w-full max-w-sm mx-auto p-4 border-4 border-gray-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-500 text-center text-3xl md:text-4xl mb-6 shadow-md">
+            <label for="maxNumber" class="block text-xl sm:text-2xl md:text-3xl font-medium text-gray-700 mb-4">最大抽選番号を入力してください:</label>
+            <input type="number" id="maxNumber" placeholder="例: 100" class="w-full max-w-sm mx-auto p-3 sm:p-4 border-4 border-gray-300 rounded-2xl focus:outline-none focus:ring-4 focus:ring-indigo-500 text-center text-2xl sm:text-3xl md:text-4xl mb-6 shadow-md">
             
             <!-- 抽選開始ボタン -->
-            <button id="drawButton" class="w-full max-w-sm mx-auto bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 text-white font-bold text-2xl md:text-3xl py-4 px-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105">
+            <button id="drawButton" class="w-full max-w-sm mx-auto bg-gradient-to-r from-indigo-500 to-indigo-700 hover:from-indigo-600 hover:to-indigo-800 text-white font-bold text-xl sm:text-2xl md:text-3xl py-3 sm:py-4 px-4 sm:px-6 rounded-2xl shadow-xl transition duration-300 ease-in-out transform hover:scale-105">
                 抽選開始！
             </button>
         </div>
 
         <!-- 抽選結果表示エリア -->
-        <div id="resultContainer" class="mt-8 p-8 bg-gradient-to-br from-indigo-50 via-white to-indigo-100 rounded-3xl border-4 border-indigo-300 transition-opacity duration-500 opacity-0 pointer-events-none">
-            <p class="text-3xl md:text-4xl font-semibold text-gray-600 mb-6">当選番号は...</p>
-            <div id="result" class="font-extrabold text-indigo-800 transition-transform duration-500 text-[8rem] md:text-[12rem] lg:text-[15rem] leading-none">
+        <div id="resultContainer" class="mt-6 sm:mt-8 p-4 sm:p-6 md:p-8 bg-gradient-to-br from-indigo-50 via-white to-indigo-100 rounded-3xl border-4 border-indigo-300 transition-opacity duration-500 opacity-0 pointer-events-none">
+            <p class="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-600 mb-4 sm:mb-6">当選番号は...</p>
+            <div id="result" class="font-extrabold text-indigo-800 transition-transform duration-500 text-[5rem] sm:text-[8rem] md:text-[12rem] lg:text-[15rem] leading-none">
                 ---
             </div>
             <!-- 次の抽選へ進むボタン -->
-            <button id="nextDrawButton" class="mt-12 bg-orange-500 hover:bg-orange-600 text-white font-bold text-xl md:text-2xl py-3 px-8 rounded-xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+            <button id="nextDrawButton" class="mt-8 sm:mt-12 bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg sm:text-xl md:text-2xl py-2 sm:py-3 px-6 sm:px-8 rounded-xl shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
                 次の抽選へ
             </button>
         </div>
 
         <!-- 履歴パネルのトグルボタン -->
-        <button id="historyToggleButton" class="fixed bottom-8 right-8 bg-gray-800 text-white font-bold py-4 px-6 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-110">
+        <button id="historyToggleButton" class="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-gray-800 text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-full shadow-lg transition-transform duration-300 transform hover:scale-110 text-sm sm:text-base">
             履歴を表示
         </button>
     </div>
 
     <!-- 抽選履歴を表示するフッター -->
-    <div id="historyPanel" class="fixed bottom-0 left-0 right-0 bg-white shadow-lg transition-transform duration-500 transform translate-y-full max-h-1/2 overflow-y-auto z-50">
+    <div id="historyPanel" class="fixed bottom-0 left-0 right-0 bg-white shadow-lg transition-transform duration-500 transform translate-y-full max-h-[70vh] overflow-y-auto z-50">
         <div class="container mx-auto p-4">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-2xl font-bold text-gray-800">抽選履歴</h2>
@@ -152,7 +150,7 @@
                     </svg>
                 </button>
             </div>
-            <div id="historyContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div id="historyContainer" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-4">
                 <!-- 抽選履歴がここに追加されます -->
             </div>
         </div>
@@ -253,14 +251,14 @@
         // 抽選履歴を追加する関数
         function addToHistory(number) {
             const historyItem = document.createElement('div');
-            historyItem.classList.add('p-4', 'bg-white', 'rounded-2xl', 'shadow-md', 'flex', 'items-center', 'justify-between');
+            historyItem.classList.add('p-2', 'sm:p-3', 'bg-white', 'rounded-xl', 'sm:rounded-2xl', 'shadow-sm', 'sm:shadow-md', 'flex', 'flex-col', 'sm:flex-row', 'items-center', 'justify-center', 'sm:justify-between', 'gap-1', 'sm:gap-2');
             
             const numberDisplay = document.createElement('span');
-            numberDisplay.classList.add('text-2xl', 'md:text-3xl', 'font-extrabold', 'text-indigo-600');
+            numberDisplay.classList.add('text-xl', 'sm:text-2xl', 'md:text-3xl', 'font-extrabold', 'text-indigo-600');
             numberDisplay.textContent = number;
 
             const timeDisplay = document.createElement('span');
-            timeDisplay.classList.add('text-sm', 'text-gray-500');
+            timeDisplay.classList.add('text-xs', 'sm:text-sm', 'text-gray-500');
             const now = new Date();
             timeDisplay.textContent = now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
 
