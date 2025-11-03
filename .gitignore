@@ -3,3 +3,7 @@
 AR.js-examples/
 
 .DS_Store
+
+.env
+
+tmp/
