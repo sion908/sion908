@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>functional_spec_v1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="effectuation-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0-%E6%A9%9F%E8%83%BD%E4%BB%95%E6%A7%98%E6%9B%B8">Effectuation ワークショップシステム 機能仕様書</h1>
+<p><strong>作成日</strong>: 2025年11月4日<br>
+<strong>対象</strong>: 非技術者・ワークショップ運営者向け</p>
+<hr>
+<h2 id="%F0%9F%93%8C-%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E6%A6%82%E8%A6%81">📌 システム概要</h2>
+<p>参加者がスマートフォンで操作し、Effectuationの5原則を体験しながら学ぶワークショップシステムです。
+会場のスクリーンに全員の状況がリアルタイムで表示され、視覚的に共創の場を作り出します。</p>
+<hr>
+<h2 id="%F0%9F%91%A5-%E5%88%A9%E7%94%A8%E8%80%85%E3%81%AE%E7%A8%AE%E9%A1%9E">👥 利用者の種類</h2>
+<table>
+<thead>
+<tr>
+<th>利用者</th>
+<th>役割</th>
+<th>使用デバイス</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>参加者</strong></td>
+<td>ワークショップに参加し、各ステップの質問に回答</td>
+<td>スマートフォン（LIFF）</td>
+</tr>
+<tr>
+<td><strong>ファシリテーター</strong></td>
+<td>進行管理、チーム編成の調整</td>
+<td>PC・タブレット（ダッシュボード）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="%F0%9F%8E%AF-%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%A7%E5%AE%9F%E7%8F%BE%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8">🎯 システムで実現すること</h2>
+<h3 id="%E5%8F%82%E5%8A%A0%E8%80%85%E8%A6%96%E7%82%B9">参加者視点</h3>
+<ul>
+<li>✅ スマホだけで参加可能（アプリインストール不要）</li>
+<li>✅ 自分の「手持ち資源」を可視化</li>
+<li>✅ 他の参加者と繋がり、チームを形成</li>
+<li>✅ 想定外の状況に対応する練習</li>
+<li>✅ 「明日の一歩」を宣言して終わる</li>
+</ul>
+<h3 id="%E3%83%95%E3%82%A1%E3%82%B7%E3%83%AA%E3%83%86%E3%83%BC%E3%82%BF%E3%83%BC%E8%A6%96%E7%82%B9">ファシリテーター視点</h3>
+<ul>
+<li>✅ 参加者全員の状況を一画面で把握</li>
+<li>✅ ステップの進行をコントロール</li>
+<li>✅ チーム編成を柔軟に調整</li>
+<li>✅ 想定外カードを配信</li>
+<li>✅ ワークショップのデータを保存・振り返り</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%9A%80-%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97%E3%81%AE%E6%B5%81%E3%82%8C%E5%85%A8%E4%BD%93%E5%83%8F">🚀 ワークショップの流れ（全体像）</h2>
+<pre class="hljs"><code><div>【準備】ファシリテーターがダッシュボードを表示
+  ↓
+【Step0】参加者がURLにアクセス → LINEログイン
+  ↓
+【Step1】Bird-in-Hand（手持ち資源の可視化）
+  ↓
+【Step2】Affordable Loss（許容損失の宣言）
+  ↓
+【Step3】Crazy Quilt（チーム形成）
+  ↓
+【Step4】Lemonade（想定外への対応）
+  ↓
+【Step5】Pilot-in-the-Plane（明日の一歩）
+  ↓
+【完了】全員の宣言を確認して終了
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%B1-%E6%A9%9F%E8%83%BD%E8%A9%B3%E7%B4%B0%E5%8F%82%E5%8A%A0%E8%80%85%E7%94%BB%E9%9D%A2%E3%82%B9%E3%83%9E%E3%83%9B">📱 機能詳細：参加者画面（スマホ）</h2>
+<h3 id="step0-%E5%85%A5%E5%AE%A4%E3%83%BB%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3">Step0: 入室・ログイン</h3>
+<h4 id="%E6%A9%9F%E8%83%BD">機能</h4>
+<ul>
+<li>URLにアクセス（QRコードまたはリンク共有）</li>
+<li>LINEでログイン</li>
+<li>自動的に参加者として登録</li>
+</ul>
+<h4 id="%E5%85%A5%E5%8A%9B%E6%83%85%E5%A0%B1">入力情報</h4>
+<ul>
+<li>なし（LINEプロフィールから自動取得）</li>
+</ul>
+<h4 id="%E5%8F%96%E5%BE%97%E3%81%95%E3%82%8C%E3%82%8B%E6%83%85%E5%A0%B1">取得される情報</h4>
+<ul>
+<li>LINEユーザーID</li>
+<li>表示名</li>
+<li>プロフィール画像</li>
+</ul>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>┌─────────────────────┐
+│  Effectuation       │
+│  ワークショップ      │
+│                     │
+│   [LINEでログイン]   │
+│                     │
+│  ※LINEアプリが       │
+│   起動します         │
+└─────────────────────┘
+</div></code></pre>
+<hr>
+<h3 id="step1-bird-in-hand%E6%89%8B%E6%8C%81%E3%81%A1%E8%B3%87%E6%BA%90%E3%81%AE%E5%8F%AF%E8%A6%96%E5%8C%96">Step1: Bird-in-Hand（手持ち資源の可視化）</h3>
+<h4 id="%E6%A9%9F%E8%83%BD">機能</h4>
+<ul>
+<li>自分の「手持ち」を言語化</li>
+<li>3つの質問に回答</li>
+</ul>
+<h4 id="%E8%B3%AA%E5%95%8F%E5%86%85%E5%AE%B9">質問内容</h4>
+<ol>
+<li>
+<p><strong>私は誰か？</strong>（アイデンティティ）</p>
+<ul>
+<li>例: 「元教師」「2児の母」「地方在住」</li>
+</ul>
+</li>
+<li>
+<p><strong>私は何を知っているか？</strong>（知識・スキル）</p>
+<ul>
+<li>例: 「Webデザイン」「農業経験」「英語が話せる」</li>
+</ul>
+</li>
+<li>
+<p><strong>私は誰を知っているか？</strong>（ネットワーク）</p>
+<ul>
+<li>例: 「起業家コミュニティ」「自治体職員」「海外の友人」</li>
+</ul>
+</li>
+</ol>
+<h4 id="%E5%85%A5%E5%8A%9B%E5%BD%A2%E5%BC%8F">入力形式</h4>
+<ul>
+<li>各質問ごとにテキスト入力（自由記述）</li>
+<li>文字数制限: 各100文字程度</li>
+</ul>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>┌─────────────────────┐
+│  Step1              │
+│  手持ち資源          │
+│                     │
+│  私は誰か？          │
+│  ┌─────────────┐   │
+│  │                 │   │
+│  └─────────────┘   │
+│                     │
+│  私は何を知っている？ │
+│  ┌─────────────┐   │
+│  │                 │   │
+│  └─────────────┘   │
+│                     │
+│  私は誰を知っている？ │
+│  ┌─────────────┐   │
+│  │                 │   │
+│  └─────────────┘   │
+│                     │
+│      [次へ進む]      │
+└─────────────────────┘
+</div></code></pre>
+<hr>
+<h3 id="step2-affordable-loss%E8%A8%B1%E5%AE%B9%E6%90%8D%E5%A4%B1%E3%81%AE%E5%AE%A3%E8%A8%80">Step2: Affordable Loss（許容損失の宣言）</h3>
+<h4 id="%E6%A9%9F%E8%83%BD">機能</h4>
+<ul>
+<li>「どこまでなら失っても大丈夫か」を宣言</li>
+<li>3つの軸で選択</li>
+</ul>
+<h4 id="%E8%B3%AA%E5%95%8F%E5%86%85%E5%AE%B9">質問内容</h4>
+<ol>
+<li>
+<p><strong>時間</strong> - どのくらい投資できる？</p>
+<ul>
+<li>例: 「週1時間」「週3時間」「週5時間以上」</li>
+</ul>
+</li>
+<li>
+<p><strong>労力</strong> - どのくらい動ける？</p>
+<ul>
+<li>例: 「無理のない範囲」「多少無理してもOK」「全力投球」</li>
+</ul>
+</li>
+<li>
+<p><strong>金額</strong> - どのくらい使える？</p>
+<ul>
+<li>例: 「0円（無料で）」「〜1万円」「〜5万円」「それ以上」</li>
+</ul>
+</li>
+</ol>
+<h4 id="%E5%85%A5%E5%8A%9B%E5%BD%A2%E5%BC%8F">入力形式</h4>
+<ul>
+<li>各項目ごとにラジオボタンまたはスライダー選択</li>
+</ul>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>┌─────────────────────┐
+│  Step2              │
+│  許容損失            │
+│                     │
+│  時間の投資          │
+│  ○ 週1時間          │
+│  ○ 週3時間          │
+│  ○ 週5時間以上      │
+│                     │
+│  労力               │
+│  ────●────────     │
+│  小        大        │
+│                     │
+│  金額               │
+│  ○ 0円              │
+│  ○ 〜1万円          │
+│  ○ 〜5万円          │
+│  ○ それ以上         │
+│                     │
+│      [次へ進む]      │
+└─────────────────────┘
+</div></code></pre>
+<hr>
+<h3 id="step3-crazy-quilt%E3%81%A4%E3%81%AA%E3%81%8C%E3%82%8A%E3%82%92%E6%B4%BB%E3%81%8B%E3%81%97%E3%81%9F%E5%8D%94%E5%8A%9B%E8%A6%81%E8%AB%8B">Step3: Crazy Quilt（つながりを活かした協力要請）</h3>
+<h4 id="%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%97%E3%83%88">コンセプト</h4>
+<p>「小さな一歩を踏み出すために、周囲にできることをお願いしてみる」を実践する場。参加者が持つ人的ネットワークを可視化し、具体的な協力要請を投げかけられるようにします。</p>
+<h4 id="%E6%A9%9F%E8%83%BD%E8%A9%B3%E7%B4%B0">機能詳細</h4>
+<p><strong>3-1. 私のつながりマップ</strong></p>
+<ul>
+<li>自分が知っている人・組織をカテゴリ分けして入力
+<ul>
+<li>例: 友人・家族 / 元同僚 / 専門家 / コミュニティ / SNSフォロワー など</li>
+</ul>
+</li>
+<li>各カテゴリで具体的な人数や特徴を記入</li>
+</ul>
+<p><strong>3-2. お願いしたいこと</strong></p>
+<ul>
+<li>実現したいことに対して、周囲に具体的に何を手伝ってほしいか入力
+<ul>
+<li>例:
+<ul>
+<li>「商品の試作品を試してフィードバックが欲しい」</li>
+<li>「〇〇に詳しい人を紹介してほしい」</li>
+<li>「SNSでシェアしてほしい」</li>
+<li>「30分ほど話を聞いてほしい」</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>3-3. お願いの仕方</strong></p>
+<ul>
+<li>具体的な依頼文のテンプレートを自動生成</li>
+<li>例:<pre class="hljs"><code><div>【お願い】5分でできるアンケートにご協力ください！
+現在、新しいサービスを開発中です。5分ほどのアンケートにご協力いただけませんか？
+→ [リンク]
+よろしくお願いします！
+</div></code></pre>
+</li>
+</ul>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>┌─────────────────────────────────┐
+│  Step3: Crazy Quilt             │
+│  ─ つながりを活かした協力要請 ─  │
+│                                 │
+│  🌐 私のつながりマップ           │
+│  ┌─────────────────────┐       │
+│  │ 友人・家族: 50人    │       │
+│  │ 元同僚: 30人        │       │
+│  │ SNSフォロワー: 1,200人     │
+│  │ 専門家: 5人         │       │
+│  └─────────────────────┘       │
+│                                 │
+│  💡 お願いしたいこと            │
+│  ┌─────────────────────┐       │
+│  │ [例] 商品の試作品を試して   │
+│  │     フィードバックが欲しい  │
+│  └─────────────────────┘       │
+│                                 │
+│  ✉️ お願いの仕方               │
+│  ┌─────────────────────┐       │
+│  │ 【お願い】5分でできる      │
+│  │ アンケートにご協力ください！│
+│  │ 現在、新しいサービスを開発中 │
+│  │ です。5分ほどのアンケートに │
+│  │ ご協力いただけませんか？   │
+│  │ → [リンク]                │
+│  └─────────────────────┘       │
+│                                 │
+│  [テンプレートをコピー]         │
+│  [次へ進む]                     │
+└─────────────────────────────────┘
+</div></code></pre>
+<h4 id="%E6%AC%A1%E3%81%AE%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%81%B8%E3%81%AE%E6%B4%BB%E3%81%8B%E3%81%97%E6%96%B9">次のステップへの活かし方</h4>
+<ul>
+<li>実際に協力してくれた人を記録</li>
+<li>協力の結果得られた学びや次のアクションを記入</li>
+<li>最終的な事業計画の「人的ネットワーク」セクションに反映</li>
+</ul>
+<p><strong>3-2. チーム形成</strong></p>
+<ul>
+<li>参加者一覧を表示</li>
+<li>「この人と組みたい」ボタンで相手を選択</li>
+<li>相手も自分を選ぶと <strong>マッチング成立</strong>（双方向）</li>
+<li>マッチング前でもダッシュボードに表示される（ファシリテーターが見える）</li>
+</ul>
+<h4 id="%E5%85%A5%E5%8A%9B%E5%BD%A2%E5%BC%8F">入力形式</h4>
+<ul>
+<li>繋がり: テキスト入力（100文字程度）</li>
+<li>チーム選択: 参加者リストからチェックボックス</li>
+</ul>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>┌─────────────────────┐
+│  Step3              │
+│  チーム形成          │
+│                     │
+│  持ってこれる繋がり   │
+│  ┌─────────────┐   │
+│  │ 例: デザイナー友人 │   │
+│  └─────────────┘   │
+│                     │
+│  組みたい人を選ぶ    │
+│  ┌─────────────┐   │
+│  │ 👤 田中太郎     │   │
+│  │    [組む] ⬅申請中 │   │
+│  ├─────────────┤   │
+│  │ 👤 山田花子     │   │
+│  │    [組む]       │   │
+│  ├─────────────┤   │
+│  │ 👤 佐藤次郎     │   │
+│  │    [組む] ✅成立 │   │
+│  └─────────────┘   │
+│                     │
+│      [次へ進む]      │
+└─────────────────────┘
+</div></code></pre>
+<hr>
+<h3 id="step4-lemonade%E6%83%B3%E5%AE%9A%E5%A4%96%E3%81%B8%E3%81%AE%E5%AF%BE%E5%BF%9C">Step4: Lemonade（想定外への対応）</h3>
+<h4 id="%E6%A9%9F%E8%83%BD">機能</h4>
+<ul>
+<li>ランダムに「想定外カード」が届く</li>
+<li>チームで対応策を考える</li>
+<li>ピボット（方向転換）の練習</li>
+</ul>
+<h4 id="%E6%83%B3%E5%AE%9A%E5%A4%96%E3%82%AB%E3%83%BC%E3%83%89%E3%81%AE%E7%A8%AE%E9%A1%9E">想定外カードの種類</h4>
+<p><strong>1. 参加者投稿カード</strong></p>
+<ul>
+<li>他の参加者が事前に投稿したカード</li>
+<li>例: 「主要メンバーが急に抜けた」「予算が半分になった」</li>
+</ul>
+<p><strong>2. あらかじめ用意されたカード</strong></p>
+<ul>
+<li>システムに登録済みのカード</li>
+<li>例: 「競合が同じサービスをリリース」「想定顧客が全く違う反応」</li>
+</ul>
+<h4 id="%E6%93%8D%E4%BD%9C%E5%86%85%E5%AE%B9">操作内容</h4>
+<ol>
+<li>カードが届く（自動 or ファシリテーターが配信）</li>
+<li>対応策を入力（チーム内で相談）</li>
+<li>「どうピボットするか」を宣言</li>
+</ol>
+<h4 id="%E5%85%A5%E5%8A%9B%E5%BD%A2%E5%BC%8F">入力形式</h4>
+<ul>
+<li>対応策: テキスト入力（200文字程度）</li>
+</ul>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>┌─────────────────────┐
+│  Step4              │
+│  想定外への対応      │
+│                     │
+│  🎴 想定外カード     │
+│  ┌─────────────┐   │
+│  │ 主要メンバーが   │   │
+│  │ 急に抜けた！     │   │
+│  └─────────────┘   │
+│                     │
+│  どう対応する？      │
+│  ┌─────────────┐   │
+│  │                 │   │
+│  │                 │   │
+│  └─────────────┘   │
+│                     │
+│      [送信]         │
+└─────────────────────┘
+</div></code></pre>
+<hr>
+<h3 id="step5-pilot-in-the-plane%E6%98%8E%E6%97%A5%E3%81%AE%E4%B8%80%E6%AD%A9">Step5: Pilot-in-the-Plane（明日の一歩）</h3>
+<h4 id="%E6%A9%9F%E8%83%BD">機能</h4>
+<ul>
+<li>ワークショップの最後に「明日やること」を宣言</li>
+<li>小さな一歩を決める</li>
+</ul>
+<h4 id="%E8%B3%AA%E5%95%8F%E5%86%85%E5%AE%B9">質問内容</h4>
+<ul>
+<li><strong>明日、あなたは何をしますか？</strong>
+<ul>
+<li>例: 「○○さんに連絡する」「アイデアをノートに書く」「30分調べる」</li>
+</ul>
+</li>
+</ul>
+<h4 id="%E5%85%A5%E5%8A%9B%E5%BD%A2%E5%BC%8F">入力形式</h4>
+<ul>
+<li>テキスト入力（100文字程度）</li>
+</ul>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>┌─────────────────────┐
+│  Step5              │
+│  明日の一歩          │
+│                     │
+│  明日、あなたは      │
+│  何をしますか？      │
+│                     │
+│  ┌─────────────┐   │
+│  │ 例: ○○さんに   │   │
+│  │ アイデアを相談  │   │
+│  └─────────────┘   │
+│                     │
+│      [宣言する]      │
+│                     │
+│  ※この内容は全員に   │
+│   共有されます       │
+└─────────────────────┘
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%96%A5%EF%B8%8F-%E6%A9%9F%E8%83%BD%E8%A9%B3%E7%B4%B0%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E3%83%95%E3%82%A1%E3%82%B7%E3%83%AA%E3%83%86%E3%83%BC%E3%82%BF%E3%83%BC">🖥️ 機能詳細：ダッシュボード（ファシリテーター）</h2>
+<h3 id="%E7%94%BB%E9%9D%A2%E6%A7%8B%E6%88%90">画面構成</h3>
+<pre class="hljs"><code><div>┌──────────────────────────────────────────┐
+│  Effectuation Workshop Dashboard        │
+├──────────────────────────────────────────┤
+│  [Step0] [Step1] [Step2] [Step3] [Step4] [Step5] │  ← タブ切替
+├──────────────────────────────────────────┤
+│                                          │
+│  【現在のステップ】 Step1: 手持ち資源     │
+│                                          │
+│  参加者: 8/10名                          │
+│  完了: 5名 / 進行中: 3名                 │
+│                                          │
+│  ┌────────┐ ┌────────┐ ┌────────┐     │
+│  │ 👤田中  │ │ 👤山田  │ │ 👤佐藤  │     │
+│  │ 完了✅  │ │ 入力中  │ │ 完了✅  │     │
+│  └────────┘ └────────┘ └────────┘     │
+│                                          │
+│  [次のステップへ進む]  [データ出力]       │
+└──────────────────────────────────────────┘
+</div></code></pre>
+<hr>
+<h3 id="step0-%E5%8F%82%E5%8A%A0%E8%80%85%E7%AE%A1%E7%90%86">Step0: 参加者管理</h3>
+<h4 id="%E8%A1%A8%E7%A4%BA%E5%86%85%E5%AE%B9">表示内容</h4>
+<ul>
+<li>参加者の一覧（アイコン + 名前）</li>
+<li>入室状況（ログイン済み / 未ログイン）</li>
+<li>参加者数のカウント</li>
+</ul>
+<h4 id="%E6%93%8D%E4%BD%9C%E5%8F%AF%E8%83%BD%E3%81%AA%E6%A9%9F%E8%83%BD">操作可能な機能</h4>
+<ul>
+<li>なし（自動更新のみ）</li>
+</ul>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>参加者一覧
+
+👤 田中太郎    ログイン済み  11:05
+👤 山田花子    ログイン済み  11:06
+👤 佐藤次郎    ログイン済み  11:07
+⚪ 鈴木一郎    未ログイン    -
+</div></code></pre>
+<hr>
+<h3 id="step1-bird-in-hand%E6%89%8B%E6%8C%81%E3%81%A1%E8%B3%87%E6%BA%90">Step1: Bird-in-Hand（手持ち資源）</h3>
+<h4 id="%E8%A1%A8%E7%A4%BA%E5%86%85%E5%AE%B9">表示内容</h4>
+<ul>
+<li>各参加者の回答をカード形式で表示</li>
+<li>カードには「誰か・何を知る・誰を知る」が記載</li>
+</ul>
+<h4 id="%E6%93%8D%E4%BD%9C%E5%8F%AF%E8%83%BD%E3%81%AA%E6%A9%9F%E8%83%BD">操作可能な機能</h4>
+<ul>
+<li>なし（閲覧のみ）</li>
+</ul>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>┌──────────────────┐  ┌──────────────────┐
+│ 👤 田中太郎       │  │ 👤 山田花子       │
+├──────────────────┤  ├──────────────────┤
+│ 誰: 元教師        │  │ 誰: デザイナー    │
+│ 何: 教育ノウハウ  │  │ 何: UI/UX        │
+│ 誰: 教育関係者    │  │ 誰: スタートアップ│
+└──────────────────┘  └──────────────────┘
+</div></code></pre>
+<hr>
+<h3 id="step2-affordable-loss%E8%A8%B1%E5%AE%B9%E6%90%8D%E5%A4%B1">Step2: Affordable Loss（許容損失）</h3>
+<h4 id="%E8%A1%A8%E7%A4%BA%E5%86%85%E5%AE%B9">表示内容</h4>
+<ul>
+<li>全体の集計グラフ
+<ul>
+<li>時間の分布（週1時間: 3人、週3時間: 4人、等）</li>
+<li>労力の平均値</li>
+<li>金額の分布</li>
+</ul>
+</li>
+</ul>
+<h4 id="%E6%93%8D%E4%BD%9C%E5%8F%AF%E8%83%BD%E3%81%AA%E6%A9%9F%E8%83%BD">操作可能な機能</h4>
+<ul>
+<li>なし（閲覧のみ）</li>
+</ul>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>時間の投資
+■■■ 週1時間    (3人)
+■■■■■ 週3時間  (5人)
+■■ 週5時間以上  (2人)
+
+金額の投資
+■■ 0円         (2人)
+■■■■ 〜1万円   (4人)
+■■■ 〜5万円    (3人)
+■ それ以上      (1人)
+</div></code></pre>
+<hr>
+<h3 id="step3-crazy-quilt%E3%83%81%E3%83%BC%E3%83%A0%E5%BD%A2%E6%88%90">Step3: Crazy Quilt（チーム形成）</h3>
+<h4 id="%E8%A1%A8%E7%A4%BA%E5%86%85%E5%AE%B9">表示内容</h4>
+<ul>
+<li>参加者のアイコンをノード表示</li>
+<li>マッチング申請を矢印で表示
+<ul>
+<li>片方向: 点線の矢印</li>
+<li>双方向（成立）: 実線の矢印</li>
+</ul>
+</li>
+<li>各参加者の「持ってこれる繋がり」</li>
+</ul>
+<h4 id="%E6%93%8D%E4%BD%9C%E5%8F%AF%E8%83%BD%E3%81%AA%E6%A9%9F%E8%83%BD">操作可能な機能</h4>
+<ol>
+<li>
+<p><strong>チーム編成の調整</strong></p>
+<ul>
+<li>ファシリテーターが手動でチームを編成</li>
+<li>ドラッグ&amp;ドロップで参加者をグループ化</li>
+</ul>
+</li>
+<li>
+<p><strong>繋がりの一覧表示</strong></p>
+<ul>
+<li>各参加者が持ってきたリソースを確認</li>
+</ul>
+</li>
+</ol>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>      田中 ←─→ 山田
+       ↓         ↓
+      佐藤 ←─→ 鈴木
+
+────────────────────
+手動チーム編成
+
+[チームA]
+  ・田中太郎
+  ・山田花子
+  [追加▼]
+
+[チームB]
+  ・佐藤次郎
+  [追加▼]
+
+[新しいチームを作る]
+</div></code></pre>
+<hr>
+<h3 id="step4-lemonade%E6%83%B3%E5%AE%9A%E5%A4%96%E3%81%B8%E3%81%AE%E5%AF%BE%E5%BF%9C">Step4: Lemonade（想定外への対応）</h3>
+<h4 id="%E8%A1%A8%E7%A4%BA%E5%86%85%E5%AE%B9">表示内容</h4>
+<ul>
+<li>各チームに配信されたカード</li>
+<li>チームごとの対応策</li>
+</ul>
+<h4 id="%E6%93%8D%E4%BD%9C%E5%8F%AF%E8%83%BD%E3%81%AA%E6%A9%9F%E8%83%BD">操作可能な機能</h4>
+<ol>
+<li>
+<p><strong>想定外カードの配信</strong></p>
+<ul>
+<li>あらかじめ用意されたカードを選択</li>
+<li>参加者投稿カードプールから選択</li>
+<li>特定のチームに配信 or 全員に配信</li>
+</ul>
+</li>
+<li>
+<p><strong>カードの管理</strong></p>
+<ul>
+<li>新しいカードを追加</li>
+<li>参加者投稿カードの承認</li>
+</ul>
+</li>
+</ol>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>想定外カード配信
+
+📦 カードプール
+  ┌─────────────────┐
+  │ 主要メンバーが抜けた │  [配信]
+  │ 予算が半分に      │  [配信]
+  │ 競合がリリース    │  [配信]
+  └─────────────────┘
+
+📝 参加者投稿カード
+  ┌─────────────────┐
+  │ 「開発が遅れそう」 │  [承認] [却下]
+  └─────────────────┘
+
+配信済みカード
+  チームA → 「主要メンバーが抜けた」
+  チームB → 「予算が半分に」
+</div></code></pre>
+<hr>
+<h3 id="step5-pilot-in-the-plane%E6%98%8E%E6%97%A5%E3%81%AE%E4%B8%80%E6%AD%A9">Step5: Pilot-in-the-Plane（明日の一歩）</h3>
+<h4 id="%E8%A1%A8%E7%A4%BA%E5%86%85%E5%AE%B9">表示内容</h4>
+<ul>
+<li>全員の「明日の一歩」を一覧表示</li>
+<li>リスト形式またはカード形式</li>
+</ul>
+<h4 id="%E6%93%8D%E4%BD%9C%E5%8F%AF%E8%83%BD%E3%81%AA%E6%A9%9F%E8%83%BD">操作可能な機能</h4>
+<ol>
+<li>
+<p><strong>データのエクスポート</strong></p>
+<ul>
+<li>CSV形式でダウンロード</li>
+<li>PDF形式でダウンロード</li>
+</ul>
+</li>
+<li>
+<p><strong>スクリーンショット保存</strong></p>
+<ul>
+<li>ボタンクリックで画面キャプチャ</li>
+</ul>
+</li>
+</ol>
+<h4 id="%E7%94%BB%E9%9D%A2%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">画面イメージ</h4>
+<pre class="hljs"><code><div>明日の一歩 宣言リスト
+
+👤 田中太郎
+   「○○さんにアイデアを相談する」
+
+👤 山田花子
+   「プロトタイプのラフを描く」
+
+👤 佐藤次郎
+   「競合を3つリストアップする」
+
+────────────────────
+[CSV出力] [PDF出力] [スクショ保存]
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%94%A7-%E3%83%95%E3%82%A1%E3%82%B7%E3%83%AA%E3%83%86%E3%83%BC%E3%82%BF%E3%83%BC%E5%B0%82%E7%94%A8%E6%A9%9F%E8%83%BD">🔧 ファシリテーター専用機能</h2>
+<h3 id="%E9%80%B2%E8%A1%8C%E7%AE%A1%E7%90%86">進行管理</h3>
+<h4 id="%E6%A9%9F%E8%83%BD">機能</h4>
+<ul>
+<li>現在のステップを管理</li>
+<li>参加者全員が完了したら次のステップへ移行</li>
+<li>強制的に次のステップへ進めることも可能</li>
+</ul>
+<h4 id="%E6%93%8D%E4%BD%9C%E7%94%BB%E9%9D%A2">操作画面</h4>
+<pre class="hljs"><code><div>┌─────────────────────────┐
+│  進行状況                │
+│                         │
+│  現在: Step2            │
+│  完了: 7/10名           │
+│                         │
+│  [次のステップへ進む]    │
+│  ※未完了の参加者も      │
+│    次に進みます          │
+└─────────────────────────┘
+</div></code></pre>
+<hr>
+<h3 id="%E3%83%87%E3%83%BC%E3%82%BF%E7%AE%A1%E7%90%86">データ管理</h3>
+<h4 id="%E6%A9%9F%E8%83%BD">機能</h4>
+<ol>
+<li>
+<p><strong>ワークショップデータの保存</strong></p>
+<ul>
+<li>全参加者の回答を保存</li>
+<li>タイムスタンプ付き</li>
+</ul>
+</li>
+<li>
+<p><strong>過去データの閲覧</strong></p>
+<ul>
+<li>過去のワークショップ一覧</li>
+<li>各回の詳細データ閲覧</li>
+</ul>
+</li>
+<li>
+<p><strong>エクスポート</strong></p>
+<ul>
+<li>CSV形式（Excel等で開ける）</li>
+<li>JSON形式（システム連携用）</li>
+</ul>
+</li>
+</ol>
+<h4 id="%E3%83%87%E3%83%BC%E3%82%BF%E9%A0%85%E7%9B%AE">データ項目</h4>
+<pre class="hljs"><code><div>参加者ID, 表示名, Step1回答, Step2回答, 
+チーム, 想定外カード, 対応策, 明日の一歩, 
+タイムスタンプ
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%8A-%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E6%B5%81%E3%82%8C">📊 データの流れ</h2>
+<h3 id="%E9%80%9A%E5%B8%B8%E3%81%AE%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%95%E3%83%AD%E3%83%BC">通常のワークフロー</h3>
+<pre class="hljs"><code><div>1. 参加者が入力
+   ↓
+2. サーバーに送信（即座）
+   ↓
+3. データベースに保存
+   ↓
+4. ダッシュボードに配信（WebSocket）
+   ↓
+5. 画面に表示（1秒以内）
+</div></code></pre>
+<h3 id="%E3%83%95%E3%82%A1%E3%82%B7%E3%83%AA%E3%83%86%E3%83%BC%E3%82%BF%E3%83%BC%E3%81%AE%E6%93%8D%E4%BD%9C">ファシリテーターの操作</h3>
+<pre class="hljs"><code><div>1. ファシリテーターが操作
+   （例: 「次のステップへ」ボタン）
+   ↓
+2. サーバーに送信
+   ↓
+3. 全参加者の画面に反映
+   ↓
+4. 参加者が新しいステップを表示
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%8E%A8-%E8%A1%A8%E7%A4%BA%E6%96%B9%E5%BC%8F%E3%81%AE%E9%81%B8%E6%8A%9E">🎨 表示方式の選択</h2>
+<h3 id="%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3a-%E5%80%8B%E4%BA%BA%E3%82%AB%E3%83%BC%E3%83%89%E8%A1%A8%E7%A4%BA">オプションA: 個人カード表示</h3>
+<ul>
+<li>各参加者のカードを並べて表示</li>
+<li>個人の成長・変化が見える</li>
+</ul>
+<pre class="hljs"><code><div>┌────┐ ┌────┐ ┌────┐
+│田中│ │山田│ │佐藤│
+└────┘ └────┘ └────┘
+</div></code></pre>
+<h3 id="%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3b-%E3%83%81%E3%83%BC%E3%83%A0%E8%A1%A8%E7%A4%BA">オプションB: チーム表示</h3>
+<ul>
+<li>チームごとにグループ化</li>
+<li>共創の繋がりが見える</li>
+</ul>
+<pre class="hljs"><code><div>┌─────────────┐ ┌─────────────┐
+│ チームA      │ │ チームB      │
+│ ・田中       │ │ ・佐藤       │
+│ ・山田       │ │ ・鈴木       │
+└─────────────┘ └─────────────┘
+</div></code></pre>
+<p><strong>推奨</strong>: Step1〜2は個人カード、Step3以降はチーム表示</p>
+<hr>
+<h2 id="%E2%9A%A0%EF%B8%8F-%E3%82%A8%E3%83%83%E3%82%B8%E3%82%B1%E3%83%BC%E3%82%B9%E6%83%B3%E5%AE%9A%E3%81%95%E3%82%8C%E3%82%8B%E4%BE%8B%E5%A4%96">⚠️ エッジケース（想定される例外）</h2>
+<h3 id="%E9%80%94%E4%B8%AD%E5%8F%82%E5%8A%A0%E3%83%BB%E9%80%94%E4%B8%AD%E9%9B%A2%E8%84%B1">途中参加・途中離脱</h3>
+<table>
+<thead>
+<tr>
+<th>ケース</th>
+<th>対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>途中参加</td>
+<td>現在のステップから参加可能</td>
+</tr>
+<tr>
+<td>途中離脱</td>
+<td>データは保存され、再ログインで復帰可能</td>
+</tr>
+<tr>
+<td>回線切断</td>
+<td>再接続後、最後の状態から再開</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E3%83%81%E3%83%BC%E3%83%A0%E5%BD%A2%E6%88%90%E3%81%AE%E5%95%8F%E9%A1%8C">チーム形成の問題</h3>
+<table>
+<thead>
+<tr>
+<th>ケース</th>
+<th>対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>誰とも組めない</td>
+<td>ファシリテーターが手動でチーム編成</td>
+</tr>
+<tr>
+<td>奇数人数</td>
+<td>3人チームを作る or 1人チームもOK</td>
+</tr>
+<tr>
+<td>マッチング不成立</td>
+<td>ファシリテーターが強制マッチング可能</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="%F0%9F%93%88-%E5%B0%86%E6%9D%A5%E7%9A%84%E3%81%AA%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3">📈 将来的な拡張機能（オプション）</h2>
+<h3 id="phase-2%E4%B8%AD%E6%9C%9F">Phase 2（中期）</h3>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">LINE公式アカウント連携（結果をトーク送信）</label></li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">アクションの進捗管理（1週間後のフォローアップ）</label></li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">参加者同士のメッセージ機能</label></li>
+</ul>
+<h3 id="phase-3%E9%95%B7%E6%9C%9F">Phase 3（長期）</h3>
+<ul>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">オンライン開催対応（Zoom連携）</label></li>
+<li><input type="checkbox" id="checkbox4"><label for="checkbox4">多言語対応</label></li>
+<li><input type="checkbox" id="checkbox5"><label for="checkbox5">テンプレート機能（業界別カスタマイズ）</label></li>
+</ul>
+<hr>
+<h2 id="%E2%9C%85-%E6%89%BF%E8%AA%8D%E3%81%84%E3%81%9F%E3%81%A0%E3%81%8D%E3%81%9F%E3%81%84%E6%A9%9F%E8%83%BD">✅ 承認いただきたい機能</h2>
+<p>以下の機能仕様で開発を進めてよろしいでしょうか？</p>
+<h3 id="%E5%BF%85%E9%A0%88%E6%A9%9F%E8%83%BD">必須機能</h3>
+<ul>
+<li><input type="checkbox" id="checkbox6" checked="true"><label for="checkbox6">5ステップのワークフロー</label></li>
+<li><input type="checkbox" id="checkbox7" checked="true"><label for="checkbox7">リアルタイムダッシュボード表示</label></li>
+<li><input type="checkbox" id="checkbox8" checked="true"><label for="checkbox8">チーム形成（双方向 + ファシリテーター調整）</label></li>
+<li><input type="checkbox" id="checkbox9" checked="true"><label for="checkbox9">想定外カード配信</label></li>
+<li><input type="checkbox" id="checkbox10" checked="true"><label for="checkbox10">データ保存・エクスポート</label></li>
+</ul>
+<h3 id="%E8%BF%BD%E5%8A%A0%E6%A9%9F%E8%83%BD">追加機能</h3>
+<ul>
+<li><input type="checkbox" id="checkbox11" checked="true"><label for="checkbox11">「持ってこれる繋がり」入力</label></li>
+<li><input type="checkbox" id="checkbox12" checked="true"><label for="checkbox12">途中参加・再接続対応</label></li>
+<li><input type="checkbox" id="checkbox13" checked="true"><label for="checkbox13">ファシリテーター進行管理</label></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%9D-%E6%AC%A1%E3%81%AE%E3%82%B9%E3%83%86%E3%83%83%E3%83%97">📝 次のステップ</h2>
+<p>機能仕様の承認後、以下を作成します：</p>
+<ol>
+<li><strong>画面モックアップ</strong>（各画面の詳細デザイン）</li>
+<li><strong>データベース設計書</strong>（保存するデータの構造）</li>
+<li><strong>API仕様書</strong>（スマホ⇄サーバーの通信内容）</li>
+</ol>
+<p><strong>ご質問・修正希望があればお知らせください。</strong></p>
+
+</body>
+</html>
