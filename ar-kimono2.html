@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XR Live Card</title>
+    <link rel="icon" href="img/marure.ico">
+    <link rel="stylesheet" href="css/ar.css">
+    <script src="js/aframe.min.js"></script>
+    <script src="js/aframe-ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+</head>
+<body style="margin: 0px; overflow: hidden;">
+
+<a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
+
+    <a-assets>
+        <a-asset-item id="room" src="model/romantic_tales_of_the_taisho_era.glb"></a-asset-item>
+        <img id="stage-banner-img" src="img/stage-banner.png">
+        <!-- <img id="stage-link-img" src="img/stage-link.png"> -->
+	</a-assets>
+    
+    <a-marker type="pattern" url="marker/pattern-chart.patt">
+        <a-entity   id="kimono"
+                    position="0 0 0" 
+                    rotation="0 0 0"
+                    scale="1 1 1"
+                    gltf-model="#room"
+                    animation-mixer>
+        </a-entity>
+        <a-cylinder position="0 -0.2 0"
+                    radius="2"
+                    height="0.05"
+                    color="#857BA8"
+                    material="metalness: 0.1; roughness: 0.8"></a-cylinder>
+    </a-marker>
+    
+    <a-entity camera></a-entity>
+</a-scene>
+<button class="btn-transition" onclick="location.href='index.html'">ポートフォリオへ</button>
+</body>
+</html>
