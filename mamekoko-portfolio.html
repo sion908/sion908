@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:url" content="https://portfolio.sion908.tech/mamekoko-portfolio.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="まめここ - プライベート日記アプリ" />
+  <meta property="og:description" content="プライバシーを重視した日記アプリ「まめここ」の開発ストーリーと技術的な特徴" />
+  <meta property="og:site_name" content="Sion's Portfolio" />
+  <meta property="og:image" content="img/marure.ico" />
+  <meta name="twitter:card" content="Summary Card" />
+  <meta name="twitter:site" content="@Sion908_" />
+  <title>まめここ - プライベート日記アプリ | Sion's Portfolio</title>
+  <link rel="stylesheet" href="css/stylesheet.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="icon" href="img/marure.ico">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <style>
+    .hero-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+    }
+    .hero-title {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .feature-card {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+    .feature-icon {
+      font-size: 3rem;
+      color: #667eea;
+      margin-bottom: 20px;
+    }
+    .tech-stack {
+      background: #f8f9fa;
+      padding: 60px 20px;
+    }
+    .tech-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .tech-item {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      font-weight: bold;
+      color: #333;
+    }
+    .story-section {
+      padding: 80px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .story-timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+    .story-timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #667eea;
+    }
+    .story-item {
+      position: relative;
+      margin-bottom: 40px;
+      padding-left: 30px;
+    }
+    .story-item::before {
+      content: '';
+      position: absolute;
+      left: -35px;
+      top: 5px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #667eea;
+      border: 3px solid white;
+      box-shadow: 0 0 0 3px #667eea;
+    }
+    .cta-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .cta-button {
+      display: inline-block;
+      background: white;
+      color: #667eea;
+      padding: 15px 40px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: transform 0.3s ease;
+    }
+    .cta-button:hover {
+      transform: scale(1.05);
+    }
+    .back-to-portfolio {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .back-to-portfolio a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: 2px solid #667eea;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+    .back-to-portfolio a:hover {
+      background: #667eea;
+      color: white;
+    }
+    
+    /* PC版の空虚感を解消する改善 */
+    @media (min-width: 769px) {
+      .hero-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        z-index: 0;
+      }
+      .hero-section .container {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        text-align: center;
+      }
+      .hero-title {
+        font-size: 4rem !important;
+        margin-bottom: 20px !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      }
+      .hero-subtitle {
+        font-size: 1.5rem !important;
+        margin-bottom: 30px !important;
+        opacity: 0.9;
+      }
+      
+      /* セクション間のスペースを増やす */
+      section {
+        padding: 100px 20px !important;
+      }
+      
+      /* コンテンツの最大幅を調整 */
+      .feature-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      /* 背景パターンを追加 */
+      .feature-grid::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+          radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.05) 0%, transparent 50%);
+        z-index: -1;
+      }
+      
+      /* カードにホバーエフェクトを追加 */
+      .feature-card {
+        transition: all 0.3s ease !important;
+        border: 1px solid rgba(102, 126, 234, 0.1) !important;
+      }
+      .feature-card:hover {
+        transform: translateY(-5px) !important;
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2) !important;
+        border-color: rgba(102, 126, 234, 0.3) !important;
+      }
+      
+      /* ヒーローセクションに装飾要素を追加 */
+      .hero-decoration {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        animation: float 6s ease-in-out infinite;
+      }
+      .hero-decoration:nth-child(1) {
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .hero-decoration:nth-child(2) {
+        top: 70%;
+        right: 10%;
+        animation-delay: 2s;
+      }
+      .hero-decoration:nth-child(3) {
+        bottom: 10%;
+        left: 30%;
+        animation-delay: 4s;
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+      }
+    }
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem !important;
+      }
+      .hero-subtitle {
+        font-size: 1.2rem !important;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        padding: 40px 20px !important;
+      }
+      .story-timeline {
+        padding-left: 20px !important;
+      }
+      .tech-stack {
+        padding: 40px 20px !important;
+      }
+      .tech-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+      }
+      /* アプリプレビューセクションのスマホ対応 */
+      .app-preview-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+      }
+      .app-preview-text h3 {
+        font-size: 1.2rem !important;
+        margin-bottom: 15px !important;
+      }
+      .app-preview-text ul {
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
+      }
+      .app-preview-image img {
+        max-width: 250px !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <!-- 装飾要素 -->
+    <div class="hero-decoration"></div>
+    <div class="hero-decoration"></div>
+    <div class="hero-decoration"></div>
+    
+    <div class="container">
+      <h1 class="hero-title">まめここ</h1>
+      <p class="hero-subtitle">安心できるプライベート日記アプリ</p>
+      <p>人に見せたくない本音を、そっと置いておける場所</p>
+      
+      <div style="margin-top: 40px;">
+        <a href="https://mamekoko.sion908.tech" target="_blank" class="cta-button" style="background: white; color: #667eea; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-block; transition: all 0.3s ease;">
+          🌱 アプリを試す
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- App Concept Section -->
+  <section style="padding: 80px 20px; max-width: 800px; margin: 0 auto;">
+    <h2 style="text-align: center; margin-bottom: 40px; color: #333;">まめここってどんなアプリ？</h2>
+    <div style="background: #f8f9fa; padding: 40px; border-radius: 15px;">
+      <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px;">
+        <strong>まめここ</strong>は、<strong>SNSには出したくない本音や日々の気持ち</strong>を、安心して書き留められる<strong>プライベート日記アプリ（PWA）</strong>です。
+      </p>
+      
+      <h3 style="color: #667eea; margin-bottom: 20px;">💭 こんな気持ち、ありますか？</h3>
+      <ul style="line-height: 2; margin-bottom: 30px;">
+        <li>人に話すほどでもないけど、心のどこかに引っかかっていること</li>
+        <li>SNSには投稿したくない本音や素直な気持ち</li>
+        <li>自分だけの場所にそっと書き出したい日々の出来事</li>
+        <li>誰かに評価されることなく、ありのままの自分を記録したい</li>
+      </ul>
+      
+      <h3 style="color: #667eea; margin-bottom: 20px;">🌱 まめここができること</h3>
+      <ul style="line-height: 2;">
+        <li><strong>オフライン保存:</strong> 日記はあなたのスマホの中だけ。安心して書ける</li>
+        <li><strong>AI要約機能:</strong> 日記を要約して、SNS投稿用の文章に変換</li>
+        <li><strong>3分日記:</strong> 短時間で続けられる書き方テンプレート</li>
+        <li><strong>プライバシー重視:</strong> 第三者に見られる心配が少ない設計</li>
+      </ul>
+      
+      <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 30px;">
+        <h4 style="color: #667eea; margin-bottom: 15px;">📊 現在のステータス</h4>
+        <p style="margin-bottom: 15px;"><strong>開発中（β版リリース段階）</strong></p>
+        <ul style="line-height: 1.8; margin-bottom: 15px;">
+          <li>着せ替え用ストア機能を開発中</li>
+          <li>AIによる日記要約機能を実装中</li>
+          <li>サイトコンテンツ拡充とSEO対策を並行実施</li>
+        </ul>
+        <p style="font-size: 0.9rem; color: #666;">
+          ユーザー数は立ち上がり段階ですが、方向性検証と改善を重ねながら継続開発中です。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="fa fa-lock"></i>
+      </div>
+      <h3>プライバシー保護</h3>
+      <p><strong>非技術者向け:</strong> 日記はスマホの中だけ！誰にも見られない安心感</p>
+      <p><strong>技術者向け:</strong> オフラインファースト設計、ローカルストレージ、エンドツーエンド暗号化</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="fa fa-mobile"></i>
+      </div>
+      <h3>PWA対応</h3>
+      <p><strong>非技術者向け:</strong> アプリストア不要！スマホのホーム画面からワンタップで起動</p>
+      <p><strong>技術者向け:</strong> Service Workerによるオフライン対応、キャッシュ戦略、プッシュ通知</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="fa fa-robot"></i>
+      </div>
+      <h3>AI要約機能</h3>
+      <p><strong>非技術者向け:</strong> 日記を要約して、SNS投稿用の文章に自動変換</p>
+      <p><strong>技術者向け:</strong> 自然言語処理、テキスト要約アルゴリズム、プライバシー保護AI</p>
+      <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
+        <strong>体験版:</strong> <a href="https://www.poji-henkan.sion908.tech" target="_blank" style="color: #667eea;">ポジ変換デモでAI機能をお試しください</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- App Preview Section -->
+  <section style="padding: 80px 20px; max-width: 1200px; margin: 0 auto; background: #f8f9fa;">
+    <h2 style="text-align: center; margin-bottom: 60px; color: #333;">アプリの使い心地</h2>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;" class="app-preview-grid">
+      <div class="app-preview-text">
+        <h3 style="color: #667eea; margin-bottom: 20px;">📱 シンプルで直感的な操作</h3>
+        <ul style="line-height: 2; margin-bottom: 30px;">
+          <li>カレンダーで日付を選んで書き始めるだけ</li>
+          <li>気分を選んで、今日の出来事を自由に記述</li>
+          <li>スワイプで前後の日付に移動可能</li>
+          <li>オート保存機能で書き込みが失われることはありません</li>
+        </ul>
+        
+        <h3 style="color: #667eea; margin-bottom: 20px;">🎨 心地よい書き心地</h3>
+        <ul style="line-height: 2;">
+          <li>落ち着いたカラーテーマで目に優しい</li>
+          <li>文字数に応じて入力エリアが自動拡張</li>
+          <li>読みやすいフォントと適切な行間</li>
+          <li>集中できるミニマルなデザイン</li>
+        </ul>
+      </div>
+      
+      <div class="app-preview-image" style="text-align: center;">
+        <!-- 実際のアプリスクリーンショット -->
+        <div style="background: white; border-radius: 20px; padding: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); max-width: 300px; margin: 0 auto;">
+          <img src="img/mamekoko_img.jpg" alt="まめここアプリ画面" style="width: 100%; height: auto; border-radius: 10px;">
+        </div>
+        <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+          実際のアプリ画面 - 日記入力とAI要約機能
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="story-section">
+    <h2 style="text-align: center; margin-bottom: 60px; color: #333;">開発ストーリー</h2>
+    <div class="story-timeline">
+      <div class="story-item">
+        <h3>なぜ日記アプリを？</h3>
+        <p>SNS時代に、誰にも見せたくない気持ちを安心して書ける場所が必要だと感じました。評価されることなく、ありのままの自分を受け止めてくれるアプリを作りたいと思ったのです。</p>
+      </div>
+      <div class="story-item">
+        <h3>「まめここ」の名前の由来</h3>
+        <p>「豆」（小さな、ささやかな）と「ここ」（場所）から。小さな気持ちを置いておける場所、という意味を込めて名付けました。大げさなことでなく、日常のささやかな気持ちを大切にしたい。</p>
+      </div>
+      <div class="story-item">
+        <h3>技術選定の理由</h3>
+        <p>プライバシーを最優先するため、オフラインファースト設計にしました。PWAとしてアプリストアを通さず直接届けられるようにし、誰でも簡単に使えることを目指しています。</p>
+      </div>
+      <div class="story-item">
+        <h3>開発体制</h3>
+        <p><strong>企画・設計・フロントエンド・バックエンド・インフラ</strong> → すべて個人で担当<br>
+        <strong>SEO施策・記事制作</strong> → 協力者1名と共同で実施</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">技術面については、設計から実装・運用まで一貫して自分自身で行っています。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section class="tech-stack">
+    <h2 style="text-align: center; margin-bottom: 40px; color: #333;">技術スタック</h2>
+    
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+      <h3 style="color: #667eea; margin-bottom: 20px;">💡 なぜこの技術を選んだの？（非技術者向け）</h3>
+      <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+        <h4>安心・安全のための技術選択</h4>
+        <p><strong>オフライン優先:</strong> 日記がインターネットを通らないから、漏洩の心配が少ない</p>
+        <p><strong>PWA技術:</strong> アプリストアの審査なしで、直接あなたに届けられる</p>
+        <p><strong>シンプル設計:</strong> 複雑な機能がないから、誰でも簡単に使える</p>
+        <p><strong>プライバシー保護:</strong> AI機能も、あなたのデータを安全に処理する仕組み</p>
+      </div>
+      
+      <h3 style="color: #667eea; margin-bottom: 20px;">🔧 技術者向け詳細</h3>
+      <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+        <h4>インフラ構成と移行</h4>
+        <p><strong>当初:</strong> さくらのレンタルサーバーでサイト・アプリ機能をすべて構築</p>
+        <p><strong>現在:</strong> アプリ部分をAWS Lambdaに移行、サイト機能はさくらのまま運用</p>
+        <p><strong>分離理由:</strong> 認証機能や課金機能実装を見据え、段階的な移行を採用</p>
+      </div>
+      
+      <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+        <h4>バックエンド設計思想</h4>
+        <p><strong>AWS Lambda / DynamoDB:</strong> ユーザー管理用途に限定して利用</p>
+        <p><strong>サーバー側保持情報:</strong> 利用規約同意時のUUID、認証状態フラグのみ</p>
+        <p><strong>日記本文:</strong> 一切保存せず、完全にローカルで完結</p>
+        <p><strong>設計思想:</strong> オフラインファーストを保ちつつ、必要最小限のサーバー機能のみ</p>
+      </div>
+      
+      <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
+        <h4>プライバシーに対する考え方</h4>
+        <p><strong>基本方針:</strong> 「運営側が個人データを持たない」ことを重視</p>
+        <p><strong>ユーザー責任:</strong> 端末管理やバックアップはユーザー自身に委ねる</p>
+        <p><strong>保証範囲:</strong> 完全な安全保証ではなく、リスク最小化の設計思想</p>
+      </div>
+    </div>
+    
+    <div class="tech-grid" style="margin-top: 40px;">
+      <div class="tech-item">Python</div>
+      <div class="tech-item">Litestar</div>
+      <div class="tech-item">PWA</div>
+      <div class="tech-item">オフライン設計</div>
+      <div class="tech-item">プライバシー保護</div>
+      <div class="tech-item">AWS Lambda</div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">なぜこの分野に取り組んでいるのか</h2>
+    <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9;">技術で「外に出さない場所」の価値を創造する</p>
+    
+    <div style="max-width: 600px; margin: 0 auto; text-align: left; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+      <h3 style="color: white; margin-bottom: 15px;">🌱 PWAの可能性</h3>
+      <p style="color: white; line-height: 1.8; margin-bottom: 15px;">
+        PWAは、公開や審査のハードルが低く、誰でも比較的簡単に利用を始められます。オフラインで動作することで、データを外部に出さずに完結する体験を実現できます。
+      </p>
+    </div>
+    
+    <div style="max-width: 600px; margin: 0 auto; text-align: left; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+      <h3 style="color: white; margin-bottom: 15px;">💭 社会的背景</h3>
+      <p style="color: white; line-height: 1.8; margin-bottom: 15px;">
+        SNSによって世界が広がる一方で、自己顕示欲や比較によるストレスが増えているように感じています。その対処として「外に出さない場所」の価値に関心を持ちました。
+      </p>
+      <p style="color: white; font-size: 0.9rem;">
+        この考えは、本サイト内の「まめここ よみもの」としても記事にしています。
+      </p>
+    </div>
+    
+    <div style="max-width: 600px; margin: 0 auto; text-align: left; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+      <h3 style="color: white; margin-bottom: 15px;">🚀 難しかった点・学び</h3>
+      <p style="color: white; line-height: 1.8; margin-bottom: 15px;">
+        当初はさくらのレンタルサーバーのみで運用していましたが、認証や将来的な拡張を考慮し、アプリ部分をAWS Lambdaに移行しました。
+      </p>
+      <p style="color: white; line-height: 1.8; margin-bottom: 15px;">
+        <strong>最も難しかった点:</strong> PWAの思想を保ちながら、どこまでをサーバーに任せ、どこまでをクライアントで完結させるかの設計判断。
+      </p>
+      <p style="color: white; line-height: 1.8;">
+        <strong>現在の構成:</strong> 「ユーザー管理のみをサーバーで行い、日記体験は完全にローカルで完結させる」形に落ち着いています。
+      </p>
+    </div>
+    
+    <a href="https://mamekoko.sion908.tech" target="_blank" class="cta-button">🌱 アプリを試す</a>
+    <a href="https://www.poji-henkan.sion908.tech/" target="_blank" class="cta-button" style="background: transparent; border: 2px solid white; margin-left: 15px;">🤖 AI機能デモ</a>
+  </section>
+
+  <!-- Back to Portfolio -->
+  <section class="back-to-portfolio">
+    <a href="index.html">← ポートフォリオTOPに戻る</a>
+  </section>
+
+  <script>
+    // スムーズスクロール
+    $(function () {
+      $('a[href^="#"]').click(function () {
+        var speed = 400;
+        var href = $(this).attr("href");
+        var target = $(href == "#" || href == "" ? 'html' : href);
+        var position = target.offset().top;
+        $('body,html').animate({ scrollTop: position }, speed, 'swing');
+        return false;
+      });
+    });
+  </script>
+</body>
+</html>
