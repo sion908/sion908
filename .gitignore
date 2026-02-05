@@ -7,3 +7,5 @@ AR.js-examples/
 .env
 
 tmp/
+
+*.pdf
