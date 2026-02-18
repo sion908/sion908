@@ -15,22 +15,36 @@
   <title>portfolio</title>
   <link rel="stylesheet" href="css/stylesheet.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="icon" href="img/marure.ico">
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <!-- ＃リンクのスムーズスクロール -->
+  <!-- ＃リンクのスムーズスクロール (Vanilla JS) -->
   <script>
-    $(function () {
-      // #で始まるリンクをクリックしたら実行されます
-      $('a[href^="#"]').click(function () {
-        // スクロールの速度
-        var speed = 400; // ミリ秒で記述
-        var href = $(this).attr("href");
-        var target = $(href == "#" || href == "" ? 'html' : href);
-        var position = target.offset().top;
-        $('body,html').animate({ scrollTop: position }, speed, 'swing');
-        return false;
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const href = this.getAttribute('href');
+          const target = document.querySelector(href === "#" || href === "" ? 'html' : href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        });
       });
+
+
+      // Email address obfuscation - using click handler for robustness
+      const emailLink = document.getElementById('email-link');
+      if (emailLink) {
+        emailLink.addEventListener('click', function (e) {
+          e.preventDefault();
+          const user = 'info';
+          const domain = 'sion908.tech';
+          const mailto = 'mailto:' + user + '@' + domain;
+          window.location.href = mailto;
+        });
+      }
     });
   </script>
 </head>
@@ -41,325 +55,243 @@
       <!-- <p>Sion's portfolio</p> -->
     </div>
 
+    <!-- Mobile Menu Icon (Placeholder for future JS implementation if needed) -->
     <!-- <div>
       <span class="fa fa-bars menu-icon"></span>
     </div> -->
 
-    <div class="header-right">
+    <nav class="header-right">
       <a href="#about">About</a>
       <a href="#myskill">My Skill</a>
       <a href="#works">Works</a>
       <a href="#contact">Contact</a>
-    </div>
-
+    </nav>
   </header>
 
-  <div class="top-wrapper">
-    <h1><img src="img/marure.ico">Sion's portfolio</h1>
-
-  </div>
-
-  <div class="contents">
-    <div class="detail-wrapper">
-      <h2 id="about">About</h2>
+  <main>
+    <section class="top-wrapper" id="hero">
       <div class="container">
-        <ul>
-          <li>群馬県立高崎高等学校卒業</li>
-          <li>長崎大学大学院総合工学研究科電気電子工学コース卒業</li>
-          <li
-            onclick="obj=document.getElementById('open-work').style; obj.display=(obj.display=='none')?'block':'none';">
-            株式会社デザイニウム在籍 (バックエンドエンジニア)<a style="cursor:pointer;float:none;">▼</a>
-            <div class="detail-work" id="open-work" style="display:none; clear:both;">
-              <img
-                src="https://static.wixstatic.com/media/58cc77_a7734241778f49f68cdad98b34310ff2~mv2.png/v1/fill/w_140,h_120,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/58cc77_a7734241778f49f68cdad98b34310ff2~mv2.png"
-                alt="デザイニウム社章">
-              <div class="text">
-                <a href="https://www.thedesignium.com/"
-                  target="_blank">デザイニウム</a>は福島県会津若松市と東京に拠点を置くテクノロジーとデザインの企業です。<br />
-                ​主に得意とする３つの分野で製品やシステムの開発を行なっています。
+        <h1><img src="img/marure.ico" alt="Icon"> Sion's portfolio</h1>
+        <p>Webアプリ × 3DCG ― 技術とクリエイティブで課題を解決するエンジニア</p>
+      </div>
+    </section>
+
+    <div class="contents">
+      <section class="detail-wrapper" id="about">
+        <div class="container">
+          <h2>About</h2>
+          <div class="about-content">
+            <p class="about-intro">長崎を拠点に活動する<strong>バックエンドエンジニア / 3DCGクリエイター</strong>です。</p>
+            <p class="about-detail">大学院（電気電子工学）を卒業後、テック企業でAWSサーバレス構成を中心としたWebアプリケーションの開発・運用を担当してきました。</p>
+            <p class="about-detail">
+              本業の傍ら、自治体向けの3DCGプロモーション動画制作や地域イベントの技術支援にも個人で取り組んでいます。<br>技術とクリエイティブの両面から、課題解決にアプローチするのが強みです。</p>
+            <div class="about-tags">
+              <span class="about-tag">📍 長崎市</span>
+              <span class="about-tag">🎓 高等学校教諭免許（数学・工業）</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section class="myskill" id="myskill">
+        <div class="container">
+          <h2>できること</h2>
+          <div class="skill-container">
+            <div class="skill-list-wrapper">
+              <div class="skill-category">
+                <h4>Webアプリケーション開発</h4>
+                <p class="skill-desc">サーバレス構成（AWS）でのバックエンド設計からリリースまで一貫して対応します。</p>
+                <ul>
+                  <li>Python</li>
+                  <li>AWS</li>
+                  <li>TypeScript</li>
+                </ul>
+              </div>
+              <div class="skill-category">
+                <h4>3DCG / 映像制作</h4>
+                <p class="skill-desc">プロモーション映像やバーチャル空間の制作を行います。</p>
+                <ul>
+                  <li>Blender</li>
+                  <li>UE4 / UE5</li>
+                  <li>Twinmotion</li>
+                </ul>
+              </div>
+              <div class="skill-category">
+                <h4>AR / メタバース</h4>
+                <p class="skill-desc">WebAR体験やメタバース空間の構築が可能です。</p>
+                <ul>
+                  <li>A-Frame</li>
+                  <li>Vket Cloud</li>
+                </ul>
               </div>
             </div>
-          </li>
-        </ul>
-        <!-- <a>more</a> -->
-        <div class="forClear"></div>
-      </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="works-wrapper" id="works">
+        <div class="container">
+          <h2>Works</h2>
+          <div class="works-grid">
+
+            <!-- Work Item: Mamekoko -->
+            <article class="work-card">
+              <h3>まめここ アプリ</h3>
+              <div class="work-content">
+                <img src="./img/mamekoko_img.jpg" alt="まめここアプリ" class="work-media-phone">
+                <div class="work-text">
+                  <p>プライバシーを大切にした日記アプリ。オフラインでも使え、AIが日記を要約してくれます。スマホのホーム画面に追加して、アプリのように使えます。</p>
+                  <div class="tech-stack">
+                    <span>Python</span> <span>AWS</span> <span>PWA</span>
+                  </div>
+                  <div class="work-links">
+                    <a href="https://www.mamekoko.sion908.tech" target="_blank" class="btn">サイトを見る</a>
+                    <a href="mamekoko-portfolio.html" target="_blank" class="btn">詳細</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Work Item: Hanabi -->
+            <article class="work-card">
+              <h3>居留地オンライン花火大会</h3>
+              <div class="work-content">
+                <div class="iframe-responsive2">
+                  <iframe src="https://www.youtube.com/embed/JRoT8WcR-_o" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
+                <div class="work-text">
+                  <p>コロナ禍における地域活性化プロジェクト。東山手洋館活用プロジェクトPavèとして、オンライン配信での花火大会を実施。</p>
+                  <div class="tech-stack">
+                    <span>CAD</span> <span>Blender</span> <span>UE4</span> <span>AviUtl</span>
+                  </div>
+                  <div class="work-links">
+                    <a href="hanabi-portfolio.html" target="_blank" class="btn">詳細</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Work Item: Virtual House -->
+            <article class="work-card">
+              <h3>大瀬戸緑ヶ丘団地 バーチャルハウス</h3>
+              <div class="work-content">
+                <div class="iframe-responsive2">
+                  <iframe src="https://www.youtube.com/embed/SSHvC-b0qhs" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
+                <div class="work-text">
+                  <p>西海市からの依頼で制作した、分譲住宅地のプロモーション動画。建設前の住宅イメージをフルCGで再現し、購入検討者の意思決定を支援しました。</p>
+                  <div class="tech-stack">
+                    <span>UE5</span> <span>Twinmotion</span> <span>Blender</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Work Item: Vket Cloud -->
+            <article class="work-card">
+              <h3>どんどん坂のある景色 (Vket Cloud)</h3>
+              <div class="work-content">
+                <img src="./img/vket.png" alt="vketcloud">
+                <div class="work-text">
+                  <p>ブラウザだけで動作するメタバース空間。iPhoneのLiDARスキャンを活用し、長崎の坂道をデジタル上に再現しました。アプリ不要で誰でも体験できます。</p>
+                  <div class="work-links">
+                    <a href="https://sion908.cloud.vket.com/worlds/k5BUoWWu/main.html?worldid=k5BUoWWu" target="_blank"
+                      class="btn">ワールドへ行く</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Work Item: BAR-GAI -->
+            <article class="work-card">
+              <h3>長崎居留地BAR-GAI<br>クーポンシステム</h3>
+              <div class="work-content">
+                <img src="./img/bargai_flyer.jpg" alt="BAR-GAI">
+                <div class="work-text">
+                  <p>長崎の街歩きイベント向け電子クーポン。LINE上で配布・利用でき、紙クーポンの管理コストを削減しました。QR読み取りで簡単に消込できます。</p>
+                  <div class="tech-stack">
+                    <span>Django</span> <span>LINE LIFF</span> <span>Heroku</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Work Item: UE4 Various -->
+            <article class="work-card">
+              <h3>AR名刺 - XR Live Card</h3>
+              <div class="work-content">
+                <div class="work-text">
+                  <p>名刺をスマホのカメラでかざすと、3Dキャラクターが登場するARデモ。アプリのインストール不要で、ブラウザだけで体験できます。</p>
+                  <div class="tech-stack">
+                    <span>A-Frame</span> <span>AR.js</span> <span>WebAR</span>
+                  </div>
+                  <div class="work-links">
+                    <a href="ar-main.html" target="_blank" class="btn">デモを試す</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="work-card">
+              <h3>UE4 Works Collection</h3>
+              <div class="work-content">
+                <div class="work-text">
+                  <p>Unreal Engine 4で制作したゲームや映像作品のコレクション。</p>
+                  <div class="work-sub-grid">
+                    <a href="https://youtu.be/wG7zYERNXaw" target="_blank">シューティング</a>
+                    <a href="https://youtu.be/pG18Tzq2mck" target="_blank">映像作品</a>
+                    <a href="https://youtu.be/eaq9tp_zPCQ" target="_blank">魔法陣</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Work Item: Blender -->
+            <article class="work-card">
+              <h3>Blender Models</h3>
+              <div class="work-content">
+                <div class="work-text">
+                  <p>Sketchfabに公開している3Dモデル。</p>
+                  <div class="work-links">
+                    <a href="https://sketchfab.com/sion908" target="_blank" class="btn">Sketchfabで見る</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-wrapper" id="contact">
+        <div class="container">
+          <h2>Contact</h2>
+          <div class="contact-links">
+            <a href="#" id="email-link" class="btn-sns email"><i class="fa-solid fa-envelope"></i> Email</a>
+            <a href="https://twitter.com/Sion908_" target="_blank" rel="noopener noreferrer" class="btn-sns twitter"><i
+                class="fa-brands fa-twitter"></i>
+              Twitter</a>
+            <a href="https://github.com/sion908" target="_blank" rel="noopener noreferrer" class="btn-sns github"><i
+                class="fa-brands fa-github"></i> GitHub</a>
+            <a href="https://qiita.com/sion908" target="_blank" rel="noopener noreferrer"
+              class="btn-sns qiita">Qiita</a>
+          </div>
+        </div>
+      </section>
     </div>
-
-    <div class="qualification">
-      <h2 id="qualification">資格</h2>
-      <div class="container">
-        <ul>
-          <li>普通自動車第一種運転免許</li>
-          <li>高等学校教諭一種免許状（数学）</li>
-          <li>高等学校教諭一種免許状（工業）​</li>
-          <li>高等学校教諭専修免許状（工業）​</li>
-          <li>わな猟免許​</li>
-        </ul>
-      </div>
-    </div>
-
-
-    <div class="myskill">
-      <h2 id="myskill">my Skills</h2>
-      <div class="container">
-        <div class="skill-container">
-          <ul>
-            <li class="skill-list li-left">
-              <h4>tool</h4>
-              <ul>
-                <li class="left">UE4</li>
-                <li class="left">blender</li>
-                <li class="left">unity</li>
-                <li class="right">git</li>
-                <li class="right">AWS</li>
-                <li class="right">Aviutl</li>
-                <div class="forClear"></div>
-              </ul>
-            </li>
-            <li class="skill-list li-right">
-              <h4>language</h4>
-              <ul>
-                <li class="left">python (Django, litestar)</li>
-                <li class="left">HTML,CSS</li>
-                <li class="right">GoosleAppScript</li>
-                <div class="forClear"></div>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <div class="forClear"></div>
-      </div>
-    </div>
-
-    <div class="works-wrapper">
-      <h2 id="works">Works</h2>
-      <div class="container">
-
-        <h3>まめここ アプリ</h3>
-        <div class="flex flex-rev">
-          <img src="./img/mamekoko_img.jpg" alt="まめここアプリ">
-          <p class="text">
-            Litestar + AWS Lambda + CloudFront で構築したプライベート日記 PWA。Service Worker と Manifest によるホーム画面追加・オフライン対応を備えています。
-            <br><br>
-            <strong>特徴:</strong> プライバシー重視のオフライン設計、AI要約機能、PWA対応
-            <br><br>
-            <a href="https://www.mamekoko.sion908.tech" target="_blank">サイトを見る</a> | 
-            <a href="mamekoko-portfolio.html" target="_blank">詳細ポートフォリオ</a>
-          </p>
-        </div>
-
-        <h3>居留地オンライン花火大会</h3>
-        <div class="iframe-responsive2" style="padding-top:56.25%;">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/JRoT8WcR-_o" title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        </div>
-        <p>地域団体として, 自分が主導となって行ったプロジェクトであり, コロナ禍ということでなくなった花火という行事をオンラインで行うというものであった．</p>
-        <h4>背景</h4>
-        <div class="flex">
-          <img src="./img/fes_title.png" alt="居留地まつりの画像">
-          <p class="text">例年行われている山手地区で行われているお祭りである<a href="https://nagasakiforeignset.wixsite.com/home"
-              target="_blank">居留地まつり</a>．例年は, 山手にある洋風住宅を用いて行われるものであるが, この回はコロナ真っ只中ということで,
-            一日配信を行うという形で行われた．自分が加入している東山手洋館活用プロジェクトPavèは例年このお祭りに参加しており, 何かできることはないかということになった．</p>
-        </div>
-        <h4>経緯</h4>
-        <div class="flex flex-rev">
-          <img src="./img/山手icon.png" alt="ぱヴぇのロゴ">
-          <p class="text">この中で, 自分たちの団体として, 地域に医療従事者に対して何かできないかという中で出てきたのがオンラインでの花火大会であった．コロナ禍ということで,
-            人の密集しやすい花火大会は軒並み中止となり, 家に引きこもり交流のようなことが少なくなった時期であったと思う．花火というプラットフォームの上で, 自分の描いた絵やメッセージが花火となるということによって,
-            花火を楽しむことだけではなく, 自分の描いた絵という点で, 自分も参画できたという体験ができればと考えた．</p>
-        </div>
-        <h4>技術面</h4>
-        <div class="flex">
-          <img src="./img/fire-blender.png" alt="blenderにて">
-          <img src="./img/fire-img.jpg" alt="動画イメージ">
-        </div>
-        <div class="flex">
-          <img src="./img/fire-ue4.png" alt="UE4でのイメージ">
-          <div class="text">
-            <p>用いた技術は以下の通りである</p>
-            <ul>
-              <li>CADでの建物のモデリング</li>
-              <li>blenderでの, 作った建物の最適化と街並みのモデリング</li>
-              <li>ue4での動画撮影</li>
-              <li>aviutlによる, 簡易的な動画編集</li>
-            </ul>
-            <p>環境デザインを学んでいた友人とともにやっていたこともあり, 画角に何が見えるかなども考慮し作成した</p>
-          </div>
-        </div>
-
-        <h3>西海市分譲宅地「大瀬戸緑ヶ丘団地」にバーチャルハウスをつくってみた</h3>
-        <div class="iframe-responsive2" style="padding-top:56.25%;">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/SSHvC-b0qhs" title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        </div>
-        <div class="flex">
-          <p class="text">西海市の依頼をいただき, UE5とTwinmotionをつかって, フルCGの動画を作成. 少し話題になっていた長崎県が公開している点群データを使ってみた．また,
-            上の動画を作ったついでに下の360度の動画も作成した. うまくどこかで使えれば... 360度動画についてはぜひYoutube公式アプリからご覧ください.</p>
-        </div>
-        <div class="iframe-responsive2" style="padding-top:56.25%;">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/BNKqxAE528E" title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        </div>
-
-        <h3>長崎居留地BAR-GAIのオンラインクーポンシステム</h3>
-        <div class="flex flex-rev">
-          <img src="./img/bargai_flyer.jpg" alt="BAR-GAIのチラシ">
-          <p class="text">長崎の居留地で行われる長崎居留地BAR-GAIという飲み歩きのイベントにて, オンラインでのクーポンシステムを作成．昨今のミニアプリ化などの流れも鑑み,
-            LineMessengerとLIFFを用いて, LINEの公式アカウントと友だちになるだけで, そこからクーポンの購入と利用ができるようなシステムを作った．デジタルネイティブではない, お店側にもわかりやすいように,
-            クーポンの利用にはお店にあらかじめ置いてあるQRを読み込みお店に確認画面を見せるだけというものにした．<br>heroku+Djangoにて作成．<br><a
-              href="https://nagasakiavenue.wixsite.com/avenue/post/bar-gai2022" target="_blank">長崎居留地BAR-GAIへのリンク</a>
-          </p>
-        </div>
-      </div>
-
-      <h3>どんどん坂のある景色</h3>
-      <div class="flex">
-        <img src="./img/vket.png" alt="vketcloudでの画像">
-        <p class="text">vketcloudというスマホでもブラウザで入ることができるメタバースのエンジンで作成したワールド．<br>メタバースというとアプリが必要であったり,
-          必須のスペックが高かったりとハードルが高いイメージだが, これはリンクを開くだけでメタバースに入ることができる．Pro系のiPhoneに搭載されているLidar機能によって作られた,
-          長崎の山手地区にあるどんどん坂をデジタル化して景色を再現した．観光分野など, 一見さんが多く, 再帰性が低いメタバースには最適だと思っています．百聞は一見に如かず．とりあえずみてください<br>↓<br><a
-            href="https://sion908.cloud.vket.com/worlds/k5BUoWWu/main.html?worldid=k5BUoWWu"
-            target="_blank">こちらからワールドを開けます（別のタブで開きます）</a></p>
-      </div>
-      <div class="vket-frame">
-        <iframe src="https://sion908.cloud.vket.com/worlds/k5BUoWWu/main.html?worldid=k5BUoWWu"></iframe>
-      </div>
-
-      <h3>長崎居留地BAR-GAIのオンラインクーポンシステム</h3>
-      <div class="flex flex-rev">
-        <img src="./img/bargai_flyer.jpg" alt="BAR-GAIのチラシ">
-        <p class="text">長崎の居留地で行われる長崎居留地BAR-GAIという飲み歩きのイベントにて, オンラインでのクーポンシステムを作成．昨今のミニアプリ化などの流れも鑑み,
-          LineMessengerとLIFFを用いて, LINEの公式アカウントと友だちになるだけで, そこからクーポンの購入と利用ができるようなシステムを作った．デジタルネイティブではない, お店側にもわかりやすいように,
-          クーポンの利用にはお店にあらかじめ置いてあるQRを読み込みお店に確認画面を見せるだけというものにした．<br>heroku+Djangoにて作成．<br><a
-            href="https://nagasakiavenue.wixsite.com/avenue/post/bar-gai2022" target="_blank">長崎居留地BAR-GAIへのリンク</a></p>
-      </div>
-
-      <h3>以下各プラットフォームにて, 作ってみたいろいろなもの</h3>
-      <div class="ue4-list">
-        <h3>UE4</h3>
-        <p>ヒストリアのプチコンに応募したもの</p>
-        <p>他に, 学祭で描いた絵をスクリーンに写した海を泳ぐようなものも作った</p>
-        <div class="ue4s">
-          <div class="ue4">
-            <iframe src="https://www.youtube.com/embed/wG7zYERNXaw" frameborder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
-            <p class="text-contents">初めて投稿したもの, 一か月頑張ってじゃんけんのようなシューティングゲームを作成した</p>
-          </div>
-          <div class="ue4">
-            <iframe src="https://www.youtube.com/embed/pG18Tzq2mck" frameborder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
-            <p class="text-contents">動画へんとのことで最後の映像をとにかく作りたかった．階段を上る感じや歩く感じがダメダメだった．</p>
-          </div>
-          <div class="ue4">
-            <iframe src="https://www.youtube.com/embed/eaq9tp_zPCQ" frameborder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
-            <p class="text-contents">本人に直接攻撃力がないようにしたら, 柵の召喚によって攻撃を与えることになった．魔法陣の作成ができて感動した覚えがある．</p>
-          </div>
-        </div>
-        <div class="forClear"></div>
-      </div>
-      <div class="blender-list">
-        <h3>blender</h3>
-        <div class="blender-wrapper">
-          <div class="blender-if-wrapper">
-            <iframe title="マルレラ" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"
-              allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport
-              execution-while-not-rendered web-share
-              src="https://sketchfab.com/models/1b3c97abb8734198a4c0e9114bd46eb6/embed"> </iframe>
-            <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a
-                href="https://sketchfab.com/3d-models/1b3c97abb8734198a4c0e9114bd46eb6?utm_medium=embed&utm_campaign=share-popup&utm_content=1b3c97abb8734198a4c0e9114bd46eb6"
-                target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> マルレラ </a> by <a
-                href="https://sketchfab.com/sion908?utm_medium=embed&utm_campaign=share-popup&utm_content=1b3c97abb8734198a4c0e9114bd46eb6"
-                target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> sion908 </a> on <a
-                href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=1b3c97abb8734198a4c0e9114bd46eb6"
-                target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p>
-          </div>
-          <div class="forClear"></div>
-          <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">
-            <a href="https://sketchfab.com/3d-models/engineering-fes-emb-2458cf8240124b799725bd80ca3a657d?utm_medium=embed&utm_source=website&utm_campaign=share-popup"
-              target="_blank" style="font-weight: bold; color: #1CAAD9;">Engineering Fes Emb</a>
-            by <a href="https://sketchfab.com/sion908?utm_medium=embed&utm_source=website&utm_campaign=share-popup"
-              target="_blank" style="font-weight: bold; color: #1CAAD9;">sion908</a>
-            on <a href="https://sketchfab.com?utm_medium=embed&utm_source=website&utm_campaign=share-popup"
-              target="_blank" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a>
-          </p>
-
-        </div>
-        <div class="forClear"></div>
-      </div>
-      <div class="cluster-list">
-        <h3>cluster</h3>
-        <div class="houdouroom">
-          <h4>ほうどうルーム</h4>
-          <div class="tweet-houdou">
-            <blockquote class="twitter-tweet" data-width="300" data-theme="dark">
-              <p lang="ja" dir="ltr">🌸 御礼 🌸<br>メタバース <a
-                  href="https://twitter.com/hashtag/%E3%81%BB%E3%81%86%E3%81%A9%E3%81%86%E3%83%AB%E3%83%BC%E3%83%A0?src=hash&amp;ref_src=twsrc%5Etfw">#ほうどうルーム</a>
-                <br>をお楽しみいただいている皆様へ😌<a
-                  href="https://twitter.com/hashtag/%E3%83%A1%E3%82%BF%E3%83%90%E3%83%BC%E3%82%B9?src=hash&amp;ref_src=twsrc%5Etfw">#メタバース</a>
-                <a href="https://twitter.com/hashtag/cluster?src=hash&amp;ref_src=twsrc%5Etfw">#cluster</a> <a
-                  href="https://twitter.com/hashtag/DX?src=hash&amp;ref_src=twsrc%5Etfw">#DX</a> <a
-                  href="https://t.co/JlRHJ9431N">pic.twitter.com/JlRHJ9431N</a></p>&mdash; 中村ほうどうチャンネル（中村法道・前長崎県知事）
-              (@nakamura_hodo) <a
-                href="https://twitter.com/nakamura_hodo/status/1494268850417766402?ref_src=twsrc%5Etfw">February 17,
-                2022</a>
-            </blockquote>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          </div>
-
-          <p>前述の東山手洋館活用プロジェクトとして, 居留地まつりなどにかかわっていたときに, 2022年がコロナ禍ということもあり, オンライン開催となった．この時に, ここでは省略するが,
-            clusterのワールドを作成し, 簡易的に活動内容をポスターセッションのようにいつでも見れるようにした．その時の縁などもあり, 県知事選において, メタバースを体験するという目的のもとに,
-            中村法道氏の政索などを体験できるようにclusterのプラットフォームを用いワールドを作成した．現在は非公開としているので, 選挙中のTwitterを載せておく．</p>
-        </div>
-        <div class="forClear"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="contact-wrapper">
-    <h2 id="contact">Contact</h2>
-    <div class="container">
-      <div class="btnce"><a href="https://twitter.com/Sion908_" class='btnn btntwi btn-flat'><i
-            class="fa fa-twitter"></i> twitter</a></div>
-      <div class="forClear"></div>
-      <div class="btnce"><a href="https://www.facebook.com/tokuhisa.taiga" class='btnn btnfac btn-flat'><i
-            class="fa fa-facebook"></i> facebook</a></div>
-      <div class="forClear"></div>
-      <div class="btnce"><a href="https://github.com/sion908" class='btnn btngit btn-flat'><i class="fa fa-github"></i>
-          GitHub</a></div>
-      <div class="forClear"></div>
-      <div class="btnce"><a href="https://qiita.com/sion908" class='btnn btnqii btn-flat'><img class="qiiicon"
-            src="img/qiita-icon.png" /> Qiita</a></div>
-      <div class="forClear"></div>
-    </div>
-  </div>
-  </div>
+  </main>
 
   <footer>
     <div class="container">
-      <!-- <img src="https://prog-8.com/images/html/advanced/footer_logo.png"> -->
-
-      <!-- <a href="https://twitter.com/Taiga_Fuyumi"><i class="fa fa-twitter"></i></a>
-      <a href="https://www.facebook.com/tokuhisa.taiga"><i class="fa fa-facebook"></i></a>
-      <a href="https://github.com/sion908"><i class="fa fa-github"></i></a>
-      <a href="https://qiita.com/sion908"><img class="qiiicon fooico" src="img/qiita-icon.png"/></a> -->
-
-      <p>Copyright © Sion All Rights Reserved.</p>
+      <p>Copyright &copy; Sion All Rights Reserved.</p>
     </div>
   </footer>
-  <style>
-
-  </style>
 </body>
 
 </html>

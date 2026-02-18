@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url" content="https://portfolio.sion908.tech/hanabi-portfolio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="居留地オンライン花火大会 | Sion's Portfolio" />
+    <meta property="og:description" content="コロナ禍の長崎で、3DCGとオンライン配信で実現した参加型バーチャル花火大会" />
+    <meta property="og:site_name" content="Sion's Portfolio" />
+    <meta property="og:image" content="img/marure.ico" />
+    <meta name="twitter:card" content="Summary Card" />
+    <meta name="twitter:site" content="@Sion908_" />
+    <title>居留地オンライン花火大会 | Sion's Portfolio</title>
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/marure.ico">
+    <style>
+        /* ===== Color Theme: 花火の夜空 ===== */
+        :root {
+            --hanabi-primary: #1a1a3e;
+            --hanabi-accent: #ff6b35;
+            --hanabi-gradient-start: #0f0c29;
+            --hanabi-gradient-mid: #302b63;
+            --hanabi-gradient-end: #24243e;
+            --hanabi-gold: #ffd700;
+        }
+
+        /* ===== Hero ===== */
+        .hero-section {
+            background: linear-gradient(135deg, var(--hanabi-gradient-start), var(--hanabi-gradient-mid), var(--hanabi-gradient-end));
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 107, 53, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.1) 0%, transparent 40%);
+            z-index: 0;
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .hero-meta {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+
+        /* ===== Section base ===== */
+        .detail-section {
+            padding: 80px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        /* ===== Video ===== */
+        .video-section {
+            background: #f9f9f9;
+            padding: 60px 20px;
+        }
+
+        .video-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .video-responsive {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ===== Story cards ===== */
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .story-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .story-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+            padding: 10px;
+        }
+
+        .story-card h3 {
+            color: var(--hanabi-gradient-mid);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .story-card p {
+            line-height: 1.8;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* ===== Tech section ===== */
+        .tech-flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tech-flow-item {
+            text-align: center;
+            padding: 25px 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+            position: relative;
+        }
+
+        .tech-flow-item::after {
+            content: '→';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        .tech-flow-item:last-child::after {
+            display: none;
+        }
+
+        .tech-flow-item .tool-name {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .tech-flow-item .tool-role {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        /* ===== Highlight box ===== */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--hanabi-gradient-start), var(--hanabi-gradient-mid));
+            color: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            margin: 60px auto;
+            max-width: 800px;
+        }
+
+        .highlight-box h3 {
+            color: var(--hanabi-gold);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .highlight-box p {
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* ===== Back link ===== */
+        .back-to-portfolio {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .back-to-portfolio a {
+            color: var(--hanabi-gradient-mid);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 12px 24px;
+            border: 2px solid var(--hanabi-gradient-mid);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-portfolio a:hover {
+            background: var(--hanabi-gradient-mid);
+            color: white;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-flow {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+
+            .tech-flow-item::after {
+                display: none;
+            }
+
+            .highlight-box {
+                padding: 40px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">居留地オンライン花火大会</h1>
+            <p class="hero-subtitle">コロナ禍の長崎で、3DCGとオンライン配信で実現した参加型バーチャル花火大会</p>
+            <p class="hero-meta">2021年 ｜ 東山手洋館活用プロジェクト Pavè ｜ 長崎居留地まつり</p>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="video-wrapper">
+            <h2 style="text-align:center; margin-bottom:30px; color:#333;">本番映像</h2>
+            <div class="video-responsive">
+                <iframe src="https://www.youtube.com/embed/JRoT8WcR-_o" title="居留地オンライン花火大会" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Background & Story -->
+    <section class="detail-section">
+        <h2>プロジェクトの背景</h2>
+        <div class="story-grid">
+            <div class="story-card">
+                <img src="img/fes_title.png" alt="居留地まつり">
+                <h3>🏮 居留地まつりとは</h3>
+                <p>毎年、長崎市の山手地区で開催されるお祭り。歴史ある洋風住宅を活用したイベントが特徴です。自分が所属する「東山手洋館活用プロジェクト Pavè」も例年参加しています。</p>
+            </div>
+            <div class="story-card">
+                <img src="img/山手icon.png" alt="Pavè Logo"
+                    style="height: 120px; width: auto; display: block; margin: 0 auto 15px;">
+                <h3>🦠 コロナ禍のなかで</h3>
+                <p>2021年の開催はコロナ真っ只中。従来の対面開催が難しくなり、一日配信というかたちに切り替わりました。団体として何かできないかを模索するなかで生まれた企画です。</p>
+            </div>
+            <div class="story-card">
+                <h3>🎆 花火をオンラインで</h3>
+                <p>密集しやすい花火大会が軒並み中止となった時期。「せめてオンラインで花火を楽しめないか」という思いから、バーチャル花火大会のアイデアが生まれました。</p>
+            </div>
+            <div class="story-card">
+                <h3>✏️ 参加型の体験設計</h3>
+                <p>参加者の描いた絵やメッセージを花火のモチーフに反映。ただ観るだけではなく「自分も参画できた」という体験を届けることを目指しました。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Production Scenes -->
+    <section class="detail-section" style="background-color: #f0f4f8;">
+        <h2>制作風景</h2>
+        <div class="story-grid">
+            <div class="story-card">
+                <img src="img/fire-blender.png" alt="Blender Modeling">
+                <h3>Blenderでのモデリング</h3>
+                <p>建物の最適化と街並みの構築を行いました。環境デザインの知見を活かし、画角からの見え方を意識して作成しています。</p>
+            </div>
+            <div class="story-card">
+                <img src="img/fire-ue4.png" alt="UE4 Rendering">
+                <h3>UE4での撮影・演出</h3>
+                <p>リアルタイムレンダリングを行い、花火のパーティクルエフェクトや照明効果を調整しました。</p>
+            </div>
+            <div class="story-card">
+                <img src="img/fire-img.jpg" alt="Final Composition">
+                <h3>シーン構築・仕上げ</h3>
+                <p>花火の色やタイミング、カメラワークを調整し、最終的な映像作品として仕上げていきます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlight -->
+    <div class="highlight-box">
+        <h3>💡 このプロジェクトで意識したこと</h3>
+        <p>地域団体のメンバーとして自分が主導したプロジェクトです。技術を使って地域課題に取り組むこと、そしてコロナ禍で孤立しがちな人々に「参加できた」という実感を届けることを大切にしました。医療従事者への感謝を表すメッセージも花火に込めています。
+        </p>
+    </div>
+
+    <!-- Tech Flow -->
+    <section class="detail-section">
+        <h2>制作の流れ</h2>
+        <div class="tech-flow">
+            <div class="tech-flow-item">
+                <div class="tool-name">CAD</div>
+                <div class="tool-role">建物の正確な<br>モデリング</div>
+            </div>
+            <div class="tech-flow-item">
+                <div class="tool-name">Blender</div>
+                <div class="tool-role">モデル最適化と<br>街並みの構築</div>
+            </div>
+            <div class="tech-flow-item">
+                <div class="tool-name">UE4</div>
+                <div class="tool-role">リアルタイム<br>映像撮影</div>
+            </div>
+            <div class="tech-flow-item">
+                <div class="tool-name">AviUtl</div>
+                <div class="tool-role">動画の最終<br>編集・合成</div>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:30px;">
+            <p style="color:#777; font-size:0.95rem;">CADで起こした図面 → Blenderで3D化・最適化 → UE4でレンダリング → AviUtlで仕上げ</p>
+        </div>
+    </section>
+
+    <!-- Back to Portfolio -->
+    <section class="back-to-portfolio">
+        <a href="index.html">← ポートフォリオTOPに戻る</a>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    const target = document.querySelector(href === "#" || href === "" ? 'html' : href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
