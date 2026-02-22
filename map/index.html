@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>居留地まつり 再生できる地図</title>
+
+    <!-- MapLibre GL JS -->
+    <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+    <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+
+    <!-- deck.gl -->
+    <script src="https://unpkg.com/deck.gl@8.9.0/dist.min.js"></script>
+
+    <!-- Tailwind CSS for UI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        #map-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* ツールチップのスタイル */
+        .deck-tooltip {
+            font-family: sans-serif;
+            font-size: 14px;
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            color: #333 !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+            padding: 12px !important;
+            max-width: 250px;
+            white-space: normal !important;
+        }
+
+        /* 吹き出しオーバーレイ */
+        #bubble-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .map-bubble {
+            position: absolute;
+            transform: translate(-50%, -100%);
+            margin-top: -14px;
+            background: white;
+            border-radius: 10px;
+            padding: 7px 11px;
+            min-width: 100px;
+            max-width: 200px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-family: "Noto Sans JP", "ヒラギノ角ゴシック", sans-serif;
+        }
+
+        .map-bubble.visible {
+            opacity: 1;
+        }
+
+        /* 吹き出しの尻尾（下向き三角） */
+        .map-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid white;
+            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.12));
+        }
+
+        .map-bubble .bubble-category {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 2px 6px;
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .map-bubble .bubble-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1.35;
+            margin-bottom: 3px;
+            white-space: normal;
+            word-break: break-all;
+        }
+
+        .map-bubble .bubble-time {
+            font-size: 10px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .map-bubble .bubble-more {
+            font-size: 10px;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+
+        /* シークバーのカスタマイズ */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #cbd5e1;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- 地図コンテナ -->
+    <div id="map-container"></div>
+
+    <!-- 吹き出しオーバーレイコンテナ -->
+    <div id="bubble-container"></div>
+
+    <!-- UIパネル (画面下部) -->
+    <div
+        class="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur-md border-t border-gray-200 p-4 pb-6 shadow-lg z-10 transition-transform duration-300">
+        <div class="max-w-3xl mx-auto flex flex-col gap-4">
+
+            <!-- ヘッダー＆現在時刻表示 -->
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-lg font-bold text-gray-800">居留地まつり マップ</h1>
+                    <!-- 日付選択タブ -->
+                    <div id="date-tabs" class="flex gap-1 mt-1">
+                        <button data-date="2025-09-20"
+                            class="date-tab px-2.5 py-1 text-xs font-bold rounded-full border transition-colors">9/20(土)</button>
+                        <button data-date="2025-09-21"
+                            class="date-tab px-2.5 py-1 text-xs font-bold rounded-full border transition-colors">9/21(日)</button>
+                        <button data-date="2025-09-22"
+                            class="date-tab px-2.5 py-1 text-xs font-bold rounded-full border transition-colors">9/22(月)</button>
+                        <button data-date="2025-09-23"
+                            class="date-tab px-2.5 py-1 text-xs font-bold rounded-full border transition-colors">9/23(火)</button>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs text-gray-500 font-medium">シミュレーション時刻</span>
+                    <div id="clock-display" class="text-3xl font-mono font-bold text-blue-600">09:00</div>
+                </div>
+            </div>
+
+            <!-- コントロールバー -->
+            <div class="flex items-center gap-4">
+                <button id="play-btn"
+                    class="w-12 h-12 flex-shrink-0 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-md transition-colors">
+                    <!-- 再生アイコン -->
+                    <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                        class="w-6 h-6">
+                        <path fill-rule="evenodd"
+                            d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <!-- 一時停止アイコン (初期非表示) -->
+                    <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                        class="w-6 h-6 hidden">
+                        <path fill-rule="evenodd"
+                            d="M6.75 5.25a.75.75 0 01.75-.75H9a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H7.5a.75.75 0 01-.75-.75V5.25zm7.5 0A.75.75 0 0115 4.5h1.5a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H15a.75.75 0 01-.75-.75V5.25z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+
+                <!-- 10倍速デバッグボタン -->
+                <button id="speed-btn"
+                    class="flex-shrink-0 px-3 h-9 bg-gray-100 hover:bg-amber-100 border border-gray-300 hover:border-amber-400 text-gray-600 hover:text-amber-700 text-xs font-bold rounded-lg transition-colors"
+                    title="デバッグ用: 再生速度を10倍にする">
+                    ×10速
+                </button>
+
+                <div class="flex-grow flex flex-col gap-1">
+                    <input type="range" id="time-slider" min="0" max="100" value="0">
+                    <div class="flex justify-between text-xs text-gray-500 font-medium px-1">
+                        <span>09:00</span>
+                        <span>13:00</span>
+                        <span>18:00</span>
+                        <span>21:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 凡例 -->
+            <div class="flex gap-3 text-xs font-medium justify-center mt-2 flex-wrap">
+                <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full"
+                        style="background:#f97316"></span> 飲食</div>
+                <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full"
+                        style="background:#3b82f6"></span> ステージ・音楽</div>
+                <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full"
+                        style="background:#10b981"></span> 体験・WS</div>
+                <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full"
+                        style="background:#8b5cf6"></span> 夜・交流</div>
+                <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-gray-500"></span> その他</div>
+                <div class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
+                    パレード(移動)</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. グローバル変数 ---
+        let eventsData = [];
+        let locationsData = [];
+        let routesData = [];
+        let processedEvents = [];
+        let processedRoutes = [];
+
+        // --- 2. シミュレーション時間 設定 ---
+        let targetDateStr = "2025-09-20"; // 選択中の日付（切替可能）
+        const SIM_START_SEC = 9 * 3600;   // 09:00
+        const SIM_END_SEC = 21 * 3600;  // 21:00
+        const SIM_DURATION = SIM_END_SEC - SIM_START_SEC;
+
+        let currentSimSec = 0;
+        let isPlaying = false;
+        let lastFrameTime = 0;
+        const PLAYBACK_SPEED_NORMAL = 120; // 通常速度: 1秒で2分進む
+        const PLAYBACK_SPEED_FAST = 1200; // デバッグ速度: 1秒で20分進む
+        let playbackSpeed = PLAYBACK_SPEED_NORMAL;
+
+        // --- 3. データ読み込みと処理 ---
+        let allEventsData = []; // 全日程の全イベントを保持
+
+        async function loadData() {
+            try {
+                const [evtRes, locRes, routeRes] = await Promise.all([
+                    fetch('event.json'),
+                    fetch('location.json'),
+                    fetch('route.json')
+                ]);
+
+                const rawEvents = await evtRes.json();
+                const rawLocations = await locRes.json();
+                const rawRoutes = await routeRes.json();
+
+                // 場所Map作成
+                const locMap = new Map(rawLocations.map(l => [l.id, l]));
+
+                // 全イベントデータ加工（日付フィルタなし）
+                allEventsData = rawEvents.map(evt => {
+                    const loc = locMap.get(evt.location_id);
+                    return {
+                        ...evt,
+                        coordinates: loc ? loc.coordinates : [129.870, 32.735],
+                        location_name: loc ? loc.name : "不明な場所"
+                    };
+                });
+
+                // ルートデータ（既存そのまま）
+                processedRoutes = rawRoutes.map(route => {
+                    const startD = new Date(route.start_time);
+                    const routeStartSec = startD.getHours() * 3600 + startD.getMinutes() * 60;
+                    const simRouteStart = routeStartSec - SIM_START_SEC;
+                    const absoluteTimestamps = route.timestamps.map(t => simRouteStart + t);
+                    return {
+                        ...route,
+                        simStart: simRouteStart,
+                        simEnd: absoluteTimestamps[absoluteTimestamps.length - 1],
+                        timestamps: absoluteTimestamps
+                    };
+                });
+
+                // 初期日付でフィルタリング
+                filterEventsByDate(targetDateStr);
+
+            } catch (e) {
+                console.error("Data load failed:", e);
+                alert("データの読み込みに失敗しました。");
+            }
+        }
+
+        // 日付でイベントをフィルタリング
+        function filterEventsByDate(dateStr) {
+            const targetEvents = allEventsData.filter(evt => evt.start_time.startsWith(dateStr));
+            processedEvents = targetEvents.map(evt => {
+                const startD = new Date(evt.start_time);
+                const endD = new Date(evt.end_time);
+                const startSec = startD.getHours() * 3600 + startD.getMinutes() * 60;
+                const endSec = endD.getHours() * 3600 + endD.getMinutes() * 60;
+                return {
+                    ...evt,
+                    simStart: startSec - SIM_START_SEC,
+                    simEnd: endSec - SIM_START_SEC
+                };
+            });
+            console.log("Filtered:", processedEvents.length, "events for", dateStr);
+            updateUI();
+        }
+
+        // --- 4. 地図とDeck.glの初期化 ---
+        const map = new maplibregl.Map({
+            container: 'map-container',
+            style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
+            center: [129.872, 32.736],
+            zoom: 15,
+            pitch: 45,
+            bearing: -20
+        });
+
+        const deckOverlay = new deck.MapboxOverlay({
+            layers: [],
+            getTooltip: ({ object }) => {
+                if (!object) return null;
+                if (object.location_name) {
+                    return {
+                        html: `
+                            <div class="font-bold text-base mb-1">${object.title}</div>
+                            <div class="text-xs text-gray-500 mb-2">📍 ${object.location_name}</div>
+                            <div class="text-sm">${object.description || ''}</div>
+                            <div class="text-xs text-gray-400 mt-1">${object.start_time.slice(11, 16)} - ${object.end_time.slice(11, 16)}</div>
+                        `
+                    };
+                } else if (object.path) {
+                    return {
+                        html: `<div class="font-bold text-base text-red-600 mb-1">🎺 ${object.title}</div>`
+                    };
+                }
+            }
+        });
+
+        map.addControl(deckOverlay);
+
+        // --- 5. 描画更新ロジック ---
+
+        // カテゴリ定義（色・ラベルを一元管理）
+        const CATEGORY_COLORS = {
+            'food': [249, 115, 22, 220],
+            'stage': [59, 130, 246, 220],
+            'experience': [16, 185, 129, 220],
+            'night': [139, 92, 246, 220],
+            'default': [107, 114, 128, 220],
+        };
+        const CATEGORY_LABELS = {
+            'food': '飲食',
+            'stage': 'ステージ・音楽',
+            'experience': '体験・WS',
+            'night': '夜・交流',
+            'default': 'その他',
+        };
+        const getCategoryColor = (cat) => CATEGORY_COLORS[cat] || CATEGORY_COLORS['default'];
+        const toRgbStr = (c) => `rgb(${c[0]},${c[1]},${c[2]})`;
+
+        // ---- 吹き出し DOM 管理 ----
+        const bubbleContainer = document.getElementById('bubble-container');
+        const activeBubbles = new Map(); // location_id -> DOM element
+
+        function updateBubbles(groupedEvents) {
+            const currentIds = new Set(groupedEvents.map(g => g.location_id));
+
+            // 不要になった吹き出しを削除
+            for (const [id, el] of activeBubbles) {
+                if (!currentIds.has(id)) {
+                    el.classList.remove('visible');
+                    setTimeout(() => { if (el.parentNode) el.remove(); }, 310);
+                    activeBubbles.delete(id);
+                }
+            }
+
+            // 新規 or 更新
+            for (const g of groupedEvents) {
+                const color = getCategoryColor(g.category);
+                const catLabel = CATEGORY_LABELS[g.category] || CATEGORY_LABELS['default'];
+                const colorStr = toRgbStr(color);
+
+                let el = activeBubbles.get(g.location_id);
+                if (!el) {
+                    el = document.createElement('div');
+                    el.className = 'map-bubble';
+                    bubbleContainer.appendChild(el);
+                    activeBubbles.set(g.location_id, el);
+                    // フェードイン
+                    requestAnimationFrame(() => el.classList.add('visible'));
+                }
+
+                // コンテンツ更新
+                const moreHtml = g.titles.length > 1
+                    ? `<div class="bubble-more">ほか ${g.titles.length - 1} 件</div>`
+                    : '';
+                el.innerHTML = `
+                    <div class="bubble-category" style="background:${colorStr}">${catLabel}</div>
+                    <div class="bubble-title">${g.title}</div>
+                    <div class="bubble-time">${g.start_time.slice(11, 16)} - ${g.end_time.slice(11, 16)}</div>
+                    ${moreHtml}
+                `;
+                el.dataset.lng = g.coordinates[0];
+                el.dataset.lat = g.coordinates[1];
+            }
+        }
+
+        function repositionBubbles() {
+            for (const [id, el] of activeBubbles) {
+                const lng = parseFloat(el.dataset.lng);
+                const lat = parseFloat(el.dataset.lat);
+                if (isNaN(lng) || isNaN(lat)) continue;
+                const pt = map.project([lng, lat]);
+                el.style.left = `${pt.x}px`;
+                el.style.top = `${pt.y - 18}px`; // ピンの上に少し余裕
+            }
+        }
+
+        function updateLayers() {
+            const activeEvents = processedEvents.filter(e => currentSimSec >= e.simStart && currentSimSec <= e.simEnd);
+
+            // 同じ座標に複数イベントが重なる場合を考慮して場所ごとに集約
+            const locationGroups = {};
+            for (const e of activeEvents) {
+                const key = e.location_id;
+                if (!locationGroups[key]) {
+                    locationGroups[key] = { ...e, titles: [e.title] };
+                } else {
+                    locationGroups[key].titles.push(e.title);
+                }
+            }
+            const groupedForLabels = Object.values(locationGroups);
+
+            // 吹き出し更新
+            updateBubbles(groupedForLabels);
+            repositionBubbles();
+
+            const layers = [
+                // ◯ イベントピン
+                new deck.ScatterplotLayer({
+                    id: 'events-layer',
+                    data: activeEvents,
+                    getPosition: d => d.coordinates,
+                    getFillColor: d => getCategoryColor(d.category),
+                    getLineColor: [255, 255, 255],
+                    lineWidthMinPixels: 2,
+                    getRadius: 10,
+                    radiusUnits: 'meters',
+                    radiusMinPixels: 8,
+                    radiusMaxPixels: 24,
+                    pickable: true,
+                    opacity: 0.9
+                }),
+
+                // パレード（TripsLayer）
+                new deck.TripsLayer({
+                    id: 'trips-layer',
+                    data: processedRoutes,
+                    getPath: d => d.path,
+                    getTimestamps: d => d.timestamps,
+                    getColor: [239, 68, 68],
+                    opacity: 0.9,
+                    widthMinPixels: 8,
+                    rounded: true,
+                    trailLength: 600,
+                    currentTime: currentSimSec,
+                    pickable: true
+                })
+            ];
+
+            deckOverlay.setProps({ layers });
+        }
+
+        // --- 6. UI制御 ---
+        const slider = document.getElementById('time-slider');
+        const clockDisplay = document.getElementById('clock-display');
+        const playBtn = document.getElementById('play-btn');
+        const iconPlay = document.getElementById('icon-play');
+        const iconPause = document.getElementById('icon-pause');
+
+        slider.max = SIM_DURATION;
+
+        function formatTime(totalSeconds) {
+            const absoluteSec = SIM_START_SEC + totalSeconds;
+            let h = Math.floor(absoluteSec / 3600);
+            let m = Math.floor((absoluteSec % 3600) / 60);
+            return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+        }
+
+        function updateUI() {
+            slider.value = currentSimSec;
+            clockDisplay.innerText = formatTime(currentSimSec);
+            updateLayers();
+        }
+
+        function animate(time) {
+            if (!lastFrameTime) lastFrameTime = time;
+            const deltaTime = (time - lastFrameTime) / 1000;
+            lastFrameTime = time;
+
+            if (isPlaying) {
+                currentSimSec += deltaTime * playbackSpeed;
+                if (currentSimSec > SIM_DURATION) {
+                    currentSimSec = 0;
+                    isPlaying = false;
+                    togglePlayState();
+                }
+                updateUI();
+            } else {
+                // 再生中でなくても地図パン・ズーム時に吹き出し位置を追従させる
+                repositionBubbles();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        function togglePlayState() {
+            if (isPlaying) {
+                iconPlay.classList.add('hidden');
+                iconPause.classList.remove('hidden');
+            } else {
+                iconPlay.classList.remove('hidden');
+                iconPause.classList.add('hidden');
+            }
+        }
+
+        playBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            togglePlayState();
+        });
+
+        const speedBtn = document.getElementById('speed-btn');
+        speedBtn.addEventListener('click', () => {
+            const isFast = playbackSpeed === PLAYBACK_SPEED_FAST;
+            playbackSpeed = isFast ? PLAYBACK_SPEED_NORMAL : PLAYBACK_SPEED_FAST;
+            // ボタンの見た目を切り替え
+            if (isFast) {
+                speedBtn.textContent = '×10速';
+                speedBtn.classList.remove('bg-amber-400', 'text-amber-900', 'border-amber-500');
+                speedBtn.classList.add('bg-gray-100', 'text-gray-600', 'border-gray-300');
+            } else {
+                speedBtn.textContent = '×1速（標準）';
+                speedBtn.classList.remove('bg-gray-100', 'text-gray-600', 'border-gray-300');
+                speedBtn.classList.add('bg-amber-400', 'text-amber-900', 'border-amber-500');
+            }
+        });
+
+        slider.addEventListener('input', (e) => {
+            currentSimSec = parseFloat(e.target.value);
+            updateUI();
+        });
+
+        // --- 日付タブ ---
+        function setActiveTab(dateStr) {
+            document.querySelectorAll('.date-tab').forEach(btn => {
+                const isActive = btn.dataset.date === dateStr;
+                btn.classList.toggle('bg-blue-600', isActive);
+                btn.classList.toggle('text-white', isActive);
+                btn.classList.toggle('border-blue-600', isActive);
+                btn.classList.toggle('bg-white', !isActive);
+                btn.classList.toggle('text-gray-600', !isActive);
+                btn.classList.toggle('border-gray-300', !isActive);
+            });
+        }
+
+        document.querySelectorAll('.date-tab').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const dateStr = btn.dataset.date;
+                if (dateStr === targetDateStr) return;
+                targetDateStr = dateStr;
+                // シミュレーションをリセット
+                currentSimSec = 0;
+                isPlaying = false;
+                togglePlayState();
+                // 吹き出しを全クリア
+                for (const [, el] of activeBubbles) el.remove();
+                activeBubbles.clear();
+                // イベントを切替
+                setActiveTab(dateStr);
+                filterEventsByDate(dateStr);
+            });
+        });
+
+        // --- 7. 開始 ---
+        map.on('load', () => {
+            loadData();
+            requestAnimationFrame(animate);
+            setActiveTab(targetDateStr); // 初期タブをアクティブに
+        });
+        map.addControl(new maplibregl.NavigationControl(), 'top-right');
+    </script>
+</body>
+
+</html>

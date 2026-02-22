@@ -1,0 +1,228 @@
+[
+    {
+        "id": "loc_glover_garden",
+        "name": "グラバー園",
+        "coordinates": [
+            129.86920653185254,
+            32.73441333218794
+        ],
+        "type": "point",
+        "note": "旧三菱第2ドックハウス前"
+    },
+    {
+        "id": "loc_oranda_zaka",
+        "name": "オランダ坂",
+        "coordinates": [
+            129.87244664035595,
+            32.73862788331038
+        ],
+        "type": "area"
+    },
+    {
+        "id": "loc_mizube_park",
+        "name": "水辺の森公園",
+        "coordinates": [
+            129.86914215883345,
+            32.73912423060097
+        ],
+        "type": "area"
+    },
+    {
+        "id": "loc_shikairo",
+        "name": "四海樓前広場",
+        "coordinates": [
+            129.869943465645,
+            32.73636287281816
+        ],
+        "type": "area"
+    },
+    {
+        "id": "loc_oura_cathedral",
+        "name": "大浦天主堂",
+        "coordinates": [
+            129.8730,
+            32.7342
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_trinity_church",
+        "name": "長崎聖三一教会",
+        "coordinates": [
+            129.8739,
+            32.7340
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_glover_zaka",
+        "name": "グラバー坂",
+        "coordinates": [
+            129.8736,
+            32.7350
+        ],
+        "type": "area"
+    },
+    {
+        "id": "loc_oranda_dori",
+        "name": "オランダ通り",
+        "coordinates": [
+            129.8741,
+            32.7360
+        ],
+        "type": "area"
+    },
+    {
+        "id": "loc_higashiyamate_12",
+        "name": "東山手十二番館",
+        "coordinates": [
+            129.8730,
+            32.7385
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_higashiyamate_13",
+        "name": "東山手甲十三番館",
+        "coordinates": [
+            129.8724,
+            32.7381
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_higashiyamate_preservation",
+        "name": "東山手地区町並み保存センター",
+        "coordinates": [
+            129.8725,
+            32.7375
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_higashiyamate_a",
+        "name": "東山手洋風住宅群A棟",
+        "coordinates": [
+            129.8720,
+            32.7378
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_chikyukan",
+        "name": "東山手「地球館」",
+        "coordinates": [
+            129.8710,
+            32.7395
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_kwassui",
+        "name": "活水女子大学 小チャペル",
+        "coordinates": [
+            129.8690,
+            32.7405
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_hubs_ishibashi",
+        "name": "HUBs Ishibashi",
+        "coordinates": [
+            129.8710,
+            32.7370
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_minamiyamate_rest",
+        "name": "南山手レストハウス",
+        "coordinates": [
+            129.8728,
+            32.7355
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_minamiyamate_preservation",
+        "name": "南山手地区町並み保存センター",
+        "coordinates": [
+            129.8735,
+            32.7348
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_konfucian_shrine",
+        "name": "孔子廟",
+        "coordinates": [
+            129.8720,
+            32.7365
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_hsbc_memorial",
+        "name": "旧香港上海銀行長崎支店記念館",
+        "coordinates": [
+            129.8715,
+            32.7360
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_nagasaki_church",
+        "name": "日本基督教団長崎教会",
+        "coordinates": [
+            129.8700,
+            32.7385
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_oura_community",
+        "name": "大浦区民センター",
+        "coordinates": [
+            129.8698,
+            32.7370
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_oura_fureai",
+        "name": "大浦地区ふれあいセンター",
+        "coordinates": [
+            129.8695,
+            32.7372
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_sugagomichi",
+        "name": "須加五々道美術館",
+        "coordinates": [
+            129.8718,
+            32.7362
+        ],
+        "type": "point"
+    },
+    {
+        "id": "loc_cat_square",
+        "name": "ねこ広場",
+        "coordinates": [
+            129.8718,
+            32.7380
+        ],
+        "type": "area"
+    },
+    {
+        "id": "loc_venue_all",
+        "name": "会場全体",
+        "coordinates": [
+            129.8720,
+            32.7360
+        ],
+        "type": "area"
+    }
+]

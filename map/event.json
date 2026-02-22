@@ -1,0 +1,938 @@
+[
+    {
+        "id": "evt_0001",
+        "location_id": "loc_venue_all",
+        "title": "居留地まちビンゴ",
+        "start_time": "2025-09-20T10:00:00+09:00",
+        "end_time": "2025-09-20T17:00:00+09:00",
+        "category": "food",
+        "description": ""
+    },
+    {
+        "id": "evt_0002",
+        "location_id": "loc_venue_all",
+        "title": "居留地まちビンゴ",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T17:00:00+09:00",
+        "category": "food",
+        "description": ""
+    },
+    {
+        "id": "evt_0003",
+        "location_id": "loc_venue_all",
+        "title": "長崎居留地食べ飲みBAR-GAI",
+        "start_time": "2025-09-20T09:00:00+09:00",
+        "end_time": "2025-09-20T18:00:00+09:00",
+        "category": "food",
+        "description": "1チケット（3,000円）で、3店舗の1フード＋1ドリンクを楽しめる食べ飲み歩きイベント！夜でもランチでも使えます。居留地の魅力あるお店をゆっくりとお楽しみください。\n日時　20.21.22.23日（店舗によって営業時間が異なります。）\n所　東山手・南山手・大浦一帯の店舗\n料　 3000円\n前売り券：参加店舗で販売\n当日券　：上記に加えて本部で販売（9/20・21のみ）\n\n【参加店舗】\n●Carpe Diem Cafe \n●HAYAMA COFFEE長崎オランダ通り店\n●九州舎\n●尾曲がり猫茶屋\n●東山手「地球館」cafe slow\n●盈進(えいしん)\n●ANAクラウンプラザホテル\n　長崎グラバーヒル　レストラン パヴェ\n●HUBs Ishibasi\n●グラバーカフェ（グラバー園内）\n　9月はグラバー園長崎市民無料開放。※証明できるものをご掲示ください。\n●ホテルインディゴ長崎グラバーストリート"
+    },
+    {
+        "id": "evt_0004",
+        "location_id": "loc_venue_all",
+        "title": "長崎居留地食べ飲みBAR-GAI",
+        "start_time": "2025-09-21T09:00:00+09:00",
+        "end_time": "2025-09-21T18:00:00+09:00",
+        "category": "food",
+        "description": "1チケット（3,000円）で、3店舗の1フード＋1ドリンクを楽しめる食べ飲み歩きイベント！夜でもランチでも使えます。居留地の魅力あるお店をゆっくりとお楽しみください。\n日時　20.21.22.23日（店舗によって営業時間が異なります。）\n所　東山手・南山手・大浦一帯の店舗\n料　 3000円\n前売り券：参加店舗で販売\n当日券　：上記に加えて本部で販売（9/20・21のみ）\n\n【参加店舗】\n●Carpe Diem Cafe \n●HAYAMA COFFEE長崎オランダ通り店\n●九州舎\n●尾曲がり猫茶屋\n●東山手「地球館」cafe slow\n●盈進(えいしん)\n●ANAクラウンプラザホテル\n　長崎グラバーヒル　レストラン パヴェ\n●HUBs Ishibasi\n●グラバーカフェ（グラバー園内）\n　9月はグラバー園長崎市民無料開放。※証明できるものをご掲示ください。\n●ホテルインディゴ長崎グラバーストリート"
+    },
+    {
+        "id": "evt_0005",
+        "location_id": "loc_venue_all",
+        "title": "長崎居留地食べ飲みBAR-GAI",
+        "start_time": "2025-09-22T09:00:00+09:00",
+        "end_time": "2025-09-22T18:00:00+09:00",
+        "category": "food",
+        "description": "1チケット（3,000円）で、3店舗の1フード＋1ドリンクを楽しめる食べ飲み歩きイベント！夜でもランチでも使えます。居留地の魅力あるお店をゆっくりとお楽しみください。\n日時　20.21.22.23日（店舗によって営業時間が異なります。）\n所　東山手・南山手・大浦一帯の店舗\n料　 3000円\n前売り券：参加店舗で販売\n当日券　：上記に加えて本部で販売（9/20・21のみ）\n\n【参加店舗】\n●Carpe Diem Cafe \n●HAYAMA COFFEE長崎オランダ通り店\n●九州舎\n●尾曲がり猫茶屋\n●東山手「地球館」cafe slow\n●盈進(えいしん)\n●ANAクラウンプラザホテル\n　長崎グラバーヒル　レストラン パヴェ\n●HUBs Ishibasi\n●グラバーカフェ（グラバー園内）\n　9月はグラバー園長崎市民無料開放。※証明できるものをご掲示ください。\n●ホテルインディゴ長崎グラバーストリート"
+    },
+    {
+        "id": "evt_0006",
+        "location_id": "loc_venue_all",
+        "title": "長崎居留地食べ飲みBAR-GAI",
+        "start_time": "2025-09-23T09:00:00+09:00",
+        "end_time": "2025-09-23T18:00:00+09:00",
+        "category": "food",
+        "description": "1チケット（3,000円）で、3店舗の1フード＋1ドリンクを楽しめる食べ飲み歩きイベント！夜でもランチでも使えます。居留地の魅力あるお店をゆっくりとお楽しみください。\n日時　20.21.22.23日（店舗によって営業時間が異なります。）\n所　東山手・南山手・大浦一帯の店舗\n料　 3000円\n前売り券：参加店舗で販売\n当日券　：上記に加えて本部で販売（9/20・21のみ）\n\n【参加店舗】\n●Carpe Diem Cafe \n●HAYAMA COFFEE長崎オランダ通り店\n●九州舎\n●尾曲がり猫茶屋\n●東山手「地球館」cafe slow\n●盈進(えいしん)\n●ANAクラウンプラザホテル\n　長崎グラバーヒル　レストラン パヴェ\n●HUBs Ishibasi\n●グラバーカフェ（グラバー園内）\n　9月はグラバー園長崎市民無料開放。※証明できるものをご掲示ください。\n●ホテルインディゴ長崎グラバーストリート"
+    },
+    {
+        "id": "evt_0007",
+        "location_id": "loc_shikairo",
+        "title": "本部",
+        "start_time": "2025-09-20T10:00:00+09:00",
+        "end_time": "2025-09-20T17:00:00+09:00",
+        "category": "default",
+        "description": ""
+    },
+    {
+        "id": "evt_0008",
+        "location_id": "loc_shikairo",
+        "title": "本部",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T17:00:00+09:00",
+        "category": "default",
+        "description": ""
+    },
+    {
+        "id": "evt_0009",
+        "location_id": "loc_oura_cathedral",
+        "title": "居留地キッズコーラス",
+        "start_time": "2025-09-20T13:00:00+09:00",
+        "end_time": "2025-09-20T13:30:00+09:00",
+        "category": "stage",
+        "description": ""
+    },
+    {
+        "id": "evt_0010",
+        "location_id": "loc_oura_cathedral",
+        "title": "居留地アリアの夕べ",
+        "start_time": "2025-09-21T18:30:00+09:00",
+        "end_time": "2025-09-21T21:00:00+09:00",
+        "category": "stage",
+        "description": "18:00会場・18:30開演\n出演　Art de Vivre\n　　 （アールヴィーヴレ）\n入場無料（献金をお願いします）"
+    },
+    {
+        "id": "evt_0011",
+        "location_id": "loc_trinity_church",
+        "title": "長崎居留地レガシーシンポジウム",
+        "start_time": "2025-08-31T14:30:00+09:00",
+        "end_time": "2025-08-31T16:30:00+09:00",
+        "category": "night",
+        "description": "30周年の振り返り\n基調講演　ブライアン先生\n\n記者会見"
+    },
+    {
+        "id": "evt_0012",
+        "location_id": "loc_trinity_church",
+        "title": "聖三一教会ガーデンミニコンサート",
+        "start_time": "2025-09-21T12:00:00+09:00",
+        "end_time": "2025-09-21T12:45:00+09:00",
+        "category": "stage",
+        "description": "教会で練習し活動している崎陽コーラスクラブ、混声室内合唱団記念樹を中心に、牛島和美(sop.)、歌好きな仲間たちが街かどから音楽を届けます"
+    },
+    {
+        "id": "evt_0013",
+        "location_id": "loc_glover_zaka",
+        "title": "グラバー坂かけあがり大会",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T11:00:00+09:00",
+        "category": "experience",
+        "description": "石畳の坂をかけあがれ！一番早いのは誰だ?!レースごとの優勝者にメダル進呈。参加賞あり。\n受付：9:00～ 四海樓前広場"
+    },
+    {
+        "id": "evt_0014",
+        "location_id": "loc_glover_zaka",
+        "title": "オープニング・グラバー顕彰パレード",
+        "start_time": "2025-09-20T10:30:00+09:00",
+        "end_time": "2025-09-20T11:00:00+09:00",
+        "category": "stage",
+        "description": "昨年同様"
+    },
+    {
+        "id": "evt_0015",
+        "location_id": "loc_oranda_dori",
+        "title": "ヴィンテージカー展示会",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0016",
+        "location_id": "loc_oranda_dori",
+        "title": "みち活社会実験",
+        "start_time": "2025-09-20T10:00:00+09:00",
+        "end_time": "2025-09-20T16:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0017",
+        "location_id": "loc_oranda_dori",
+        "title": "みち活社会実験",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0018",
+        "location_id": "loc_oranda_dori",
+        "title": "ウォーカブル居留地（歩行者天国）",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "default",
+        "description": ""
+    },
+    {
+        "id": "evt_0019",
+        "location_id": "loc_oranda_dori",
+        "title": "①梅香崎中学校区青少年育成協議会",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "default",
+        "description": ""
+    },
+    {
+        "id": "evt_0020",
+        "location_id": "loc_oranda_dori",
+        "title": "②福田果樹園",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "food",
+        "description": ""
+    },
+    {
+        "id": "evt_0021",
+        "location_id": "loc_oranda_dori",
+        "title": "③大浦三丁目自治会",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "default",
+        "description": ""
+    },
+    {
+        "id": "evt_0022",
+        "location_id": "loc_oranda_dori",
+        "title": "④ライオンズ笑店",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "food",
+        "description": ""
+    },
+    {
+        "id": "evt_0023",
+        "location_id": "loc_oranda_dori",
+        "title": "⑤ウクライナ伝統工芸品のおみせ（UA.Designer）",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "food",
+        "description": ""
+    },
+    {
+        "id": "evt_0024",
+        "location_id": "loc_oranda_dori",
+        "title": "⑥大浦十三番館　南山手十三番館",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "default",
+        "description": ""
+    },
+    {
+        "id": "evt_0025",
+        "location_id": "loc_oranda_dori",
+        "title": "⑦ふぐ問屋なかざき",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "food",
+        "description": "びわレモンかき氷、茂木レモンかき氷"
+    },
+    {
+        "id": "evt_0026",
+        "location_id": "loc_oranda_dori",
+        "title": "①からあげ味王(1.5tクラス)",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "food",
+        "description": "唐揚げ、ロングポテト他"
+    },
+    {
+        "id": "evt_0027",
+        "location_id": "loc_oranda_dori",
+        "title": "②まだらや本舗(1.5tクラス)",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "food",
+        "description": "焼きそば、アジフライサンド他"
+    },
+    {
+        "id": "evt_0028",
+        "location_id": "loc_oranda_dori",
+        "title": "③nomozaki bridge(軽キッチンカー+1.8mテント接続)",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "default",
+        "description": "フローズンコーラ他"
+    },
+    {
+        "id": "evt_0029",
+        "location_id": "loc_oranda_dori",
+        "title": "④なかだい(軽キッチンカー)",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "food",
+        "description": "たこ焼き"
+    },
+    {
+        "id": "evt_0030",
+        "location_id": "loc_oranda_dori",
+        "title": "⑤ぷりタコ(1tクラス)",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "food",
+        "description": "クレープ他"
+    },
+    {
+        "id": "evt_0031",
+        "location_id": "loc_oranda_dori",
+        "title": "WESTORY（エミネントスラックス）",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "food",
+        "description": "居留地まつり限定「長崎タータンチェック」スーツ他"
+    },
+    {
+        "id": "evt_0032",
+        "location_id": "loc_oranda_dori",
+        "title": "長崎の食を推進する会",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "food",
+        "description": ""
+    },
+    {
+        "id": "evt_0033",
+        "location_id": "loc_oranda_dori",
+        "title": "NCC VERE",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "food",
+        "description": "ポルトガルワイン"
+    },
+    {
+        "id": "evt_0034",
+        "location_id": "loc_glover_garden",
+        "title": "グラバー顕彰式",
+        "start_time": "2025-09-20T10:00:00+09:00",
+        "end_time": "2025-09-20T10:30:00+09:00",
+        "category": "stage",
+        "description": "居留地まつりのオープニングを飾るセレモニー、グラバーの故郷スコットランドのバグパイプや合唱など。※雨天時は伝統芸能館\nグラバー園ランタンナイト好評開催中！約400のランタンが園内を彩ります。"
+    },
+    {
+        "id": "evt_0035",
+        "location_id": "loc_glover_garden",
+        "title": "長崎市民無料",
+        "start_time": "2025-08-31T8:00:00+09:00",
+        "end_time": "2025-08-31T21:30:00+09:00",
+        "category": "default",
+        "description": "９月の期間は、長崎市民入園料無料です。証明できるものをご提示ください"
+    },
+    {
+        "id": "evt_0036",
+        "location_id": "loc_glover_garden",
+        "title": "長崎市民無料",
+        "start_time": "2025-09-20T8:00:00+09:00",
+        "end_time": "2025-09-20T21:30:00+09:00",
+        "category": "default",
+        "description": "９月の期間は、長崎市民入園料無料です。証明できるものをご提示ください"
+    },
+    {
+        "id": "evt_0037",
+        "location_id": "loc_glover_garden",
+        "title": "長崎市民無料",
+        "start_time": "2025-09-21T8:00:00+09:00",
+        "end_time": "2025-09-21T21:30:00+09:00",
+        "category": "default",
+        "description": "９月の期間は、長崎市民入園料無料です。証明できるものをご提示ください"
+    },
+    {
+        "id": "evt_0038",
+        "location_id": "loc_glover_garden",
+        "title": "長崎市民無料",
+        "start_time": "2025-09-22T8:00:00+09:00",
+        "end_time": "2025-09-22T21:30:00+09:00",
+        "category": "default",
+        "description": "９月の期間は、長崎市民入園料無料です。証明できるものをご提示ください"
+    },
+    {
+        "id": "evt_0039",
+        "location_id": "loc_glover_garden",
+        "title": "長崎市民無料",
+        "start_time": "2025-09-23T8:00:00+09:00",
+        "end_time": "2025-09-23T21:30:00+09:00",
+        "category": "default",
+        "description": "９月の期間は、長崎市民入園料無料です。証明できるものをご提示ください"
+    },
+    {
+        "id": "evt_0040",
+        "location_id": "loc_glover_garden",
+        "title": "長崎市民無料",
+        "start_time": "2025-09-28T8:00:00+09:00",
+        "end_time": "2025-09-28T21:30:00+09:00",
+        "category": "default",
+        "description": "９月の期間は、長崎市民入園料無料です。証明できるものをご提示ください"
+    },
+    {
+        "id": "evt_0041",
+        "location_id": "loc_glover_garden",
+        "title": "タータンキャンペーン",
+        "start_time": "2025-09-21T9:30:00+09:00",
+        "end_time": "2025-09-21T21:00:00+09:00",
+        "category": "food",
+        "description": "グラバーカフェでは、グラバーの故郷スコットランドにちなんだキャンペーンを実施。ハンカチや洋服などタータン（チェック柄）をグラバーカフェでご提示いただくとスコッチウィスキーなど一部商品が半額となります。"
+    },
+    {
+        "id": "evt_0042",
+        "location_id": "loc_glover_garden",
+        "title": "グラバー園ランタンナイト&ビアガーデン",
+        "start_time": "2025-08-31T18:00:00+09:00",
+        "end_time": "2025-08-31T21:30:00+09:00",
+        "category": "night",
+        "description": "グラバー園ランタンナイト開催中！約400のランタンがを彩ります。\n場所：三浦環像前広場"
+    },
+    {
+        "id": "evt_0043",
+        "location_id": "loc_glover_garden",
+        "title": "グラバー園ランタンナイト&ビアガーデン",
+        "start_time": "2025-09-20T18:00:00+09:00",
+        "end_time": "2025-09-20T21:30:00+09:00",
+        "category": "night",
+        "description": "グラバー園ランタンナイト開催中！約400のランタンがを彩ります。\n場所：三浦環像前広場"
+    },
+    {
+        "id": "evt_0044",
+        "location_id": "loc_glover_garden",
+        "title": "グラバー園ランタンナイト&ビアガーデン",
+        "start_time": "2025-09-21T18:00:00+09:00",
+        "end_time": "2025-09-21T21:30:00+09:00",
+        "category": "night",
+        "description": "グラバー園ランタンナイト開催中！約400のランタンがを彩ります。\n場所：三浦環像前広場"
+    },
+    {
+        "id": "evt_0045",
+        "location_id": "loc_glover_garden",
+        "title": "グラバー園ランタンナイト&ビアガーデン",
+        "start_time": "2025-09-22T18:00:00+09:00",
+        "end_time": "2025-09-22T21:30:00+09:00",
+        "category": "night",
+        "description": "グラバー園ランタンナイト開催中！約400のランタンがを彩ります。\n場所：三浦環像前広場"
+    },
+    {
+        "id": "evt_0046",
+        "location_id": "loc_glover_garden",
+        "title": "グラバー園ランタンナイト&ビアガーデン",
+        "start_time": "2025-09-23T18:00:00+09:00",
+        "end_time": "2025-09-23T21:30:00+09:00",
+        "category": "night",
+        "description": "グラバー園ランタンナイト開催中！約400のランタンがを彩ります。\n場所：三浦環像前広場"
+    },
+    {
+        "id": "evt_0047",
+        "location_id": "loc_glover_garden",
+        "title": "グラバー園ランタンナイト&ビアガーデン",
+        "start_time": "2025-09-28T18:00:00+09:00",
+        "end_time": "2025-09-28T21:30:00+09:00",
+        "category": "night",
+        "description": "グラバー園ランタンナイト開催中！約400のランタンがを彩ります。\n場所：三浦環像前広場"
+    },
+    {
+        "id": "evt_0048",
+        "location_id": "loc_glover_garden",
+        "title": "おトクな「グラバークーポン」販売♪",
+        "start_time": "2025-08-31T8:00:00+09:00",
+        "end_time": "2025-08-31T21:00:00+09:00",
+        "category": "food",
+        "description": "昨年同様"
+    },
+    {
+        "id": "evt_0049",
+        "location_id": "loc_glover_garden",
+        "title": "おトクな「グラバークーポン」販売♪",
+        "start_time": "2025-09-20T8:00:00+09:00",
+        "end_time": "2025-09-20T21:00:00+09:00",
+        "category": "food",
+        "description": "昨年同様"
+    },
+    {
+        "id": "evt_0050",
+        "location_id": "loc_glover_garden",
+        "title": "おトクな「グラバークーポン」販売♪",
+        "start_time": "2025-09-21T8:00:00+09:00",
+        "end_time": "2025-09-21T21:00:00+09:00",
+        "category": "food",
+        "description": "昨年同様"
+    },
+    {
+        "id": "evt_0051",
+        "location_id": "loc_glover_garden",
+        "title": "おトクな「グラバークーポン」販売♪",
+        "start_time": "2025-09-22T8:00:00+09:00",
+        "end_time": "2025-09-22T21:00:00+09:00",
+        "category": "food",
+        "description": "昨年同様"
+    },
+    {
+        "id": "evt_0052",
+        "location_id": "loc_glover_garden",
+        "title": "おトクな「グラバークーポン」販売♪",
+        "start_time": "2025-09-23T8:00:00+09:00",
+        "end_time": "2025-09-23T21:00:00+09:00",
+        "category": "food",
+        "description": "昨年同様"
+    },
+    {
+        "id": "evt_0053",
+        "location_id": "loc_glover_garden",
+        "title": "おトクな「グラバークーポン」販売♪",
+        "start_time": "2025-09-28T8:00:00+09:00",
+        "end_time": "2025-09-28T21:00:00+09:00",
+        "category": "food",
+        "description": "昨年同様"
+    },
+    {
+        "id": "evt_0054",
+        "location_id": "loc_glover_garden",
+        "title": "居留地モーニングヨガ",
+        "start_time": "2025-09-21T8:00:00+09:00",
+        "end_time": "2025-09-21T9:00:00+09:00",
+        "category": "stage",
+        "description": "※グラバー園は別途入園料がかかります（長崎市民は無料）\n※雨天時は大浦小学校 多目的室"
+    },
+    {
+        "id": "evt_0055",
+        "location_id": "loc_glover_garden",
+        "title": "居留地交流会",
+        "start_time": "2025-09-22T20:00:00+09:00",
+        "end_time": "2025-09-22T21:30:00+09:00",
+        "category": "night",
+        "description": "居留地まつりのスタッフや居留地の関係者による異業種交流会です。参加費2,000円（飲食クーポン代）\n場所：三浦環像前広場\n長崎市民は入場料無料"
+    },
+    {
+        "id": "evt_0056",
+        "location_id": "loc_nagasaki_church",
+        "title": "居留地+ARTシンポジウム",
+        "start_time": "2025-09-22T18:00:00+09:00",
+        "end_time": "2025-09-22T19:30:00+09:00",
+        "category": "night",
+        "description": "令和７年度まちづくりアワード「国土交通大臣賞」受賞記念！今後の居留地のキーワードは「アート」だ！\n出演者　高尾忠志（長崎市景観専門監）、加藤笑平（アーティスト）、幸田千依（アーティスト）ほか"
+    },
+    {
+        "id": "evt_0057",
+        "location_id": "loc_nagasaki_church",
+        "title": "居留地音楽祭",
+        "start_time": "2025-09-23T11:00:00+09:00",
+        "end_time": "2025-09-23T14:30:00+09:00",
+        "category": "stage",
+        "description": ""
+    },
+    {
+        "id": "evt_0058",
+        "location_id": "loc_nagasaki_church",
+        "title": "居留地大抽選会",
+        "start_time": "2025-09-23T15:00:00+09:00",
+        "end_time": "2025-09-23T16:00:00+09:00",
+        "category": "food",
+        "description": ""
+    },
+    {
+        "id": "evt_0059",
+        "location_id": "loc_oura_fureai",
+        "title": "居留地アーカイブ(1F)",
+        "start_time": "2025-09-20T11:00:00+09:00",
+        "end_time": "2025-09-20T17:00:00+09:00",
+        "category": "experience",
+        "description": "今年30回目を迎える長崎居留地まつりを振り返ります。\nクーリングシェルター（涼み処）としてもご利用ください。"
+    },
+    {
+        "id": "evt_0060",
+        "location_id": "loc_oura_fureai",
+        "title": "居留地アーカイブ(1F)",
+        "start_time": "2025-09-21T11:00:00+09:00",
+        "end_time": "2025-09-21T17:00:00+09:00",
+        "category": "experience",
+        "description": "今年30回目を迎える長崎居留地まつりを振り返ります。\nクーリングシェルター（涼み処）としてもご利用ください。"
+    },
+    {
+        "id": "evt_0061",
+        "location_id": "loc_konfucian_shrine",
+        "title": "孔子祭",
+        "start_time": "2025-09-20T13:00:00+09:00",
+        "end_time": "2025-09-20T14:00:00+09:00",
+        "category": "night",
+        "description": ""
+    },
+    {
+        "id": "evt_0062",
+        "location_id": "loc_konfucian_shrine",
+        "title": "変面ショー",
+        "start_time": "2025-09-20T13:30:00+09:00",
+        "end_time": "2025-09-20T14:30:00+09:00",
+        "category": "night",
+        "description": ""
+    },
+    {
+        "id": "evt_0063",
+        "location_id": "loc_konfucian_shrine",
+        "title": "変面ショー",
+        "start_time": "2025-09-21T13:00:00+09:00",
+        "end_time": "2025-09-21T14:00:00+09:00",
+        "category": "night",
+        "description": ""
+    },
+    {
+        "id": "evt_0064",
+        "location_id": "loc_higashiyamate_12",
+        "title": "遊んで世界旅行！",
+        "start_time": "2025-09-20T11:30:00+09:00",
+        "end_time": "2025-09-20T16:30:00+09:00",
+        "category": "experience",
+        "description": "フランス生まれ居留地発祥のペタンクの他、モルック、アヒル釣りなど、外国発祥の遊びが集結"
+    },
+    {
+        "id": "evt_0065",
+        "location_id": "loc_higashiyamate_12",
+        "title": "遊んで世界旅行！",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:30:00+09:00",
+        "category": "experience",
+        "description": "フランス生まれ居留地発祥のペタンクの他、モルック、アヒル釣りなど、外国発祥の遊びが集結"
+    },
+    {
+        "id": "evt_0066",
+        "location_id": "loc_higashiyamate_12",
+        "title": "マジカルポートレート居留地",
+        "start_time": "2025-09-20T11:30:00+09:00",
+        "end_time": "2025-09-20T16:30:00+09:00",
+        "category": "experience",
+        "description": "洋館ならではの映え写真を撮りませんか！\n魔法のような不思議な小道具を準備しています♪"
+    },
+    {
+        "id": "evt_0067",
+        "location_id": "loc_higashiyamate_12",
+        "title": "マジカルポートレート居留地",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:30:00+09:00",
+        "category": "experience",
+        "description": "洋館ならではの映え写真を撮りませんか！\n魔法のような不思議な小道具を準備しています♪"
+    },
+    {
+        "id": "evt_0068",
+        "location_id": "loc_higashiyamate_12",
+        "title": "タミル語で名前を書く体験",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:30:00+09:00",
+        "category": "experience",
+        "description": "世界でも最も古い言語のひとつ、南インドの「タミル語」。 \n美しいタミル文字を使って、自分の名前を書いてみましょう！"
+    },
+    {
+        "id": "evt_0069",
+        "location_id": "loc_higashiyamate_13",
+        "title": "十三番館ガーデンコンサート〜居留地まつりで逢いましょう〜",
+        "start_time": "2025-09-20T11:00:00+09:00",
+        "end_time": "2025-09-20T15:00:00+09:00",
+        "category": "stage",
+        "description": ""
+    },
+    {
+        "id": "evt_0070",
+        "location_id": "loc_higashiyamate_13",
+        "title": "十三番館ガーデンコンサート〜居留地まつりで逢いましょう〜",
+        "start_time": "2025-09-21T11:00:00+09:00",
+        "end_time": "2025-09-21T14:00:00+09:00",
+        "category": "stage",
+        "description": ""
+    },
+    {
+        "id": "evt_0071",
+        "location_id": "loc_higashiyamate_13",
+        "title": "十三番館ガーデンコンサート〜居留地まつりで逢いましょう〜",
+        "start_time": "2025-09-22T11:00:00+09:00",
+        "end_time": "2025-09-22T15:00:00+09:00",
+        "category": "stage",
+        "description": ""
+    },
+    {
+        "id": "evt_0072",
+        "location_id": "loc_higashiyamate_preservation",
+        "title": "わくわく☆竹細工あそび体験",
+        "start_time": "2025-09-20T9:00:00+09:00",
+        "end_time": "2025-09-20T17:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0073",
+        "location_id": "loc_higashiyamate_preservation",
+        "title": "わくわく☆竹細工あそび体験",
+        "start_time": "2025-09-21T9:00:00+09:00",
+        "end_time": "2025-09-21T17:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0074",
+        "location_id": "loc_higashiyamate_preservation",
+        "title": "昭和にタイムスリップ！？古民具と一緒にレトロ写真を撮ろう！",
+        "start_time": "2025-09-20T9:00:00+09:00",
+        "end_time": "2025-09-20T17:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0075",
+        "location_id": "loc_higashiyamate_preservation",
+        "title": "昭和にタイムスリップ！？古民具と一緒にレトロ写真を撮ろう！",
+        "start_time": "2025-09-21T9:00:00+09:00",
+        "end_time": "2025-09-21T17:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0076",
+        "location_id": "loc_higashiyamate_preservation",
+        "title": "昭和にタイムスリップ！？古民具と一緒にレトロ写真を撮ろう！",
+        "start_time": "2025-09-22T9:00:00+09:00",
+        "end_time": "2025-09-22T17:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0077",
+        "location_id": "loc_higashiyamate_preservation",
+        "title": "ステンドグラス作品展示・ステンドグラスキーホルダー販売",
+        "start_time": "2025-09-20T9:00:00+09:00",
+        "end_time": "2025-09-20T17:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0078",
+        "location_id": "loc_higashiyamate_preservation",
+        "title": "ステンドグラス作品展示・ステンドグラスキーホルダー販売",
+        "start_time": "2025-09-21T9:00:00+09:00",
+        "end_time": "2025-09-21T17:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0079",
+        "location_id": "loc_higashiyamate_preservation",
+        "title": "田川俊氏講演会　～版画家 田川憲と居留地「異人館の煙突」～",
+        "start_time": "2025-09-23T10:30:00+09:00",
+        "end_time": "2025-09-23T12:00:00+09:00",
+        "category": "experience",
+        "description": "参加費：無料\n※事前申込が必要です。"
+    },
+    {
+        "id": "evt_0080",
+        "location_id": "loc_higashiyamate_a",
+        "title": "長崎刺繍の煌めき",
+        "start_time": "2025-09-20T10:00:00+09:00",
+        "end_time": "2025-09-20T16:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0081",
+        "location_id": "loc_higashiyamate_a",
+        "title": "長崎刺繍の煌めき",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0082",
+        "location_id": "loc_higashiyamate_a",
+        "title": "マダム・バタフライ衣装の特別展示",
+        "start_time": "2025-09-20T10:00:00+09:00",
+        "end_time": "2025-09-20T16:00:00+09:00",
+        "category": "experience",
+        "description": "「長崎刺繍」再発見塾 塾長　嘉勢路子氏による展示説明を行います。"
+    },
+    {
+        "id": "evt_0083",
+        "location_id": "loc_higashiyamate_a",
+        "title": "マダム・バタフライ衣装の特別展示",
+        "start_time": "2025-09-21T10:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "experience",
+        "description": "「長崎刺繍」再発見塾 塾長　嘉勢路子氏による展示説明を行います。"
+    },
+    {
+        "id": "evt_0084",
+        "location_id": "loc_higashiyamate_a",
+        "title": "マダム・バタフライ衣装の特別展示",
+        "start_time": "2025-09-22T10:00:00+09:00",
+        "end_time": "2025-09-22T16:00:00+09:00",
+        "category": "experience",
+        "description": "「長崎刺繍」再発見塾 塾長　嘉勢路子氏による展示説明を行います。"
+    },
+    {
+        "id": "evt_0085",
+        "location_id": "loc_higashiyamate_a",
+        "title": "マダム・バタフライ衣装の特別展示",
+        "start_time": "2025-09-23T10:00:00+09:00",
+        "end_time": "2025-09-23T16:00:00+09:00",
+        "category": "experience",
+        "description": "「長崎刺繍」再発見塾 塾長　嘉勢路子氏による展示説明を行います。"
+    },
+    {
+        "id": "evt_0086",
+        "location_id": "loc_chikyukan",
+        "title": "ポルトガルDAY",
+        "start_time": "2025-09-21T12:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "experience",
+        "description": "ポルトガル料理やワインの販売・ポルトガルと長崎についての展示・アズレージョ体験など\n詳細はInstagramをご確認ください　@chikyukan0517"
+    },
+    {
+        "id": "evt_0087",
+        "location_id": "loc_kwassui",
+        "title": "活水学院オルガン3種聴き比べ演奏会",
+        "start_time": "2025-09-20T14:30:00+09:00",
+        "end_time": "2025-09-20T15:00:00+09:00",
+        "category": "stage",
+        "description": "古き良きパイプオルガンの音色を共に味わいましょう♪\n場所：活水女子大学　小チャペル"
+    },
+    {
+        "id": "evt_0088",
+        "location_id": "loc_hubs_ishibashi",
+        "title": "世界の酒まつり",
+        "start_time": "2025-09-20T13:00:00+09:00",
+        "end_time": "2025-09-20T21:00:00+09:00",
+        "category": "food",
+        "description": ""
+    },
+    {
+        "id": "evt_0089",
+        "location_id": "loc_hubs_ishibashi",
+        "title": "世界の酒まつり",
+        "start_time": "2025-09-21T13:00:00+09:00",
+        "end_time": "2025-09-21T21:00:00+09:00",
+        "category": "food",
+        "description": ""
+    },
+    {
+        "id": "evt_0090",
+        "location_id": "loc_hubs_ishibashi",
+        "title": "世界の酒まつり",
+        "start_time": "2025-09-23T13:00:00+09:00",
+        "end_time": "2025-09-23T21:00:00+09:00",
+        "category": "food",
+        "description": ""
+    },
+    {
+        "id": "evt_0091",
+        "location_id": "loc_minamiyamate_rest",
+        "title": "アートギャラリー",
+        "start_time": "2025-09-20T9:00:00+09:00",
+        "end_time": "2025-09-20T17:00:00+09:00",
+        "category": "experience",
+        "description": "アーティスト：幸田千依、加藤笑平、岩永嘉人"
+    },
+    {
+        "id": "evt_0092",
+        "location_id": "loc_minamiyamate_rest",
+        "title": "アートギャラリー",
+        "start_time": "2025-09-21T9:00:00+09:00",
+        "end_time": "2025-09-21T17:00:00+09:00",
+        "category": "experience",
+        "description": "アーティスト：幸田千依、加藤笑平、岩永嘉人"
+    },
+    {
+        "id": "evt_0093",
+        "location_id": "loc_minamiyamate_rest",
+        "title": "居留地サンセットヨガ",
+        "start_time": "2025-09-20T17:30:00+09:00",
+        "end_time": "2025-09-20T18:30:00+09:00",
+        "category": "stage",
+        "description": "夕暮れどきの長崎の街を眺めながら、リラックスしましょう♪参加費:500円"
+    },
+    {
+        "id": "evt_0094",
+        "location_id": "loc_minamiyamate_rest",
+        "title": "洋館とステンドグラスをつくろう！",
+        "start_time": "2025-09-20T10:00:00+09:00",
+        "end_time": "2025-09-20T16:30:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0095",
+        "location_id": "loc_minamiyamate_rest",
+        "title": "長崎推し巡り展",
+        "start_time": "2025-09-20T8:00:00+09:00",
+        "end_time": "2025-09-20T9:00:00+09:00",
+        "category": "default",
+        "description": ""
+    },
+    {
+        "id": "evt_0096",
+        "location_id": "loc_minamiyamate_rest",
+        "title": "長崎推し巡り展",
+        "start_time": "2025-09-21T9:00:00+09:00",
+        "end_time": "2025-09-21T17:00:00+09:00",
+        "category": "default",
+        "description": ""
+    },
+    {
+        "id": "evt_0097",
+        "location_id": "loc_minamiyamate_rest",
+        "title": "きみの色展",
+        "start_time": "2025-09-22T9:00:00+09:00",
+        "end_time": "2025-09-22T17:00:00+09:00",
+        "category": "default",
+        "description": ""
+    },
+    {
+        "id": "evt_0098",
+        "location_id": "loc_sugagomichi",
+        "title": "居留地de似顔絵",
+        "start_time": "2025-09-21T11:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "experience",
+        "description": ""
+    },
+    {
+        "id": "evt_0099",
+        "location_id": "loc_minamiyamate_preservation",
+        "title": "洋館でフリーマーケット",
+        "start_time": "2025-09-20T10:30:00+09:00",
+        "end_time": "2025-09-20T15:30:00+09:00",
+        "category": "experience",
+        "description": "○雑貨、服、家庭用品などのフリーマーケット\n○アロママッサージ体験\n○アートフラワー、レジンアクセサリーのワークショップ"
+    },
+    {
+        "id": "evt_0100",
+        "location_id": "loc_minamiyamate_preservation",
+        "title": "洋館でフリーマーケット",
+        "start_time": "2025-09-21T10:30:00+09:00",
+        "end_time": "2025-09-21T15:30:00+09:00",
+        "category": "experience",
+        "description": "○雑貨、服、家庭用品などのフリーマーケット\n○アロママッサージ体験\n○アートフラワー、レジンアクセサリーのワークショップ"
+    },
+    {
+        "id": "evt_0101",
+        "location_id": "loc_hsbc_memorial",
+        "title": "平戸祐介ミニライブ&トーク",
+        "start_time": "2025-09-21T15:00:00+09:00",
+        "end_time": "2025-09-21T16:00:00+09:00",
+        "category": "stage",
+        "description": "居留地のシンボルにジャズピアニスト平戸祐介が降臨！先着30名限定！長崎シティジャズとのコラボ企画です。"
+    },
+    {
+        "id": "evt_0102",
+        "location_id": "loc_hsbc_memorial",
+        "title": "居留地YOUTHトークライブ",
+        "start_time": "2025-09-20T14:30:00+09:00",
+        "end_time": "2025-09-20T16:00:00+09:00",
+        "category": "stage",
+        "description": "YOUTH世代（若者）と考える居留地の未来"
+    },
+    {
+        "id": "evt_0103",
+        "location_id": "loc_hsbc_memorial",
+        "title": "アートナイト居留地",
+        "start_time": "2025-09-20T19:00:00+09:00",
+        "end_time": "2025-09-20T21:00:00+09:00",
+        "category": "night",
+        "description": "洋館をキャンパスに簡単手法で市民芸術の発展を目指す、新たなアートプロジェクト"
+    },
+    {
+        "id": "evt_0104",
+        "location_id": "loc_hsbc_memorial",
+        "title": "アートナイト居留地",
+        "start_time": "2025-09-21T19:00:00+09:00",
+        "end_time": "2025-09-21T21:00:00+09:00",
+        "category": "night",
+        "description": "洋館をキャンパスに簡単手法で市民芸術の発展を目指す、新たなアートプロジェクト"
+    }
+]
