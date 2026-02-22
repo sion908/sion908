@@ -5,6 +5,8 @@
   --primary-color: #72A893;
   --secondary-color: #A8A26A;
   --accent-color: #E63946;
+  --shion-color: #857BA8;
+  --shion-color-dark: #554e6d;
   --text-color: #333;
   --bg-color: #F9F9F9;
   --header-bg: rgba(34, 49, 52, 0.95);
@@ -367,7 +369,7 @@ header {
 
 .work-card h3 {
   padding: 15px 20px;
-  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(to right, var(--shion-color), var(--shion-color-dark));
   color: var(--white);
   font-size: 1.1rem;
   margin: 0;
