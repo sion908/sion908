@@ -4,7 +4,7 @@
 | 項目 | 内容 |
 |------|------|
 | 氏名 | 德久泰河 |
-| 居住地 | 長崎県長崎市（市区町村まで公開） |
+| 居住地 | 長崎県長崎市 |
 | 連絡先メール | info ⭐️ sion908.tech |
 | GitHub | https://github.com/sion908 |
 | ポートフォリオ | https://portfolio.sion908.tech |
