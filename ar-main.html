@@ -2,84 +2,56 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XR Live Card</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>XR Live Card - 8th Wall</title>
     <link rel="icon" href="img/marure.ico">
     <link rel="stylesheet" href="css/ar.css">
-    <script src="js/aframe.min.js"></script>
-    <script src="js/aframe-ar.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
-    <!-- <script>
-        AFRAME.registerComponent('open-url', {
-            schema: { url: { type: 'string' } },
-            init() {
-                const handleOpen = (event) => {
-                    event.stopPropagation();
-                    const url = this.data.url;
-                    if (!url) { return; }
-                    const opened = window.open(url, '_blank');
-                    if (!opened) {
-                        window.location.href = url;
-                    }
-                };
 
-                this.el.addEventListener('pointerdown', handleOpen);
-                this.el.addEventListener('click', handleOpen);
-            }
-        });
-    </script> -->
+    <!-- 8th Wall Open Source A-Frame -->
+    <script src="https://cdn.jsdelivr.net/npm/@8thwall/8frame@latest/dist/8frame.min.js"></script>
+
+    <!-- 8th Wall XR Extras -->
+    <script src="https://cdn.jsdelivr.net/npm/@8thwall/xrextras@latest/dist/xrextras.js"></script>
+
+    <!-- 8th Wall XR Engine -->
+    <script src="https://cdn.jsdelivr.net/npm/@8thwall/xrweb@latest/dist/xrweb.js"></script>
+
+    <!-- A-Frame Extras -->
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+
+    <!-- Custom components -->
+    <script src="js/ar-components.js"></script>
 </head>
 <body style="margin: 0px; overflow: hidden;">
 
-<a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
+<a-scene
+    xrextras-generate-image-targets="primitive: stage-display"
+    xrextras-loading
+    xrextras-runtime-error
+    renderer="antialias: true; colorManagement: true;"
+    xrweb="disableWorldTracking: true">
 
     <a-assets>
         <a-asset-item id="mar" src="model/mar.gltf"></a-asset-item>
         <img id="stage-banner-img" src="img/stage-banner.png">
-        <!-- <img id="stage-link-img" src="img/stage-link.png"> -->
-	</a-assets>
+    </a-assets>
+
+    <a-camera
+        id="camera"
+        position="0 4 10"
+        raycaster="objects: .cantap"
+        cursor="fuse:false; rayOrigin:mouse;">
+    </a-camera>
     
-    <a-marker type="pattern" url="marker/pattern-chart.patt">
-        <a-cylinder position="0 -0.2 0"
-                    radius="2"
-                    height="0.05"
-                    color="#857BA8"
-                    material="metalness: 0.1; roughness: 0.8"></a-cylinder>
-        <a-entity geometry="primitive: torus; radius: 1.8; radiusTubular: 0.06"
-                  position="0 -0.17 0"
-                  rotation="90 0 0"
-                  material="color: #ffe28a; emissive: #ffb347; emissiveIntensity: 0.7; metalness: 0.2; roughness: 0.2"
-                  animation__pulse="property: scale; dir: alternate; from: 1 1 1; to: 1.03 1.03 1.03; dur: 1600; loop: true; easing: easeInOutSine"></a-entity>
-        <a-image src="#stage-banner-img"
-                  position="0 0.85 -0.55"
-                  width="2.6"
-                  height="1.4"
-                  material="transparent: true; alphaTest: 0.01"></a-image>
-        <!-- <a-image src="#stage-link-img"
-                  position="-1.5 0.6 -0.3"
-                  rotation="0 15 0"
-                  width="1.3"
-                  height="1"
-                  material="transparent: true; alphaTest: 0.01"
-                  open-url="url: index.html"></a-image> -->
-        <a-entity light="type: ambient; intensity: 0.5"></a-entity>
-        <a-entity light="type: spot; intensity: 1.2; angle: 38; penumbra: 0.3; decay: 2; target: #dancer"
-                  position="-1.4 1.8 1.2"
-                  rotation="-55 25 -10"></a-entity>
-        <a-entity light="type: spot; intensity: 1.2; angle: 38; penumbra: 0.3; decay: 2; target: #dancer"
-                  position="1.4 1.8 1.2"
-                  rotation="-55 -25 10"></a-entity>
-        <a-entity   id="dancer"
-                    position="0 0.2 0" 
-                    rotation="0 0 0"
-                    scale="0.005 0.005 0.005"
-                    gltf-model="#mar"
-                    animation-mixer>
-        </a-entity>
-    </a-marker>
-    
-    <a-entity camera></a-entity>
+    <a-light type="ambient" intensity="0.5"></a-light>
+    <a-light type="spot" intensity="1.2" angle="38" penumbra="0.3" decay="2" target="#dancer"
+              position="-1.4 1.8 1.2"
+              rotation="-55 25 -10"></a-light>
+    <a-light type="spot" intensity="1.2" angle="38" penumbra="0.3" decay="2" target="#dancer"
+              position="1.4 1.8 1.2"
+              rotation="-55 -25 10"></a-light>
 </a-scene>
+
 <button class="btn-transition" onclick="location.href='index.html'">ポートフォリオへ</button>
 </body>
 </html>
